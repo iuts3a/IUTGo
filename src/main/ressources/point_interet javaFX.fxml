@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" text="point d'intérét" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <Label id="nom_point_intêret" layoutX="33.0" layoutY="123.0" prefHeight="21.0" prefWidth="139.0" text="PI">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label id="label_lieu" layoutX="97.0" layoutY="205.0" text="Lieu :" />
+            <Label layoutX="91.0" layoutY="271.0" text="Horaires:" />
+            <Label id="label_description" layoutX="84.0" layoutY="345.0" text="Description :" />
+            <Label id="label_ville" layoutX="96.0" layoutY="240.0" text="Ville:" />
+            <Label id="label_note" layoutX="93.0" layoutY="292.0" prefHeight="24.0" prefWidth="64.0" text="Note:" />
+            <Label id="info_lieu" layoutX="182.0" layoutY="205.0" text="info" />
+            <Label id="info_ville" layoutX="179.0" layoutY="240.0" prefHeight="21.0" prefWidth="139.0" text="info" />
+            <Label id="info_horaires" layoutX="182.0" layoutY="271.0" prefHeight="21.0" prefWidth="139.0" text="info" />
+            <Label id="info_note" layoutX="179.0" layoutY="294.0" prefHeight="21.0" prefWidth="139.0" text="info" />
+            <Label id="info_description" layoutX="178.0" layoutY="345.0" prefHeight="21.0" prefWidth="139.0" text="info" />
+            <Button id="ajouter_bouton " layoutX="291.0" layoutY="528.0" mnemonicParsing="false" text="Ajouter à un itinéraire" />
+            <Button id="modifier_bouton" layoutX="508.0" layoutY="528.0" mnemonicParsing="false" text="Modifier" />
+            <Label id="label_type" layoutX="93.0" layoutY="320.0" prefHeight="21.0" prefWidth="139.0" text="type:" />
+            <Label id="info_type" layoutX="178.0" layoutY="324.0" prefHeight="21.0" prefWidth="139.0" text="info" />
+            <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="765.0" layoutY="20.0">
+               <image>
+                  <Image url="@../../../../AppData/Local/Temp/16683217_667402113444948_1812856522_n.png" />
+               </image>
+            </ImageView>
+            <Button id="retour_button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="retour" />
+         </children></AnchorPane>
+  </content>
+</TitledPane>
