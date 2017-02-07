@@ -150,18 +150,49 @@ public class Utilisateur implements Serializable {
         }
     }
 
-    public boolean addPointInteretToRoadTrip(String roadTripName, float price, TypePointInteret type) {
-        //TODO
-        RoadTrip.read().get(roadTripName).addPI();
+    public boolean addPointInteretToRoadTrip(String roadTripName, float price, TypePointInteret type, String name, float priceP, Coordonee coordonee, Utilisateur createur) {
+        PointInteret PI = new PointInteret(name, type, priceP, coordonee, createur);
+        try {
+            PI.save();
+            RoadTrip.read().get(roadTripName).addPI(PI);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
-        return true;
+    public boolean addPointInteretToRoadTrip(String roadTripName, float price, TypePointInteret type, String name, String description, float priceP, Coordonee coordonee, Utilisateur createur) {
+        PointInteret PI = new PointInteret(name,description, type, priceP, coordonee, createur);
+        try {
+            PI.save();
+            RoadTrip.read().get(roadTripName).addPI(PI);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean deletePointInteretFromRoadTrip(String roadTripName, String pointInteretName) {
         //TODO
-        RoadTrip.read().get(roadTripName).deletePI(pointInteretName);
-
-        return true;
+        //Je sais plus si en faisant simplement comme ça, ca fonctionne a voir.
+        try {
+            RoadTrip.read().get(roadTripName).deletePI(pointInteretName);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean addRoadTripToFavorite(String roadTripName) {
