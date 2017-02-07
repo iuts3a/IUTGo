@@ -15,6 +15,12 @@ public class Coordonee implements Serializable {
         this.ville = ville;
     }
 
+    public Coordonee() {
+        this.latitude = 1;
+        this.longitude = 1;
+        this.ville = "Paris";
+    }
+
     public float getLatitude() {
         return latitude;
     }
