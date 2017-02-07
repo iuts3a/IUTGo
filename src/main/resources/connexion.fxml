@@ -40,7 +40,7 @@
             <Button fx:id="button_validation" mnemonicParsing="false" onAction="#validate_connexion" text="Valider" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <ImageView fitHeight="130.0" fitWidth="200.0" layoutX="400.0" layoutY="25.0">
+      <ImageView fitHeight="130.0" fitWidth="200.0" layoutX="400.0" layoutY="25.0" onMouseClicked="#homepage">
          <image>
             <Image url="@img/iutGo.png" />
          </image>

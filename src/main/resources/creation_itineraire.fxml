@@ -60,7 +60,7 @@
                   <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
                </padding>
             </Button>
-            <ImageView fitHeight="130.0" fitWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <ImageView fitHeight="130.0" fitWidth="200.0" onMouseClicked="#homepage" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
                   <Image url="@img/iutGo.png" />
                </image>
