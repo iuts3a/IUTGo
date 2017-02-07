@@ -3,25 +3,25 @@ package IUTGo.Models;
 import java.io.*;
 import java.util.HashMap;
 
-public class Itinineraire implements Serializable {
+public class RoadTrip implements Serializable {
 
     private String nom;
     private HashMap<String, PointInteret> listePI;
     private float prixMin;
     private float prixMax;
 
-    public Itinineraire(String nom) {
+    public RoadTrip(String nom) {
         this.listePI = new HashMap<String, PointInteret>();
         this.nom = nom;
     }
 
-    public static HashMap<String, Itinineraire> read() throws IOException, ClassNotFoundException {
+    public static HashMap<String, RoadTrip> read() throws IOException, ClassNotFoundException {
         File fichier = new File("./Sauv/Itineraire.ser");
 
         ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
 
-        HashMap<String, Itinineraire> tab;
-        tab = (HashMap<String, Itinineraire>) ooi.readObject();
+        HashMap<String, RoadTrip> tab;
+        tab = (HashMap<String, RoadTrip>) ooi.readObject();
         return tab;
     }
 
@@ -40,7 +40,7 @@ public class Itinineraire implements Serializable {
     public void creerFichier() throws IOException {
         File fichier = new File("./Sauv/Itineraire.ser");
 
-        HashMap<String, Itinineraire> tab = new HashMap<String, Itinineraire>();
+        HashMap<String, RoadTrip> tab = new HashMap<String, RoadTrip>();
 
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
         oos.writeObject(tab);
@@ -53,8 +53,8 @@ public class Itinineraire implements Serializable {
 
         ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
 
-        HashMap<String, Itinineraire> tab;
-        tab = (HashMap<String, Itinineraire>) ooi.readObject();
+        HashMap<String, RoadTrip> tab;
+        tab = (HashMap<String, RoadTrip>) ooi.readObject();
         tab.put(this.getNom(), this);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
         oos.writeObject(tab);
@@ -79,7 +79,7 @@ public class Itinineraire implements Serializable {
 
     @Override
     public String toString() {
-        return "Itinineraire{" +
+        return "RoadTrip{" +
                 "nom='" + nom + '\'' +
                 ", listePI=" + listePI.toString() +
                 ", prixMin Itinéraire=" + prixMin +
