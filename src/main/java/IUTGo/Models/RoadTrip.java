@@ -1,5 +1,7 @@
 package IUTGo.Models;
 
+import IUTGo.Models.Users.Utilisateur;
+
 import java.io.*;
 import java.util.HashMap;
 
@@ -7,11 +9,12 @@ public class RoadTrip implements Serializable {
 
     private String nom;
     private HashMap<String, PointInteret> listePI;
-    private float prixMin;
-    private float prixMax;
+    private HashMap<String, Utilisateur> participants;
+    private float price;
 
-    public RoadTrip(String nom) {
+    public RoadTrip(String nom, HashMap<String, Utilisateur> participants) {
         this.listePI = new HashMap<String, PointInteret>();
+        this.participants = participants;
         this.nom = nom;
     }
 
@@ -25,15 +28,14 @@ public class RoadTrip implements Serializable {
         return tab;
     }
 
+
     public void addPI(PointInteret PI) {
         this.listePI.put(PI.getNom(), PI);
-        this.prixMin += PI.getPrixMin();
-        this.prixMax += PI.getPrixMax();
+        this.price += PI.getPrix();
     }
 
     public void deletePI(String PI) {
-        this.prixMin -= this.listePI.get(PI).getPrixMin();
-        this.prixMax -= this.listePI.get(PI).getPrixMax();
+        this.price -= this.listePI.get(PI).getPrix();
         this.listePI.remove(PI);
     }
 
@@ -69,12 +71,16 @@ public class RoadTrip implements Serializable {
         return nom;
     }
 
-    public float getPrixMin() {
-        return prixMin;
+    public float getPrice(){
+        return price;
     }
 
-    public float getPrixMax() {
-        return prixMax;
+    public HashMap<String, Utilisateur> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(HashMap<String, Utilisateur> participants) {
+        this.participants = participants;
     }
 
     @Override
@@ -82,8 +88,9 @@ public class RoadTrip implements Serializable {
         return "RoadTrip{" +
                 "nom='" + nom + '\'' +
                 ", listePI=" + listePI.toString() +
-                ", prixMin Itinéraire=" + prixMin +
-                ", prixMax Itinéraire=" + prixMax +
+                ", prixMin Itinéraire=" + price +
                 '}';
     }
+
+
 }
