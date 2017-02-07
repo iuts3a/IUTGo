@@ -1,30 +1,41 @@
 package IUTGo.Models;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PointInteret implements Serializable {
 
     private String nom;
     private String description;
-    private String type;
-    private int prixMin;
-    private int prixMax;
-    private int coefficient;
+    private TypePointInteret type;
+    private int prix;
+    private boolean validated;
     private Coordonee coordonee;
 
-    public PointInteret(String nom, String description, String type, int prixMin, int prixMax, Coordonee cordonnee) {
+    private ArrayList<Comment> comments;
 
-        this.nom = nom;
-        this.description = description;
-        this.type = type;
-        this.prixMin = prixMin;
-        this.prixMax = prixMax;
-        this.coefficient = 0;
-        this.coordonee = cordonnee;
-
+    public PointInteret(String nom, TypePointInteret type, int prix, Coordonee coordonee) {
+        setNom(nom);
+        setType(type);
+        setPrix(prix);
+        setCoordonee(coordonee);
+        setValidated(false);
+        setDescription("");
+        setComments(new ArrayList<Comment>());
     }
 
+    public PointInteret(String nom, String description, TypePointInteret type, int prix, Coordonee coordonee) {
+        setNom(nom);
+        setType(type);
+        setPrix(prix);
+        setCoordonee(coordonee);
+        setValidated(false);
+        setDescription(description);
+        setComments(new ArrayList<Comment>());
+    }
+
+    @SuppressWarnings("unchecked")
     public static HashMap<String, PointInteret> read() throws IOException, ClassNotFoundException {
         File fichier = new File("./Sauv/PI.ser");
 
@@ -33,6 +44,79 @@ public class PointInteret implements Serializable {
         HashMap<String, PointInteret> tab;
         tab = (HashMap<String, PointInteret>) ooi.readObject();
         return tab;
+    }
+
+    //region Getters and Setters
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public TypePointInteret getType() {
+        return type;
+    }
+
+    public void setType(TypePointInteret type) {
+        this.type = type;
+    }
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+
+    public boolean isValidated() {
+        return validated;
+    }
+
+    public void setValidated(boolean validated) {
+        this.validated = validated;
+    }
+
+    public Coordonee getCoordonee() {
+        return coordonee;
+    }
+
+    public void setCoordonee(Coordonee coordonee) {
+        this.coordonee = coordonee;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
+
+
+    //endregion
+
+    public float getGrade()
+    {
+        float grade = 0;
+
+        for (Comment comment:comments)
+        {
+            grade += comment.getGrade();
+        }
+
+        return grade/comments.size();
     }
 
     public void creerFichier() throws IOException {
@@ -59,67 +143,14 @@ public class PointInteret implements Serializable {
 
     }
 
-    public void like() {
-        this.coefficient += 1;
-    }
-
-    public void dislike() {
-        this.coefficient -= 1;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Coordonee getCoordonee() {
-        return coordonee;
-    }
-
-    public float getPrixMin() {
-        return prixMin;
-    }
-
-    public void setPrixMin(int prixMin) {
-        this.prixMin = prixMin;
-    }
-
-    public float getPrixMax() {
-        return prixMax;
-    }
-
-    public void setPrixMax(int prixMax) {
-        this.prixMax = prixMax;
-    }
-
-    public int getCoefficient() {
-        return coefficient;
-    }
-
-    public void setCoefficient(int coefficient) {
-        this.coefficient = coefficient;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     @Override
     public String toString() {
         return "PointInteret{" +
                 "nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
-                ", prixMin=" + prixMin +
-                ", prixMax=" + prixMax +
-                ", coefficient=" + coefficient +
-                ", coordonee=" + coordonee.toString() +
+                ", type='" + getType() + '\'' +
+                ", prix=" + prix +
+                ", note=" + getGrade() +
                 '}';
     }
 }
