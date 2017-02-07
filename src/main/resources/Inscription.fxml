@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" text="Inscription" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" text="Inscription" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
@@ -30,7 +30,7 @@
             <RadioButton layoutX="259.0" layoutY="579.0" mnemonicParsing="false" text="En cliquant sur ce bouton, j'accepte les conditions d'utiisation" />
             <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Desktop/logoIUTGO.png" />
+                  <Image url="@img/iutGo.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
