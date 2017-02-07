@@ -1,4 +1,4 @@
-package IUTGo.models;
+package java.IUTGo.models;
 
 import IUTGo.Models.Coordonee;
 import IUTGo.Models.PointInteret;

@@ -16,7 +16,7 @@ public class RoadTrip implements Serializable {
     }
 
     public static HashMap<String, RoadTrip> read() throws IOException, ClassNotFoundException {
-        File fichier = new File("./Sauv/Itineraire.ser");
+        File fichier = new File("./Sauv/RoadTrip.ser");
 
         ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
 
@@ -38,7 +38,7 @@ public class RoadTrip implements Serializable {
     }
 
     public void creerFichier() throws IOException {
-        File fichier = new File("./Sauv/Itineraire.ser");
+        File fichier = new File("./Sauv/RoadTrip.ser");
 
         HashMap<String, RoadTrip> tab = new HashMap<String, RoadTrip>();
 
@@ -49,7 +49,7 @@ public class RoadTrip implements Serializable {
 
     public void save() throws IOException, ClassNotFoundException {
 
-        File fichier = new File("./Sauv/Itineraire.ser");
+        File fichier = new File("./Sauv/RoadTrip.ser");
 
         ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
 
