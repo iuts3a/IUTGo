@@ -1,5 +1,7 @@
 package IUTGo.Models;
 
+import IUTGo.Models.Users.Utilisateur;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,10 +14,11 @@ public class PointInteret implements Serializable {
     private int prix;
     private boolean validated;
     private Coordonee coordonee;
+    private Utilisateur createur;
 
     private ArrayList<Comment> comments;
 
-    public PointInteret(String nom, TypePointInteret type, int prix, Coordonee coordonee) {
+    public PointInteret(String nom, TypePointInteret type, int prix, Coordonee coordonee, Utilisateur createur) {
         setNom(nom);
         setType(type);
         setPrix(prix);
@@ -23,9 +26,10 @@ public class PointInteret implements Serializable {
         setValidated(false);
         setDescription("");
         setComments(new ArrayList<Comment>());
+        setCreateur(createur);
     }
 
-    public PointInteret(String nom, String description, TypePointInteret type, int prix, Coordonee coordonee) {
+    public PointInteret(String nom, String description, TypePointInteret type, int prix, Coordonee coordonee, Utilisateur createur) {
         setNom(nom);
         setType(type);
         setPrix(prix);
@@ -33,6 +37,7 @@ public class PointInteret implements Serializable {
         setValidated(false);
         setDescription(description);
         setComments(new ArrayList<Comment>());
+        setCreateur(createur);
     }
 
     @SuppressWarnings("unchecked")
@@ -104,19 +109,23 @@ public class PointInteret implements Serializable {
         this.comments = comments;
     }
 
+    public Utilisateur getCreateur() {
+        return createur;
+    }
 
+    public void setCreateur(Utilisateur utilisateur) {
+        this.createur = utilisateur;
+    }
     //endregion
 
-    public float getGrade()
-    {
+    public float getGrade() {
         float grade = 0;
 
-        for (Comment comment:comments)
-        {
+        for (Comment comment : comments) {
             grade += comment.getGrade();
         }
 
-        return grade/comments.size();
+        return grade / comments.size();
     }
 
     public void creerFichier() throws IOException {
