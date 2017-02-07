@@ -2,6 +2,7 @@ package models;
 
 import IUTGo.Models.Coordonee;
 import IUTGo.Models.PointInteret;
+import IUTGo.Models.TypePointInteret;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class PointInteretTest {
     @Before
     public void setUp() throws Exception {
         coordonee = new Coordonee(3,4,"Paris");
-        PI = new PointInteret("Parc des Princes","Stade de foot","Stade",20,50,coordonee);
+        PI = new PointInteret("Parc des Princes", TypePointInteret.Hotel,100,new Coordonee());
 
 
         //Methode nécessaire lors de modification de classe
@@ -36,18 +37,6 @@ public class PointInteretTest {
 
     }
 
-    @Test
-    public void like() throws Exception {
-        PI.like();
-        assertEquals(1,PI.getCoefficient());
-    }
-
-    @Test
-    public void dislike() throws Exception {
-        PI.dislike();
-        assertEquals(-1, PI.getCoefficient());
-
-    }
 
     @Test
     public void save() throws Exception {
@@ -62,51 +51,5 @@ public class PointInteretTest {
        assertEquals(true,H.containsKey("Parc des Princes"));
     }
 
-
-    @Test
-    public void getNom() throws Exception {
-        assertEquals("Parc des Princes",PI.getNom());
-    }
-
-    @Test
-    public void getDescription() throws Exception {
-        assertEquals("Stade de foot",PI.getDescription());
-    }
-
-    @Test
-    public void getCoordonee() throws Exception {
-        assertEquals(coordonee, PI.getCoordonee());
-    }
-
-    @Test
-    public void getPrixMin() throws Exception {
-       assertEquals(20, PI.getPrixMin(),0.0001);
-    }
-
-    @Test
-    public void setPrixMin() throws Exception {
-        PI.setPrixMin(40);
-        assertEquals(40,PI.getPrixMin(),0.0001);
-    }
-
-    @Test
-    public void getPrixMax() throws Exception {
-
-    }
-
-    @Test
-    public void setPrixMax() throws Exception {
-
-    }
-
-    @Test
-    public void getCoefficient() throws Exception {
-
-    }
-
-    @Test
-    public void setCoefficient() throws Exception {
-
-    }
 
 }
