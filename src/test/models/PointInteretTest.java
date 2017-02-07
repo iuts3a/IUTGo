@@ -28,7 +28,7 @@ public class PointInteretTest {
 
 
         //Methode nécessaire lors de modification de classe
-       //PI.creerFichier();
+      // PI.creerFichier();
     }
 
     @After
