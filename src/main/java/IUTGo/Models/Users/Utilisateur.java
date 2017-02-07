@@ -5,9 +5,10 @@ import IUTGo.Models.PointInteret;
 import IUTGo.Models.RoadTrip;
 import IUTGo.Models.TypePointInteret;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Utilisateur {
+public class Utilisateur implements Serializable {
 
     private String nom;
     private String prenom;
