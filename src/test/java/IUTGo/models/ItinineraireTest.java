@@ -1,4 +1,4 @@
-package models;
+package IUTGo.models;
 
 
 import IUTGo.Models.Coordonee;
@@ -30,7 +30,7 @@ public class ItinineraireTest {
         PI = new PointInteret("Parc des Princes", "Stade de foot","Stade", 20, 50, coordonee);
         itinineraire = new Itinineraire("Test");
 
-     //  itinineraire.creerFichier();
+     // itinineraire.creerFichier();
     }
 
     @After

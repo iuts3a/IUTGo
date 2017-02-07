@@ -1,4 +1,4 @@
-package models;
+package IUTGo.models;
 
 import IUTGo.Models.Coordonee;
 import IUTGo.Models.PointInteret;
@@ -28,7 +28,7 @@ public class PointInteretTest {
 
 
         //Methode nécessaire lors de modification de classe
-       //PI.creerFichier();
+      // PI.creerFichier();
     }
 
     @After
