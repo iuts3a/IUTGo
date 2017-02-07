@@ -3,9 +3,6 @@ package IUTGo.Models;
 import java.io.*;
 import java.util.HashMap;
 
-/**
- * Created by axelm on 18/10/2016.
- */
 public class PointInteret implements Serializable {
 
     private String nom;
@@ -16,7 +13,7 @@ public class PointInteret implements Serializable {
     private int coefficient;
     private Coordonee coordonee;
 
-    public PointInteret (String nom,String description,String type,int prixMin,int prixMax, Coordonee cordonnee) {
+    public PointInteret(String nom, String description, String type, int prixMin, int prixMax, Coordonee cordonnee) {
 
         this.nom = nom;
         this.description = description;
@@ -27,46 +24,46 @@ public class PointInteret implements Serializable {
         this.coordonee = cordonnee;
 
     }
-    
+
+    public static HashMap<String, PointInteret> read() throws IOException, ClassNotFoundException {
+        File fichier = new File("./Sauv/PI.ser");
+
+        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
+
+        HashMap<String, PointInteret> tab;
+        tab = (HashMap<String, PointInteret>) ooi.readObject();
+        return tab;
+    }
+
     public void creerFichier() throws IOException {
-        File fichier =  new File("./Sauv/PI.ser");
+        File fichier = new File("./Sauv/PI.ser");
 
-        HashMap <String,PointInteret> tab = new HashMap<String, PointInteret>();
+        HashMap<String, PointInteret> tab = new HashMap<String, PointInteret>();
 
-        ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream(fichier)) ;
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
         oos.writeObject(tab);
 
     }
 
     public void save() throws IOException, ClassNotFoundException {
 
-        File fichier =  new File("./Sauv/PI.ser");
+        File fichier = new File("./Sauv/PI.ser");
 
         ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
 
-        HashMap <String,PointInteret> tab;
+        HashMap<String, PointInteret> tab;
         tab = (HashMap<String, PointInteret>) ooi.readObject();
-        tab.put(this.getNom(),this);
-        ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream(fichier)) ;
+        tab.put(this.getNom(), this);
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
         oos.writeObject(tab);
 
     }
 
-    public static HashMap<String,PointInteret> read() throws IOException, ClassNotFoundException {
-        File fichier =  new File("./Sauv/PI.ser") ;
-
-        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
-
-        HashMap <String,PointInteret> tab;
-        tab = (HashMap<String, PointInteret>) ooi.readObject();
-        return tab;
-    }
-
-    public void like (){
+    public void like() {
         this.coefficient += 1;
     }
 
-    public void dislike (){
+    public void dislike() {
         this.coefficient -= 1;
     }
 
