@@ -29,13 +29,14 @@ public class RoadTrip implements Serializable {
         return tab;
     }
 
-
     public void addPI(PointInteret PI) {
+        //TODO
         this.listePI.put(PI.getNom(), PI);
         this.price += PI.getPrix();
     }
 
     public void deletePI(String PI) {
+        //TODO
         this.price -= this.listePI.get(PI).getPrix();
         this.listePI.remove(PI);
     }
@@ -73,6 +74,7 @@ public class RoadTrip implements Serializable {
     }
 
     public float getPrice() {
+        //TODO
         return price;
     }
 

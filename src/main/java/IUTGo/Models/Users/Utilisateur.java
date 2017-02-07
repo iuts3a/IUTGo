@@ -152,11 +152,15 @@ public class Utilisateur implements Serializable {
 
     public boolean addPointInteretToRoadTrip(String roadTripName, float price, TypePointInteret type) {
         //TODO
+        RoadTrip.read().get(roadTripName).addPI();
+
         return true;
     }
 
     public boolean deletePointInteretFromRoadTrip(String roadTripName, String pointInteretName) {
         //TODO
+        RoadTrip.read().get(roadTripName).deletePI(pointInteretName);
+
         return true;
     }
 
