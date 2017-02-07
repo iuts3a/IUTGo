@@ -10,7 +10,7 @@
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <Label layoutX="861.0" prefHeight="37.0" prefWidth="130.0" text="Se déconnecter" textFill="#1b4bb1" underline="true" />
+            <Label fx:id="deconnecter" layoutX="861.0" prefHeight="37.0" prefWidth="130.0" text="Se déconnecter" textFill="#1b4bb1" underline="true" />
             <Label layoutX="439.0" layoutY="89.0" text="IUTGo">
                <font>
                   <Font name="System Bold" size="41.0" />
@@ -27,33 +27,33 @@
             </Label>
             <HBox layoutX="14.0" layoutY="408.0" prefHeight="237.0" prefWidth="975.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="243.0" text="Créer un RoadTrip">
+                  <Button fx:id="btn_create_rt" mnemonicParsing="false" onAction="#create_rt" prefHeight="237.0" prefWidth="243.0" text="Créer un RoadTrip">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="244.0" text="Voir les RoadTrips disponibles" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btn_see_rt" mnemonicParsing="false" onAction="#see_rt" prefHeight="237.0" prefWidth="244.0" text="Voir les RoadTrips disponibles" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="243.0" text="Chercher un point d'intérêt" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btn_search_pi" mnemonicParsing="false" onAction="#search_pi" prefHeight="237.0" prefWidth="243.0" text="Chercher un point d'intérêt" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="238.0" prefWidth="243.0" text="Modifier un de mes RoadTrips" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btn_modify_rt" mnemonicParsing="false" onAction="#modify_rt" prefHeight="238.0" prefWidth="243.0" text="Modifier un de mes RoadTrips" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
-            <Label layoutX="861.0" layoutY="43.0" text="Mes Informations" textFill="#1b4bb1" underline="true" />
+            <Label fx:id="informations" layoutX="860.0" layoutY="43.0" text="Mes Informations" textFill="#1b4bb1" underline="true" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="399.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="395.0" layoutY="21.0">
                <image>
-                  <Image url="@logo.png" />
+                  <Image url="@../../../../logo.png" />
                </image>
             </ImageView>
          </children>

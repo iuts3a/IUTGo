@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -9,8 +10,8 @@
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <Label layoutX="868.0" prefHeight="37.0" prefWidth="130.0" text="Se connexion" textFill="#1b4bb1" underline="true" />
-            <Label layoutX="868.0" layoutY="37.0" text="S'inscrire" textFill="#1b4bb1" underline="true" />
+            <Label fx:id="se_connecter" layoutX="868.0" prefHeight="37.0" prefWidth="130.0" text="Se connecter" textFill="#1b4bb1" underline="true" />
+            <Label fx:id="inscrire" layoutX="868.0" layoutY="37.0" text="S'inscrire" textFill="#1b4bb1" underline="true" />
             <Label layoutX="439.0" layoutY="89.0" text="IUTGo">
                <font>
                   <Font name="System Bold" size="41.0" />
@@ -27,23 +28,29 @@
             </Label>
             <HBox layoutX="14.0" layoutY="408.0" prefHeight="237.0" prefWidth="975.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="325.0" text="Créer un RoadTrip">
+                  <Button fx:id="btn_create_rt" mnemonicParsing="false" onAction="#create_rt" prefHeight="237.0" prefWidth="325.0" text="Créer un RoadTrip">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="325.0" text="Voir les RoadTrips disponibles">
+                  <Button fx:id="btn_see_rt" mnemonicParsing="false" onAction="#see_rt" prefHeight="237.0" prefWidth="325.0" text="Voir les RoadTrips disponibles">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="325.0" text="Chercher un point d'intérêt">
+                  <Button fx:id="btn_search_pi" mnemonicParsing="false" onAction="#search_pi" prefHeight="237.0" prefWidth="325.0" text="Chercher un point d'intérêt">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
+            <ImageView fitHeight="97.0" fitWidth="158.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="401.0" layoutY="27.0">
+               <image>
+                  <Image url="@../../../../logo.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
   </content>
 </TitledPane>
