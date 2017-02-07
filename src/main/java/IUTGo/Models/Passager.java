@@ -1,4 +1,4 @@
-package fr.unice.iut.info.methodo.s3a;
+package IUTGo.Models;
 
 /**
  * Created by LERAT Antoine on 18/10/2016.

@@ -1,4 +1,4 @@
-package fr.unice.iut.info.methodo.s3a;
+package IUTGo.Models;
 
 import java.util.Date;
 
@@ -9,20 +9,20 @@ import java.util.Date;
 public class Voyage {
 
     public Passager nomConducteur;
-    public Coordonne depart;
-    public Coordonne arrive;
+    public Coordonee depart;
+    public Coordonee arrive;
     public int nbPassager;
-   // public Date dateDepart;
+    // public Date dateDepart;
 
     public Passager getNomConducteur() {
         return nomConducteur;
     }
 
-    public Coordonne getDepart() {
+    public Coordonee getDepart() {
         return depart;
     }
 
-    public Coordonne getArrive() {
+    public Coordonee getArrive() {
         return arrive;
     }
 
@@ -31,19 +31,19 @@ public class Voyage {
     }
 
 
-    public Voyage(Passager nomConducteur, Coordonne depart, Coordonne arrive, int nbPassager) {
+    public Voyage(Passager nomConducteur, Coordonee depart, Coordonee arrive, int nbPassager) {
         this.nomConducteur = nomConducteur;
         this.depart = depart;
         this.arrive = arrive;
         this.nbPassager = nbPassager;
-       // this.dateDepart = dateDepart;
+        // this.dateDepart = dateDepart;
     }
 
-    public void setDepart(Coordonne depart) {
+    public void setDepart(Coordonee depart) {
         this.depart = depart;
     }
 
-    public void setArrive(Coordonne arrive) {
+    public void setArrive(Coordonee arrive) {
         this.arrive = arrive;
     }
 
@@ -53,9 +53,9 @@ public class Voyage {
 
     public Voyage() {
         Passager bob = new Passager();
-        Coordonne depart = new Coordonne();
-        Coordonne arrive = new Coordonne();
-       // Date dateDepart = new Date(2016,10,15);
+        Coordonee depart = new Coordonee();
+        Coordonee arrive = new Coordonee();
+        // Date dateDepart = new Date(2016,10,15);
         this.nomConducteur = bob;
         this.depart = depart;
         this.arrive = arrive;

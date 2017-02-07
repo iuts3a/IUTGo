@@ -1,4 +1,4 @@
-package fr.unice.iut.info.methodo.s3a;
+package IUTGo.Models;
 
 import java.util.Date;
 
