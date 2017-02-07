@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" text="HomePage" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" text="HomePage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
@@ -46,7 +46,7 @@
                </children>
             </HBox>
             <ImageView fitHeight="97.0" fitWidth="158.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="401.0" layoutY="27.0">
+            <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="401.0" layoutY="27.0" onMouseClicked="#homepage">
                <image>
                   <Image url="@img/iutGo.png" />
                </image>
