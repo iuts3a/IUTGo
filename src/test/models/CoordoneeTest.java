@@ -1,4 +1,4 @@
-package IUTGo.models;
+package models;
 
 import IUTGo.Models.Coordonee;
 import org.junit.After;
