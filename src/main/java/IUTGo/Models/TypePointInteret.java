@@ -1,6 +1,5 @@
 package IUTGo.Models;
 
 public enum TypePointInteret {
-    Hotel,
-    Restaurant
+    MUSEE, RESTAURANT, VILLAGE, BOITE_DE_NUIT, EGLISE
 }
