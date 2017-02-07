@@ -5,9 +5,9 @@ import IUTGo.Models.PointInteret;
 import IUTGo.Models.RoadTrip;
 import IUTGo.Models.TypePointInteret;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Utilisateur implements Serializable {
 
@@ -203,4 +203,39 @@ public class Utilisateur implements Serializable {
             return listResult;
         }
     }
+
+    public void creerFichier() throws IOException {
+        File fichier = new File("./Sauv/Utilisateur.ser");
+
+        HashMap<String, Utilisateur> tab = new HashMap<String, Utilisateur>();
+
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
+        oos.writeObject(tab);
+
+    }
+
+    public void save() throws IOException, ClassNotFoundException {
+
+        File fichier = new File("./Sauv/Utilisateur.ser");
+
+        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
+
+        HashMap<String, Utilisateur> tab;
+        tab = (HashMap<String, Utilisateur>) ooi.readObject();
+        tab.put(this.getEmail(),this);
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
+        oos.writeObject(tab);
+
+    }
+
+    public static HashMap<String, Utilisateur> read() throws IOException, ClassNotFoundException {
+        File fichier = new File("./Sauv/Utilisateur.ser");
+
+        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
+
+        HashMap<String, Utilisateur> tab;
+        tab = (HashMap<String, Utilisateur>) ooi.readObject();
+        return tab;
+    }
+
 }
