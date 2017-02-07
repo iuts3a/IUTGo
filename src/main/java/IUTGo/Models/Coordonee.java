@@ -1,12 +1,7 @@
 package IUTGo.Models;
 
-import java.io.*;
-import java.util.HashMap;
-
-/**
-<<<<<<< HEAD
- * Created by axelm on 15/11/2016.
- */
+import java.io.IOException;
+import java.io.Serializable;
 
 public class Coordonee implements Serializable {
 
@@ -19,7 +14,6 @@ public class Coordonee implements Serializable {
         this.longitude = longitude;
         this.ville = ville;
     }
-
 
     public float getLatitude() {
         return latitude;
