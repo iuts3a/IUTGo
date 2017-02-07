@@ -6,7 +6,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" text="Création d'un road trip" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <GridPane>
@@ -63,7 +62,7 @@
             </Button>
             <ImageView fitHeight="130.0" fitWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@16683217_667402113444948_1812856522_n.png" />
+                  <Image url="@img/iutGo.png" />
                </image>
             </ImageView>
          </children>

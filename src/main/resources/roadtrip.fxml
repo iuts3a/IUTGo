@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" text="Itinéraire" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0">
+               <image>
+                  <Image url="@img/iutGo.png" />
+               </image>
+            </ImageView>
+            <TableView layoutX="599.0" layoutY="220.0" prefHeight="370.0" prefWidth="334.0">
+              <columns>
+                <TableColumn prefWidth="167.0" text="Lieux" />
+                <TableColumn prefWidth="166.0" text="Date" />
+              </columns>
+            </TableView>
+            <Text layoutX="103.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Le RoadTrip est le suivant :">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Text>
+            <Button layoutX="274.0" layoutY="566.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="83.0" text="Valider" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="61.0" text="Retour" />
+            <Text layoutX="132.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proposer un point d'intérêt supplémentaire :" />
+            <Text layoutX="133.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se proposer en tant que conducteur du roadtrip :" />
+            <TextField layoutX="133.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Lieux" />
+            <TextField layoutX="286.0" layoutY="259.0" prefHeight="25.0" prefWidth="155.0" promptText="Date correspondante" />
+            <RadioButton layoutX="408.0" layoutY="300.0" mnemonicParsing="false" />
+            <Text layoutX="130.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En validant ci-dessous, vous confirmez participer au roadtrip." wrappingWidth="454.322265625" />
+            <Text layoutX="133.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enregistrer cet itinéraire dans mes roadtrips :" />
+            <RadioButton layoutX="408.0" layoutY="329.0" mnemonicParsing="false" />
+            <Text layoutX="599.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombres de places restantes:" />
+            <Label layoutX="766.0" layoutY="191.0" text="Label" />
+            <Text layoutX="133.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous êtes plusieurs à participer ? Rentrez ci-dessous les participants :" />
+            <TextField layoutX="133.0" layoutY="399.0" prefHeight="25.0" prefWidth="125.0" promptText="Nom" />
+            <TextField layoutX="286.0" layoutY="399.0" prefHeight="25.0" prefWidth="125.0" promptText="Prénom" />
+            <TextField layoutX="133.0" layoutY="435.0" prefHeight="25.0" prefWidth="125.0" promptText="Nom" />
+            <TextField layoutX="286.0" layoutY="435.0" prefHeight="25.0" prefWidth="125.0" promptText="Prénom" />
+            <TextField layoutX="133.0" layoutY="471.0" prefHeight="25.0" prefWidth="125.0" promptText="Nom" />
+            <TextField layoutX="286.0" layoutY="471.0" prefHeight="25.0" prefWidth="125.0" promptText="Prénom" />
+         </children></AnchorPane>
+  </content>
+</TitledPane>

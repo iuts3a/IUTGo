@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" text="Mes Informations" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0">
+               <image>
+                  <Image url="@img/iutGo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="14.0" layoutY="146.0" text="Mes Informations">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <VBox layoutX="42.0" layoutY="179.0" prefHeight="485.0" prefWidth="345.0">
+               <children>
+                  <Label text="Nom">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Prenom">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="E-mail">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Numéro de téléphone">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Mes RoadTrips">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <ListView prefHeight="180.0" prefWidth="345.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="169.0" text="Afficher un RoadTrip" textAlignment="CENTER" wrapText="true" />
+                        <Button mnemonicParsing="false" text="Créer un RoadTrip" textAlignment="CENTER" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <ListView layoutX="536.0" layoutY="228.0" prefHeight="347.0" prefWidth="386.0" />
+            <Label layoutX="536.0" layoutY="179.0" text="Mes notifications">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Button layoutX="22.0" layoutY="21.0" mnemonicParsing="false" text="Retour" />
+            <Button layoutX="599.0" layoutY="584.0" mnemonicParsing="false" text="Accepter" />
+            <Button layoutX="773.0" layoutY="584.0" mnemonicParsing="false" text="Refuser" />
+         </children></AnchorPane>
+  </content>
+</TitledPane>
