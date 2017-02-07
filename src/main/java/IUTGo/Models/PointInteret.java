@@ -118,6 +118,11 @@ public class PointInteret implements Serializable {
     }
     //endregion
 
+    public boolean addComment(String commentaire, Integer grade) {
+        this.comments.add(new Comment(commentaire, grade));
+        return true;
+    }
+
     public float getGrade() {
         float grade = 0;
 
