@@ -11,14 +11,14 @@ public class PointInteret implements Serializable {
     private String nom;
     private String description;
     private TypePointInteret type;
-    private int prix;
+    private float prix;
     private boolean validated;
     private Coordonee coordonee;
     private Utilisateur createur;
 
     private ArrayList<Comment> comments;
 
-    public PointInteret(String nom, TypePointInteret type, int prix, Coordonee coordonee, Utilisateur createur) {
+    public PointInteret(String nom, TypePointInteret type, float prix, Coordonee coordonee, Utilisateur createur) {
         setNom(nom);
         setType(type);
         setPrix(prix);
@@ -29,7 +29,7 @@ public class PointInteret implements Serializable {
         setCreateur(createur);
     }
 
-    public PointInteret(String nom, String description, TypePointInteret type, int prix, Coordonee coordonee, Utilisateur createur) {
+    public PointInteret(String nom, String description, TypePointInteret type, float prix, Coordonee coordonee, Utilisateur createur) {
         setNom(nom);
         setType(type);
         setPrix(prix);
@@ -77,11 +77,11 @@ public class PointInteret implements Serializable {
         this.type = type;
     }
 
-    public int getPrix() {
+    public float getPrix() {
         return prix;
     }
 
-    public void setPrix(int prix) {
+    public void setPrix(float prix) {
         this.prix = prix;
     }
 
