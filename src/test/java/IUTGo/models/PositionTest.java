@@ -1,4 +1,4 @@
-package models;
+package IUTGo.models;
 
 import IUTGo.Models.Position;
 import junit.framework.Assert;

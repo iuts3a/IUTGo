@@ -1,4 +1,4 @@
-package models;
+package IUTGo.models;
 
 import IUTGo.Models.Coordonee;
 import IUTGo.Models.PointInteret;
