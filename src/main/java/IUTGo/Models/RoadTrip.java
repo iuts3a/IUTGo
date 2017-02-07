@@ -15,6 +15,7 @@ public class RoadTrip implements Serializable {
     public RoadTrip(String nom, Utilisateur participants) {
         this.listePI = new HashMap<String, PointInteret>();
         this.participants = new HashMap<String, Utilisateur>();
+        this.participants.put(participants.getEmail(),participants);
         this.nom = nom;
     }
 
