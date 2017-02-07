@@ -5,6 +5,7 @@ import IUTGo.Models.PointInteret;
 import IUTGo.Models.RoadTrip;
 import IUTGo.Models.TypePointInteret;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -76,39 +77,130 @@ public class Utilisateur implements Serializable {
     }
     //endregion
 
-    public boolean suggestPointInteret(PointInteret pointInteret) {
-        return true;
+    //String nom, TypePointInteret type, int prix, Coordonee coordonee, Utilisateur createur
+
+    public boolean suggestPointInteret(String nomPointInteret, TypePointInteret type, float prix, Coordonee coordonee, Utilisateur createur) {
+        PointInteret newPointInteret = new PointInteret(nomPointInteret, type, prix, coordonee, this);
+
+        try {
+            newPointInteret.save();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    public boolean commentPointInteret(PointInteret pointInteret, String commentaire) {
-        return true;
+    public boolean suggestPointInteret(String nomPointInteret, String commentaire, TypePointInteret type, float prix, Coordonee coordonee, Utilisateur createur) {
+        PointInteret newPointInteret = new PointInteret(nomPointInteret, commentaire, type, prix, coordonee, this);
+
+        try {
+            newPointInteret.save();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean commentPointInteret(String nomPointInteret, String commentaire, Integer grade) {
+        try {
+            PointInteret.read().get(nomPointInteret).addComment(commentaire, grade);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean createRoadTrip(String roadTripName) {
-        return true;
+        RoadTrip newRoadTrip = new RoadTrip(roadTripName, this);
+
+        try {
+            newRoadTrip.save();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean deleteRoadTrip(String roadTripName) {
-        return true;
+        try {
+            RoadTrip.read().remove(roadTripName);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean addPointInteretToRoadTrip(String roadTripName, float price, TypePointInteret type) {
+        //TODO
         return true;
     }
 
     public boolean deletePointInteretFromRoadTrip(String roadTripName, String pointInteretName) {
+        //TODO
         return true;
     }
 
     public boolean addRoadTripToFavorite(String roadTripName) {
-        return true;
+        try {
+            this.favoriteRoadTrips.add(RoadTrip.read().get(roadTripName));
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public float getRoadTripPrice(String roadTripName) {
-        return 0;
+        try {
+            return RoadTrip.read().get(roadTripName).getPrice();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
-    public ArrayList<String> getRoadTripByScore(float score) {
-        return null;
+    public ArrayList<RoadTrip> getRoadTripByScore(float score) {
+        ArrayList<RoadTrip> listResult = new ArrayList<RoadTrip>();
+
+        try {
+            for (RoadTrip roadTrip : RoadTrip.read().values()) {
+                if (roadTrip.getGrade() >= score) {
+                    listResult.add(roadTrip);
+                }
+            }
+            return listResult;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return listResult;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return listResult;
+        }
     }
 }

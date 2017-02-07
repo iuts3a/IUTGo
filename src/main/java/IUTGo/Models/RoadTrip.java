@@ -12,10 +12,10 @@ public class RoadTrip implements Serializable {
     private HashMap<String, Utilisateur> participants;
     private float price;
 
-    public RoadTrip(String nom, Utilisateur participants) {
+    public RoadTrip(String nom, Utilisateur createur) {
         this.listePI = new HashMap<String, PointInteret>();
         this.participants = new HashMap<String, Utilisateur>();
-        this.participants.put(participants.getEmail(),participants);
+        this.participants.put(createur.getEmail(), createur);
         this.nom = nom;
     }
 
@@ -72,8 +72,20 @@ public class RoadTrip implements Serializable {
         return nom;
     }
 
-    public float getPrice(){
+    public float getPrice() {
         return price;
+    }
+
+    public float getGrade()
+    {
+        float totalGrade = 0;
+
+        for(PointInteret pointInteret :listePI.values())
+        {
+            totalGrade += pointInteret.getGrade();
+        }
+
+        return totalGrade/listePI.size();
     }
 
     public HashMap<String, Utilisateur> getParticipants() {
@@ -82,6 +94,12 @@ public class RoadTrip implements Serializable {
 
     public void setParticipants(HashMap<String, Utilisateur> participants) {
         this.participants = participants;
+    }
+
+    public boolean addParticipants(Utilisateur participant)
+    {
+        this.participants.put(participant.getEmail(), participant);
+        return true;
     }
 
     @Override
