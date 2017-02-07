@@ -7,8 +7,7 @@ public class RoadTrip implements Serializable {
 
     private String nom;
     private HashMap<String, PointInteret> listePI;
-    private float prixMin;
-    private float prixMax;
+    private float price;
 
     public RoadTrip(String nom) {
         this.listePI = new HashMap<String, PointInteret>();
@@ -27,13 +26,11 @@ public class RoadTrip implements Serializable {
 
     public void addPI(PointInteret PI) {
         this.listePI.put(PI.getNom(), PI);
-        this.prixMin += PI.getPrixMin();
-        this.prixMax += PI.getPrixMax();
+        this.price += PI.getPrix();
     }
 
     public void deletePI(String PI) {
-        this.prixMin -= this.listePI.get(PI).getPrixMin();
-        this.prixMax -= this.listePI.get(PI).getPrixMax();
+        this.price -= this.listePI.get(PI).getPrix();
         this.listePI.remove(PI);
     }
 
@@ -69,12 +66,8 @@ public class RoadTrip implements Serializable {
         return nom;
     }
 
-    public float getPrixMin() {
-        return prixMin;
-    }
-
-    public float getPrixMax() {
-        return prixMax;
+    public float getPrice(){
+        return price;
     }
 
     @Override
@@ -82,8 +75,7 @@ public class RoadTrip implements Serializable {
         return "RoadTrip{" +
                 "nom='" + nom + '\'' +
                 ", listePI=" + listePI.toString() +
-                ", prixMin Itinéraire=" + prixMin +
-                ", prixMax Itinéraire=" + prixMax +
+                ", prixMin Itinéraire=" + price +
                 '}';
     }
 }
