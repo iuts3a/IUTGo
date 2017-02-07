@@ -45,40 +45,6 @@ public class Coordonee implements Serializable {
         this.ville = ville;
     }
 
-    public static HashMap<String, Coordonee> read() throws IOException, ClassNotFoundException {
-        File fichier = new File("./Sauv/CO.ser");
-
-        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
-
-        HashMap<String, Coordonee> tab;
-        tab = (HashMap<String, Coordonee>) ooi.readObject();
-        return tab;
-    }
-
-    public void createFile() throws IOException {
-        File fichier = new File("./Sauv/CO.ser");
-
-        HashMap<String, PointInteret> tab = new HashMap<String, PointInteret>();
-
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
-        oos.writeObject(tab);
-
-    }
-
-    public void save() throws IOException, ClassNotFoundException {
-
-        File fichier = new File("./Sauv/CO.ser");
-
-        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
-
-        HashMap<String, Coordonee> tab;
-        tab = (HashMap<String, Coordonee>) ooi.readObject();
-        tab.put(this.getVille(), this);
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
-        oos.writeObject(tab);
-
-    }
-
     @Override
     public String toString() {
         return "Coordonee{" +
