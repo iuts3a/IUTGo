@@ -30,7 +30,7 @@ public class RoadTripTest {
         PI = new PointInteret("Parc des Princes", "Stade de foot","Stade", 20, 50, coordonee);
         itinineraire = new RoadTrip("Test");
 
-      itinineraire.creerFichier();
+     // itinineraire.creerFichier();
     }
 
     @After
