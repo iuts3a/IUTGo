@@ -29,7 +29,7 @@
             <RadioButton fx:id="accept" layoutX="310.0" layoutY="584.0" mnemonicParsing="false" onAction="#accept" text="En cliquant sur ce bouton, j'accepte les conditions d'utiisation" />
             <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Desktop/logoIUTGO.png" />
+                  <Image url="@img/iutGo.png" />
                </image>
             </ImageView>
             <TextField fx:id="mail" layoutX="452.0" layoutY="350.0" prefHeight="26.0" prefWidth="245.0" />
