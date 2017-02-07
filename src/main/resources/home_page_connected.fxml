@@ -51,9 +51,9 @@
             </HBox>
             <Label fx:id="informations" layoutX="860.0" layoutY="43.0" text="Mes Informations" textFill="#1b4bb1" underline="true" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="399.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="395.0" layoutY="21.0" onMouseClicked="#homepage">
+            <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="395.0" layoutY="21.0">
                <image>
-                  <Image url="@img/iutGo.png" />
+                  <Image url="@../../../../logo.png" />
                </image>
             </ImageView>
          </children>
