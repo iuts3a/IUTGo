@@ -2,8 +2,10 @@ package models;
 
 
 import IUTGo.Models.Coordonee;
+import IUTGo.Models.Users.Utilisateur;
 import IUTGo.Models.PointInteret;
 import IUTGo.Models.RoadTrip;
+import IUTGo.Models.TypePointInteret;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,10 +29,11 @@ public class RoadTripTest {
     @Before
     public void setUp() throws Exception {
         coordonee = new Coordonee(3, 4, "Paris");
-        PI = new PointInteret("Parc des Princes", "Stade de foot","Stade", 20, 50, coordonee);
-        itinineraire = new RoadTrip("Test");
+        PI = new PointInteret("Parc des Princes", TypePointInteret.MUSEE,100,new Coordonee(),new Utilisateur("Axel","Mouchiroud","@","mdp",new Coordonee()));
 
-     // itinineraire.creerFichier();
+        itinineraire = new RoadTrip("Test",new Utilisateur("Axel","Mouchiroud","@","mdp",new Coordonee()));
+
+     //itinineraire.creerFichier();
     }
 
     @After

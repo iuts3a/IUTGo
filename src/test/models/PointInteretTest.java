@@ -3,6 +3,7 @@ package models;
 import IUTGo.Models.Coordonee;
 import IUTGo.Models.PointInteret;
 import IUTGo.Models.TypePointInteret;
+import IUTGo.Models.Users.Utilisateur;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class PointInteretTest {
     @Before
     public void setUp() throws Exception {
         coordonee = new Coordonee(3,4,"Paris");
-        PI = new PointInteret("Parc des Princes", TypePointInteret.Hotel,100,new Coordonee());
+        PI = new PointInteret("Parc des Princes", TypePointInteret.MUSEE,100,new Coordonee(),new Utilisateur("Axel","Mouchiroud","@","mdp",new Coordonee()));
 
 
         //Methode nécessaire lors de modification de classe
