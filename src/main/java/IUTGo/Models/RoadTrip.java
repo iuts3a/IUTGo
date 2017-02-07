@@ -12,9 +12,9 @@ public class RoadTrip implements Serializable {
     private HashMap<String, Utilisateur> participants;
     private float price;
 
-    public RoadTrip(String nom, HashMap<String, Utilisateur> participants) {
+    public RoadTrip(String nom, Utilisateur participants) {
         this.listePI = new HashMap<String, PointInteret>();
-        this.participants = participants;
+        this.participants = new HashMap<String, Utilisateur>();
         this.nom = nom;
     }
 
