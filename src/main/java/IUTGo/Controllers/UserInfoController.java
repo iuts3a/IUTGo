@@ -5,6 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
+/**
+ * Created by vmonsch on 08/02/2017.
+ */
+
 public class UserInfoController {
 
     @FXML

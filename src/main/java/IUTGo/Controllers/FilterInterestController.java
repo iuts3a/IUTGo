@@ -8,6 +8,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+/**
+ * Created by vmonsch on 08/02/2017.
+ */
+
 public class FilterInterestController {
 
     @FXML
