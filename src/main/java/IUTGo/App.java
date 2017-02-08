@@ -18,7 +18,7 @@ public class App extends Application
     public void start(Stage primaryStage) throws Exception {
         try
         {
-            URL fxml = getClass().getResource("../home-page.fxml");
+            URL fxml = getClass().getResource("../home_page_connected.fxml");
 
             Parent root = FXMLLoader.load(fxml);
 
