@@ -41,7 +41,16 @@ public class CreateItineraireController {
 
     @FXML
     void toBack(ActionEvent event) {
-        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("home_page_connected.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) button_valider.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println("Erreur au chargement: " + ex);
+        }
     }
 
 
