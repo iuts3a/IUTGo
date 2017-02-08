@@ -32,12 +32,27 @@ public class CreateItineraireController {
     private Button button_valider;
 
     @FXML
+    private Button btn_back;
+
+    @FXML
+    public void  initialize() {
+
+    }
+
+    @FXML
+    void toBack(ActionEvent event) {
+        
+    }
+
+
+    @FXML
     void validateData(ActionEvent event) {
 
     }
 
     @FXML
     void homepage(ActionEvent event) {
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("home_page_connected.fxml"));
             Parent root = fxmlLoader.load();
