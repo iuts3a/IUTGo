@@ -65,6 +65,7 @@
                   <Image url="@img/iutGo.png" />
                </image>
             </ImageView>
+            <Button fx:id="btn_back" mnemonicParsing="false" onAction="#toBack" text="retour" />
          </children>
       </GridPane>
    </content>
