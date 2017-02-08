@@ -41,7 +41,7 @@ public class HomePageController {
     @FXML
     void connect(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageController.class.getClassLoader().getResource("connection.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ConnexionController.class.getClassLoader().getResource("connection.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_see_rt.getScene().getWindow();
             Scene scene = new Scene(root);
