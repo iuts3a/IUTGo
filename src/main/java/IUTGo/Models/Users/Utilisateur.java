@@ -27,6 +27,16 @@ public class Utilisateur implements Serializable {
         setAdresse(coordonee);
     }
 
+    public static HashMap<String, Utilisateur> read() throws IOException, ClassNotFoundException {
+        File fichier = new File("./Sauv/Utilisateur.ser");
+
+        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
+
+        HashMap<String, Utilisateur> tab;
+        tab = (HashMap<String, Utilisateur>) ooi.readObject();
+        return tab;
+    }
+
     //region Getters and Setters
     public String getNom() {
         return nom;
@@ -71,15 +81,13 @@ public class Utilisateur implements Serializable {
     public ArrayList<RoadTrip> getFavoriteRoadTrips() {
         return favoriteRoadTrips;
     }
+    //endregion
 
     public void setFavoriteRoadTrips(ArrayList<RoadTrip> favoriteRoadTrips) {
         this.favoriteRoadTrips = favoriteRoadTrips;
     }
-    //endregion
 
-    //String nom, TypePointInteret type, int prix, Coordonee coordonee, Utilisateur createur
-
-    public boolean suggestPointInteret(String nomPointInteret, TypePointInteret type, float prix, Coordonee coordonee, Utilisateur createur) {
+    public boolean suggestPointInteret(String nomPointInteret, TypePointInteret type, float prix, Coordonee coordonee) {
         PointInteret newPointInteret = new PointInteret(nomPointInteret, type, prix, coordonee, this);
 
         try {
@@ -94,7 +102,7 @@ public class Utilisateur implements Serializable {
         }
     }
 
-    public boolean suggestPointInteret(String nomPointInteret, String commentaire, TypePointInteret type, float prix, Coordonee coordonee, Utilisateur createur) {
+    public boolean suggestPointInteret(String nomPointInteret, String commentaire, TypePointInteret type, float prix, Coordonee coordonee) {
         PointInteret newPointInteret = new PointInteret(nomPointInteret, commentaire, type, prix, coordonee, this);
 
         try {
@@ -150,14 +158,47 @@ public class Utilisateur implements Serializable {
         }
     }
 
-    public boolean addPointInteretToRoadTrip(String roadTripName, float price, TypePointInteret type) {
-        //TODO
-        return true;
+    public boolean addPointInteretToRoadTrip(String roadTripName, String name, TypePointInteret type, float price, Coordonee coordonee) {
+        PointInteret PI = new PointInteret(name, type, price, coordonee, this);
+        try {
+            PI.save();
+            RoadTrip.read().get(roadTripName).addPI(PI);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean addPointInteretToRoadTrip(String roadTripName, String name, String description, TypePointInteret type, float price, Coordonee coordonee) {
+        PointInteret PI = new PointInteret(name, description, type, price, coordonee, this);
+        try {
+            PI.save();
+            RoadTrip.read().get(roadTripName).addPI(PI);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean deletePointInteretFromRoadTrip(String roadTripName, String pointInteretName) {
-        //TODO
-        return true;
+        try {
+            RoadTrip.read().get(roadTripName).deletePI(pointInteretName);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean addRoadTripToFavorite(String roadTripName) {
@@ -222,20 +263,10 @@ public class Utilisateur implements Serializable {
 
         HashMap<String, Utilisateur> tab;
         tab = (HashMap<String, Utilisateur>) ooi.readObject();
-        tab.put(this.getEmail(),this);
+        tab.put(this.getEmail(), this);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier));
         oos.writeObject(tab);
 
-    }
-
-    public static HashMap<String, Utilisateur> read() throws IOException, ClassNotFoundException {
-        File fichier = new File("./Sauv/Utilisateur.ser");
-
-        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(fichier));
-
-        HashMap<String, Utilisateur> tab;
-        tab = (HashMap<String, Utilisateur>) ooi.readObject();
-        return tab;
     }
 
 }

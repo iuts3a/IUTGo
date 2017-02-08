@@ -1,9 +1,34 @@
 package IUTGo;
 
-public class App 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.net.URL;
+
+public class App extends Application
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws Exception
     {
-        System.out.println( "Hello World!" );
+        launch(args);
+    }
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        try
+        {
+            URL fxml = getClass().getResource("../home-page.fxml");
+
+            Parent root = FXMLLoader.load(fxml);
+
+            primaryStage.setTitle("Home");
+            primaryStage.setScene(new Scene(root, 800, 800));
+            primaryStage.show();
+        }
+        catch (NullPointerException npe)
+        {
+            npe.printStackTrace();
+        }
     }
 }

@@ -10,7 +10,6 @@ public class RoadTrip implements Serializable {
     private String nom;
     private HashMap<String, PointInteret> listePI;
     private HashMap<String, Utilisateur> participants;
-    private float price;
 
     public RoadTrip(String nom, Utilisateur createur) {
         this.listePI = new HashMap<String, PointInteret>();
@@ -29,15 +28,12 @@ public class RoadTrip implements Serializable {
         return tab;
     }
 
-
     public void addPI(PointInteret PI) {
         this.listePI.put(PI.getNom(), PI);
-        this.price += PI.getPrix();
     }
 
-    public void deletePI(String PI) {
-        this.price -= this.listePI.get(PI).getPrix();
-        this.listePI.remove(PI);
+    public void deletePI(String namePI) {
+        this.listePI.remove(namePI);
     }
 
     public void creerFichier() throws IOException {
@@ -73,19 +69,23 @@ public class RoadTrip implements Serializable {
     }
 
     public float getPrice() {
-        return price;
+        float totalPrice = 0;
+
+        for (PointInteret pointInteret : listePI.values()) {
+            totalPrice += pointInteret.getPrix();
+        }
+
+        return totalPrice;
     }
 
-    public float getGrade()
-    {
+    public float getGrade() {
         float totalGrade = 0;
 
-        for(PointInteret pointInteret :listePI.values())
-        {
+        for (PointInteret pointInteret : listePI.values()) {
             totalGrade += pointInteret.getGrade();
         }
 
-        return totalGrade/listePI.size();
+        return totalGrade / listePI.size();
     }
 
     public HashMap<String, Utilisateur> getParticipants() {
@@ -96,8 +96,7 @@ public class RoadTrip implements Serializable {
         this.participants = participants;
     }
 
-    public boolean addParticipants(Utilisateur participant)
-    {
+    public boolean addParticipants(Utilisateur participant) {
         this.participants.put(participant.getEmail(), participant);
         return true;
     }
@@ -107,7 +106,7 @@ public class RoadTrip implements Serializable {
         return "RoadTrip{" +
                 "nom='" + nom + '\'' +
                 ", listePI=" + listePI.toString() +
-                ", prixMin Itinéraire=" + price +
+                ", prix Itinéraire=" + getPrice() +
                 '}';
     }
 
