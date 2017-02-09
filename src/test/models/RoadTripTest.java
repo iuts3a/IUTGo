@@ -1,11 +1,11 @@
 package models;
 
 
-import IUTGo.Models.Coordonee;
-import IUTGo.Models.Users.Utilisateur;
-import IUTGo.Models.PointInteret;
+import IUTGo.Models.Coordinates;
+import IUTGo.Models.Users.User;
+import IUTGo.Models.PointInterest;
 import IUTGo.Models.RoadTrip;
-import IUTGo.Models.TypePointInteret;
+import IUTGo.Models.PointInterestType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,18 +20,18 @@ import static org.junit.Assert.assertEquals;
  */
 public class RoadTripTest {
 
-    private PointInteret PI;
-    private RoadTrip itinineraire;
-    private Coordonee coordonee;
+    private PointInterest PI;
+    private RoadTrip      itinineraire;
+    private Coordinates   coordinates;
     HashMap<String,RoadTrip> tabTest = new HashMap<String, RoadTrip>();
 
 
     @Before
     public void setUp() throws Exception {
-        coordonee = new Coordonee(3, 4, "Paris");
-        PI = new PointInteret("Parc des Princes", TypePointInteret.MUSEE,100,new Coordonee(),new Utilisateur("Axel","Mouchiroud","@","mdp",new Coordonee()));
+        coordinates = new Coordinates(3, 4, "Paris");
+        PI = new PointInterest("Parc des Princes", PointInterestType.MUSEE, 100, new Coordinates(), new User("Axel", "Mouchiroud", "@", "mdp", new Coordinates()));
 
-        itinineraire = new RoadTrip("Test",new Utilisateur("Axel","Mouchiroud","@","mdp",new Coordonee()));
+        itinineraire = new RoadTrip("Test",new User("Axel","Mouchiroud","@","mdp",new Coordinates()));
 
      //itinineraire.creerFichier();
     }

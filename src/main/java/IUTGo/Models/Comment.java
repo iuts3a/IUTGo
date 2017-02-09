@@ -1,28 +1,41 @@
 package IUTGo.Models;
 
-public class Comment {
-
-    private String message;
+public class Comment
+{
+    private String  message;
     private Integer grade;
-
-    public String getMessage() {
+    
+    public Comment (String message, Integer grade)
+    {
+        setMessage(message);
+        setGrade(grade);
+    }
+    
+    //region Getters and Setters
+    public String getMessage ()
+    {
         return message;
     }
-
-    public Integer getGrade() {
+    
+    private void setMessage (String message)
+    {
+        this.message = message;
+    }
+    
+    public Integer getGrade ()
+    {
         return grade;
     }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setGrade(Integer grade) {
+    
+    private void setGrade (Integer grade)
+    {
         this.grade = grade;
     }
-
-    public Comment(String message, Integer grade) {
-        this.message = message;
-        this.grade = grade;
+    //endregion
+    
+    @Override
+    public String toString ()
+    {
+        return "Comment{" + "grade='" + getGrade() + '\'' + ", comment=" + getMessage() + '}';
     }
 }

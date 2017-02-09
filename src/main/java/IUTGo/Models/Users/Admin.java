@@ -1,51 +1,70 @@
 package IUTGo.Models.Users;
 
-import IUTGo.Models.Coordonee;
-import IUTGo.Models.PointInteret;
-import IUTGo.Models.RoadTrip;
+import IUTGo.Models.Coordinates;
+import IUTGo.Models.PointInterest;
 
 import java.io.IOException;
 
-public class Admin extends Utilisateur {
-
-    public Admin(String nom, String prenom, String email, String motDePasse, Coordonee coordonee) {
-        super(nom, prenom, email, motDePasse, coordonee);
+public class Admin extends User
+{
+    
+    public Admin (String firstName, String lastName, String email, String password, Coordinates coordinates)
+    {
+        super(firstName, lastName, email, password, coordinates);
     }
-
-    public boolean changePIPrice(String name, float price){
-        try {
-            PointInteret.read().get(name).setPrix(price);
+    
+    public boolean changePricePointInterest (String name, float price)
+    {
+        try
+        {
+            PointInterest.read().get(name).setPrix(price);
             return true;
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
             return false;
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
             return false;
         }
     }
-
-    public boolean deletePI(String name){
-        try {
-            PointInteret.read().remove(name);
+    
+    public boolean deletePointInterest (String name)
+    {
+        try
+        {
+            PointInterest.read().remove(name);
             return true;
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
             return false;
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
             return false;
         }
     }
-
-    public boolean validatePI(String name){
-        try {
-            PointInteret.read().get(name).isValidated();
+    
+    public boolean validatePointInterest (String name)
+    {
+        try
+        {
+            PointInterest.read().get(name).setValidated(true);
             return true;
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
             return false;
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
             return false;
         }
