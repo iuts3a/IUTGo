@@ -31,7 +31,8 @@ public class PointInterestTest
                                PointInterestType.MUSEUM,
                                100,
                                new Coordinates(1, 1, "Paris"),
-                               new User("Axel", "Mouchiroud", "@", "mdp", new Coordinates(1, 1, "Paris")));
+                               new User("Axel", "Mouchiroud", "@", "mdp",
+                                        new Coordinates(1, 1, "Paris")));
         
         
         //Methode nécessaire lors de modification de classe
