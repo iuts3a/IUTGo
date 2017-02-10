@@ -92,7 +92,7 @@ public class PointInterest implements Serializable
         return price;
     }
     
-    private void setPrice (float price)
+    public void setPrice (float price)
     {
         this.price = price;
     }
@@ -102,7 +102,7 @@ public class PointInterest implements Serializable
         return validated;
     }
     
-    private void setValidated (boolean validated)
+    public void setValidated (boolean validated)
     {
         this.validated = validated;
     }

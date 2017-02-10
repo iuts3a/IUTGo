@@ -5,30 +5,34 @@ import IUTGo.Models.Users.User;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Antoine on 07/02/2017.
+ Created by Antoine on 07/02/2017.
  */
-public class UtilisateurTest {
-    private User userTest;
+public class UtilisateurTest
+{
+    private User        userTest;
     private Coordinates coordTest;
-
+    
     @Before
-    public void setUp() throws Exception {
-        coordTest = new Coordinates(1,1,"Paris");
-        userTest = new User("WAYNE","Bruce","bruce.wayne@live.fr","motdepasse",coordTest);
+    public void setUp () throws Exception
+    {
+        coordTest = new Coordinates(1, 1, "Paris");
+        userTest = new User("WAYNE", "Bruce", "bruce.wayne@live.fr", "motdepasse", coordTest);
     }
-
+    
     @Test
-    public void getNom() throws Exception {
-        assertEquals("WAYNE",userTest.getNom());
+    public void getNom () throws Exception
+    {
+        assertEquals("WAYNE", userTest.getLastName());
     }
-
+    
     @Test
-    public void setNom() throws Exception {
-        userTest.setNom("LEE");
-        assertEquals("LEE",userTest.getNom());
+    public void setNom () throws Exception
+    {
+        userTest.setLastName("LEE");
+        assertEquals("LEE", userTest.getLastName());
     }
-
+    
 }

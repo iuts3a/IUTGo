@@ -45,7 +45,7 @@ public class User implements Serializable
         return lastName;
     }
     
-    private void setLastName (String lastName)
+    public void setLastName (String lastName)
     {
         this.lastName = lastName;
     }
@@ -236,7 +236,7 @@ public class User implements Serializable
         PointInterest pointInterest = new PointInterest(name, description, type, price, coordinates, this);
         try
         {
-            if(PointInterest.read().containsKey(pointInterest.getNom())) return false;
+            if(PointInterest.read().containsKey(pointInterest.getName())) return false;
             if(PointInterest.read().containsValue(pointInterest)) return false;
             if(!RoadTrip.read().containsKey(roadTripName)) return false;
             

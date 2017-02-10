@@ -10,48 +10,54 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 /**
- * Created by axelm on 15/11/2016.
+ Created by axelm on 15/11/2016.
  */
 public class PointInterestTest
 {
-
+    
+    HashMap<String, PointInterest> H = new HashMap<String, PointInterest>();
     private PointInterest PI;
     private Coordinates   coordinates;
-    HashMap<String,PointInterest> H = new HashMap<String, PointInterest>();
-
-
+    
     @Before
-    public void setUp() throws Exception {
-        coordinates = new Coordinates(3,4,"Paris");
-        PI = new PointInterest("Parc des Princes", PointInterestType.MUSEE, 100, new Coordinates(), new User("Axel", "Mouchiroud", "@", "mdp", new Coordinates()));
-
-
+    public void setUp () throws Exception
+    {
+        coordinates = new Coordinates(3, 4, "Paris");
+        PI = new PointInterest("Parc des Princes",
+                               PointInterestType.MUSEUM,
+                               100,
+                               new Coordinates(1, 1, "Paris"),
+                               new User("Axel", "Mouchiroud", "@", "mdp", new Coordinates(1, 1, "Paris")));
+        
+        
         //Methode nécessaire lors de modification de classe
-      // PI.creerFichier();
+        // PI.creerFichier();
     }
-
+    
     @After
-    public void tearDown() throws Exception {
-
+    public void tearDown () throws Exception
+    {
+        
     }
-
-
+    
     @Test
-    public void save() throws Exception {
+    public void save () throws Exception
+    {
         PI.save();
-        H = PI.read();
-        assertEquals(true,H.containsKey("Parc des Princes"));
+        H = PointInterest.read();
+        assertEquals(true, H.containsKey("Parc des Princes"));
     }
-
+    
     @Test
-    public void read() throws Exception {
-       H = PI.read();
-       assertEquals(true,H.containsKey("Parc des Princes"));
+    public void read () throws Exception
+    {
+        H = PointInterest.read();
+        assertEquals(true, H.containsKey("Parc des Princes"));
     }
-
-
+    
+    
 }

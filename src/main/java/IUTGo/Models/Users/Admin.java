@@ -17,7 +17,7 @@ public class Admin extends User
     {
         try
         {
-            PointInterest.read().get(name).setPrix(price);
+            PointInterest.read().get(name).setPrice(price);
             return true;
         }
         catch (IOException e)
