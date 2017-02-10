@@ -7,87 +7,85 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" text="Mes Informations" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0">
+         <image>
+            <Image url="@../../../../logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="327.0" layoutY="163.0" text="Les information de">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <VBox layoutX="327.0" layoutY="190.0" prefHeight="468.0" prefWidth="345.0">
          <children>
-            <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0">
-               <image>
-                  <Image url="@../../../../logo.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="327.0" layoutY="163.0" text="Les information de">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
+            <Label fx:id="lb_name" text="Nom">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </Label>
-            <VBox layoutX="327.0" layoutY="190.0" prefHeight="468.0" prefWidth="345.0">
+            <Label fx:id="lb_lastname" text="Prenom">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="lb_email" text="E-mail">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="lb_telephone" text="Numéro de téléphone">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="48.0" prefWidth="345.0">
                <children>
-                  <Label fx:id="lb_name" text="Nom">
+                  <Label text="Les RoadTrips">
                      <padding>
                         <Insets bottom="10.0" />
                      </padding>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
                   </Label>
-                  <Label fx:id="lb_lastname" text="Prenom">
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="lb_email" text="E-mail">
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="lb_telephone" text="Numéro de téléphone">
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox prefHeight="48.0" prefWidth="345.0">
-                     <children>
-                        <Label text="Les RoadTrips">
-                           <padding>
-                              <Insets bottom="10.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <ListView fx:id="tv_roadtrip" prefHeight="180.0" prefWidth="345.0" />
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="btn_show_roadtrip" mnemonicParsing="false" onAction="#show_roadtrip" prefHeight="66.0" prefWidth="169.0" text="Afficher ce RoadTrip" textAlignment="CENTER" wrapText="true">
-                           <HBox.margin>
-                              <Insets left="90.0" right="90.0" />
-                           </HBox.margin></Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
                </children>
-            </VBox>
-            <Button fx:id="retour" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
-            <Label layoutX="559.0" layoutY="163.0" text="User">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Label>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <ListView fx:id="tv_roadtrip" prefHeight="180.0" prefWidth="345.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btn_show_roadtrip" mnemonicParsing="false" onAction="#show_roadtrip" prefHeight="66.0" prefWidth="169.0" text="Afficher ce RoadTrip" textAlignment="CENTER" wrapText="true">
+                     <HBox.margin>
+                        <Insets left="90.0" right="90.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
          </children>
-      </AnchorPane>
-   </content>
-</TitledPane>
+      </VBox>
+      <Button fx:id="retour" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+      <Label layoutX="559.0" layoutY="163.0" text="User">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
