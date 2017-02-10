@@ -1,9 +1,9 @@
 package models;
 
-import IUTGo.Models.Coordonee;
-import IUTGo.Models.PointInteret;
-import IUTGo.Models.TypePointInteret;
-import IUTGo.Models.Users.Utilisateur;
+import IUTGo.Models.Coordinates;
+import IUTGo.Models.PointInterest;
+import IUTGo.Models.PointInterestType;
+import IUTGo.Models.Users.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,17 +16,18 @@ import static org.junit.Assert.*;
 /**
  * Created by axelm on 15/11/2016.
  */
-public class PointInteretTest {
+public class PointInterestTest
+{
 
-    private PointInteret PI;
-    private Coordonee coordonee;
-    HashMap<String,PointInteret> H = new HashMap<String, PointInteret>();
+    private PointInterest PI;
+    private Coordinates   coordinates;
+    HashMap<String,PointInterest> H = new HashMap<String, PointInterest>();
 
 
     @Before
     public void setUp() throws Exception {
-        coordonee = new Coordonee(3,4,"Paris");
-        PI = new PointInteret("Parc des Princes", TypePointInteret.MUSEE,100,new Coordonee(),new Utilisateur("Axel","Mouchiroud","@","mdp",new Coordonee()));
+        coordinates = new Coordinates(3,4,"Paris");
+        PI = new PointInterest("Parc des Princes", PointInterestType.MUSEE, 100, new Coordinates(), new User("Axel", "Mouchiroud", "@", "mdp", new Coordinates()));
 
 
         //Methode nécessaire lors de modification de classe
