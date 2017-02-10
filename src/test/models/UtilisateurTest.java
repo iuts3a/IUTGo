@@ -15,6 +15,10 @@ public class UtilisateurTest
     private User        userTest;
     private Coordinates coordTest;
     
+    //            int xRand = ThreadLocalRandom.current().nextInt(0, 150);
+    //            int yRand = ThreadLocalRandom.current().nextInt(0, 150);
+    
+    
     @Before
     public void setUp () throws Exception
     {
