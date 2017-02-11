@@ -27,7 +27,6 @@ public class UtilisateurTest
     @Before
     public void setUp () throws Exception
     {
-
         coordTest = new Coordinates(xRand, yRand, "Paris");
         userTest = new User("WAYNE", "Bruce", "Batman","bruce.wayne@live.fr", "motdepasse", coordTest);
         PiTest = new PointInterest("Buffalo", PointInterestType.RESTAURANT,10,coordTest,userTest);
@@ -77,6 +76,12 @@ public class UtilisateurTest
     public void addRoadTripToFavorite () throws Exception
     {
         assertEquals(true, userTest.deletePointInteretFromRoadTrip("England roadtrip","Buffalo"));
+    }
+
+    @Test
+    public void getRoadTripPrice () throws Exception
+    {
+        assertEquals(10, userTest.getRoadTripPrice("England roadtrip"));
     }
 
     
