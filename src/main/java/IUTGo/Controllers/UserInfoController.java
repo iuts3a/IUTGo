@@ -1,94 +1,106 @@
 package IUTGo.Controllers;
 
+import IUTGo.Models.CurrentUser;
+import IUTGo.Models.Users.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 /**
- * Created by vmonsch on 08/02/2017.
+ Created by vmonsch on 08/02/2017.
  */
 
-public class UserInfoController {
-
+public class UserInfoController
+{
+    public ListView tv_roadtrip;
+    public Button btn_show_roadtrip;
+    public Button btn_delete_rt;
+    public Button retour;
+    public Button btn_create_rt;
+    public Label name;
+    public Label firstName;
+    public Label email;
+    
     @FXML
-    private Button btn_show_roadtrip;
-
+    void initialize()
+    {
+        User user = CurrentUser.getInstance().getUser();
+        
+        name.setText(user.getLastName());
+        firstName.setText(user.getFirstName());
+        email.setText(user.getEmail());
+    }
+    
     @FXML
-    private ListView<?> tv_notifications;
-
-    @FXML
-    private Button btn_create_rt;
-
-    @FXML
-    private ListView<?> tv_roadtrip;
-
-    @FXML
-    private Button retour;
-
-    @FXML
-    private Button btn_accept_notif;
-
-    @FXML
-    private Button btn_delete_rt;
-
-    @FXML
-    private Button btn_refuse_modif;
-
-    @FXML
-    void create_rt(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("RoadTripCreation.fxml"));
+    void create_rt (ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource(
+                    "RoadTripCreation.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) btn_accept_notif.getScene().getWindow();
+            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             System.err.println("Erreur au chargement: " + ex);
         }
-
+        
     }
-
+    
     @FXML
-    void show_roadtrip(ActionEvent event) {
-
+    void show_roadtrip (ActionEvent event)
+    {
+        
     }
-
+    
     @FXML
-    void delete_rt(ActionEvent event) {
-
+    void delete_rt (ActionEvent event)
+    {
+        
     }
-
+    
     @FXML
-    void retour(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePageConnected.fxml"));
+    void retour (ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                    "HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) btn_accept_notif.getScene().getWindow();
+            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             System.err.println("Erreur au chargement: " + ex);
         }
-
+        
     }
-
+    
     @FXML
-    void accept_notif(ActionEvent event) {
-
+    void accept_notif (ActionEvent event)
+    {
+        
     }
-
+    
     @FXML
-    void refuse_modif(ActionEvent event) {
-
+    void refuse_modif (ActionEvent event)
+    {
+        
     }
-
+    
 }
