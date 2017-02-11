@@ -84,6 +84,19 @@ public class RoadTripTest
         assertEquals(4,itinineraire.getGrade(),0.1);
 
     }
+
+    @Test
+    public void addParticipants() throws IOException {
+        itinineraire.addParticipants(new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
+        assertEquals(true,itinineraire.getParticipants().containsKey("@"));
+        assertEquals(1,itinineraire.getParticipants().size());
+        itinineraire.addParticipants(new User("Axel", "Mouchiroud", "Axel","55", "mdp", new Coordinates(1, 1, "Paris")));
+        assertEquals(false,itinineraire.getParticipants().containsKey("aaa"));
+        assertEquals(true,itinineraire.getParticipants().containsKey("55"));
+        assertEquals(2,itinineraire.getParticipants().size());
+
+    }
+
     
     @Test
     public void toStringTest () throws Exception
