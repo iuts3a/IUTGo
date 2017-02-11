@@ -7,20 +7,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.OtherUserInfoController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.OtherUserInfoController">
    <children>
-      <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0">
+      <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="273.0" layoutY="37.0">
          <image>
             <Image url="@./img/iutGo.png" />
          </image>
       </ImageView>
-      <Label layoutX="327.0" layoutY="163.0" text="Les information de">
+      <Label layoutX="201.0" layoutY="186.0" text="Les information de">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <VBox layoutX="327.0" layoutY="190.0" prefHeight="468.0" prefWidth="345.0">
+      <VBox layoutX="201.0" layoutY="213.0" prefHeight="468.0" prefWidth="345.0">
          <children>
             <Label fx:id="lb_name" text="Nom">
                <padding>
@@ -82,7 +81,7 @@
          </children>
       </VBox>
       <Button fx:id="retour" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
-      <Label layoutX="559.0" layoutY="163.0" text="User">
+      <Label fx:id="label_userName" layoutX="433.0" layoutY="186.0" text="User">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
