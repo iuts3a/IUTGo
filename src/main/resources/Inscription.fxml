@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="698.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.InscriptionController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="698.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.InscriptionController">
    <children>
       <TextField fx:id="name" layoutX="450.0" layoutY="183.0" prefHeight="26.0" prefWidth="246.0" />
       <TextField fx:id="firstName" layoutX="450.0" layoutY="237.0" prefHeight="26.0" prefWidth="247.0" />
@@ -32,6 +32,7 @@
       <TextField fx:id="mail" layoutX="452.0" layoutY="350.0" prefHeight="26.0" prefWidth="245.0" />
       <CheckBox fx:id="conditions" layoutX="292.0" layoutY="592.0" mnemonicParsing="false" text="En cliquant sur ce bouton, j'accepte les conditions d'utiisation" />
       <Label fx:id="error_user" layoutX="738.0" layoutY="297.0" text="Choisir un pseudo plus long" textFill="RED" />
-      <Label fx:id="error_email" layoutX="732.0" layoutY="477.0" text="Le mot de passe n'est pas identique" textFill="RED" />
+      <Label fx:id="error_password" layoutX="732.0" layoutY="477.0" text="Le mot de passe n'est pas identique" textFill="RED" />
+      <Label fx:id="error_email" layoutX="738.0" layoutY="355.0" text="Cet email existe déja" textFill="RED" />
    </children>
 </AnchorPane>
