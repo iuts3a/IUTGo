@@ -69,7 +69,7 @@ public class HomePageController
                     "Inscription.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_see_rt.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 680, 700);
             stage.setScene(scene);
             stage.show();
         }
@@ -77,7 +77,6 @@ public class HomePageController
         {
             System.err.println("Erreur au chargement: " + ex);
         }
-        
     }
 }
 

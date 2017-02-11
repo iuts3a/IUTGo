@@ -12,93 +12,112 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Created by chloe on 08/02/2017.
+ Created by chloe on 08/02/2017.
  */
-public class HomePageConnectedController {
+public class HomePageConnectedController
+{
     @FXML
     private Button btn_modify_rt;
-
+    
     @FXML
     private Button btn_create_rt;
-
+    
     @FXML
     private Button btn_search_pi;
-
+    
     @FXML
     private Button btn_see_rt;
-
+    
     @FXML
     private Hyperlink hl_deco;
-
+    
     @FXML
     private Hyperlink hl_info;
-
-
-
+    
+    
     @FXML
-    void create_rt(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("RoadTripCreation.fxml"));
+    void create_rt (ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource(
+                    "RoadTripCreation.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
+            Scene scene = new Scene(root, 800, 550);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex)
+        {
+            System.err.println("Erreur au chargement: " + ex);
+        }
+    }
+    
+    @FXML
+    void see_rt (ActionEvent event)
+    {
+        
+    }
+    
+    @FXML
+    void search_pi (ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource(
+                    "RoadTripCreation.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             System.err.println("Erreur au chargement: " + ex);
         }
     }
-
+    
     @FXML
-    void see_rt(ActionEvent event) {
-
+    void modify_rt (ActionEvent event)
+    {
+        
     }
-
+    
     @FXML
-    void search_pi(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("RoadTripCreation.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println("Erreur au chargement: " + ex);
-        }
-    }
-
-    @FXML
-    void modify_rt(ActionEvent event) {
-
-    }
-
-    @FXML
-    void deco(ActionEvent event) {
-        try {
+    void deco (ActionEvent event)
+    {
+        try
+        {
             FXMLLoader fxmlLoader = new FXMLLoader(HomePageController.class.getClassLoader().getResource("HomePage.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             System.err.println("Erreur au chargement: " + ex);
         }
     }
-
+    
     @FXML
-    void informations(ActionEvent event) {
-        try {
+    void informations (ActionEvent event)
+    {
+        try
+        {
             FXMLLoader fxmlLoader = new FXMLLoader(UserInfoController.class.getClassLoader().getResource("UserInfo.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 780, 700);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             System.err.println("Erreur au chargement: " + ex);
         }
     }
-
 }
