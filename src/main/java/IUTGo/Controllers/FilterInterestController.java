@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -57,7 +58,7 @@ public class FilterInterestController {
     private TextField textfield_ville;
 
     @FXML
-    void homepage(ActionEvent event) {
+    void homepage (MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();

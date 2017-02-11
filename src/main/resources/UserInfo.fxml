@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.UserInfoController">
    <children>
       <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0">
@@ -15,12 +14,12 @@
             <Image url="@./img/iutGo.png" />
          </image>
       </ImageView>
-      <Label layoutX="14.0" layoutY="146.0" text="Mes Informations">
+      <Label layoutX="410.0" layoutY="172.0" text="Mes Informations">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <VBox layoutX="42.0" layoutY="179.0" prefHeight="485.0" prefWidth="345.0">
+      <VBox layoutX="337.0" layoutY="202.0" prefHeight="485.0" prefWidth="345.0">
          <children>
             <Label text="Nom">
                <VBox.margin>
@@ -87,14 +86,6 @@
             </HBox>
          </children>
       </VBox>
-      <ListView fx:id="tv_notifications" layoutX="536.0" layoutY="228.0" prefHeight="347.0" prefWidth="386.0" />
-      <Label layoutX="536.0" layoutY="179.0" text="Mes notifications">
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </Label>
       <Button fx:id="retour" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
-      <Button fx:id="btn_accept_notif" layoutX="599.0" layoutY="584.0" mnemonicParsing="false" onAction="#accept_notif" text="Accepter" />
-      <Button fx:id="btn_refuse_modif" layoutX="773.0" layoutY="584.0" mnemonicParsing="false" onAction="#refuse_modif" text="Refuser" />
    </children>
 </AnchorPane>
