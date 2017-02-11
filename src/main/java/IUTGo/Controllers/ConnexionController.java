@@ -65,7 +65,7 @@ public class ConnexionController {
                 HashMap<String, User> user = User.read();
                 if (user.containsKey(username.getText())) {
                     if(user.get(username.getText()).getPassword().equals(password.getText())){
-                        FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("home_page_connected.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePageConnected.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = (Stage) button_register.getScene().getWindow();
                         Scene scene = new Scene(root);

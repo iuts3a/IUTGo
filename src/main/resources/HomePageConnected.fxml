@@ -50,7 +50,7 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="399.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="395.0" layoutY="21.0">
          <image>
-            <Image url="@/img/iutGo.png" />
+            <Image url="@./img/iutGo.png" />
          </image>
       </ImageView>
       <Hyperlink fx:id="hl_deco" layoutX="835.0" layoutY="4.0" onAction="#deco" text="Se déconnecter" />

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="633.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="633.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.RoadTripController">
    <children>
       <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0" onMouseClicked="#homepage">
          <image>

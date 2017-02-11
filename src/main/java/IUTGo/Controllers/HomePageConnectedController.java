@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,7 +38,7 @@ public class HomePageConnectedController {
     @FXML
     void create_rt(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("creation_itineraire.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("RoadTripCreation.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -58,7 +57,7 @@ public class HomePageConnectedController {
     @FXML
     void search_pi(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("creation_itineraire.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("RoadTripCreation.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -91,7 +90,7 @@ public class HomePageConnectedController {
     @FXML
     void informations(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(UserInfoController.class.getClassLoader().getResource("information_user.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(UserInfoController.class.getClassLoader().getResource("UserInfo.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root);

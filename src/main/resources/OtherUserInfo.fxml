@@ -8,11 +8,11 @@
 <?import javafx.scene.text.*?>
 
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.OtherUserInfoController">
    <children>
       <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="399.0" layoutY="14.0">
          <image>
-            <Image url="@../../../../logo.png" />
+            <Image url="@./img/iutGo.png" />
          </image>
       </ImageView>
       <Label layoutX="327.0" layoutY="163.0" text="Les information de">

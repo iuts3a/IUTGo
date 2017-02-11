@@ -42,7 +42,7 @@ public class CreateItineraireController {
     @FXML
     void toBack(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("home_page_connected.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) button_valider.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -63,7 +63,7 @@ public class CreateItineraireController {
     void homepage(ActionEvent event) {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("home_page_connected.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) button_valider.getScene().getWindow();
             Scene scene = new Scene(root);

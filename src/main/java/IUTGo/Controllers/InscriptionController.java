@@ -18,6 +18,7 @@ import java.util.HashMap;
  Created by xavier on 08/02/2017.
  */
 
+@SuppressWarnings("unused")
 public class InscriptionController
 {
     

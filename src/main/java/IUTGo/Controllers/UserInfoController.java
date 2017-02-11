@@ -44,7 +44,7 @@ public class UserInfoController {
     @FXML
     void create_rt(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("creation_itineraire.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("RoadTripCreation.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_accept_notif.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -69,7 +69,7 @@ public class UserInfoController {
     @FXML
     void retour(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("home_page_connected.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_accept_notif.getScene().getWindow();
             Scene scene = new Scene(root);
