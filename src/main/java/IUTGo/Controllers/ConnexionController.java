@@ -63,13 +63,15 @@ public class ConnexionController {
 
             try {
                 HashMap<String, User> user = User.read();
-                if (user.containsKey((username.getText()))) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("home_page_connected.fxml"));
-                    Parent root = fxmlLoader.load();
-                    Stage stage = (Stage) button_register.getScene().getWindow();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
+                if (user.containsKey(username.getText())) {
+                    if(user.get(username.getText()).getPassword().equals(password.getText())){
+                        FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("home_page_connected.fxml"));
+                        Parent root = fxmlLoader.load();
+                        Stage stage = (Stage) button_register.getScene().getWindow();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }
                 }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
