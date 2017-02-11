@@ -111,10 +111,4 @@ public class RoadTripTest
         assertEquals(0,itinineraire.getParticipants().size());
     }
 
-    
-    @Test
-    public void toStringTest () throws Exception
-    {
-        itinineraire.addPointInterest(PI);
-    }
 }
