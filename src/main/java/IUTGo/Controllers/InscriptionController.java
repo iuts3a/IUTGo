@@ -4,10 +4,12 @@ import IUTGo.Models.Coordinates;
 import IUTGo.Models.Users.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,6 +21,9 @@ import java.util.HashMap;
 public class InscriptionController
 {
     
+    public  Label     error_user;
+    public  Label     error_email;
+    public  Label     error_password;
     @FXML
     private TextField firstName;
     
@@ -49,16 +54,40 @@ public class InscriptionController
     @FXML
     private Button validate;
     
+    void initialize ()
+    {
+        error_email.setVisible(false);
+        error_user.setVisible(false);
+        error_password.setVisible(false);
+    }
+    
     @FXML
     void validate (ActionEvent event)
     {
+        error_email.setVisible(false);
+        error_user.setVisible(false);
+        
         if(name.getText().trim().isEmpty()) return;
         if(firstName.getText().trim().isEmpty()) return;
-        if(mail.getText().trim().isEmpty()) return;
-        if(user.getText().trim().isEmpty()) return;
-        if(user.getText().trim().length() < 6) return;
+        if(mail.getText().trim().isEmpty())
+        {
+            if(user.getText().trim().isEmpty())
+            {
+                error_user.setVisible(true);
+                return;
+            }
+        }
+        if(user.getText().trim().length() < 6)
+        {
+            error_user.setVisible(true);
+            return;
+        }
         if(password.getText().isEmpty()) return;
-        if(!confirmPassword.getText().equals(password.getText())) return;
+        if(!confirmPassword.getText().equals(password.getText()))
+        {
+            error_password.setVisible(true);
+            return;
+        }
         
         try
         {
@@ -74,6 +103,20 @@ public class InscriptionController
                                         new Coordinates(1, 2, "Ville"));
                 
                 newUser.save();
+                
+                
+                FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
+                        "Inscription.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = (Stage) validate.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                
+            }
+            else
+            {
+                error_email.setVisible(true);
             }
         }
         catch (IOException e)
@@ -89,12 +132,38 @@ public class InscriptionController
     @FXML
     void back (ActionEvent event)
     {
-        
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
+                    "HomePage.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) validate.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
     
     @FXML
-    void homepage (ActionEvent event)
+    void homepage (MouseEvent event)
     {
-        
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
+                    "HomePage.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) validate.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

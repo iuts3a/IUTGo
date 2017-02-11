@@ -77,7 +77,7 @@ public class HomePageConnectedController {
     @FXML
     void deco(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageController.class.getClassLoader().getResource("home-page.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageController.class.getClassLoader().getResource("HomePage.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root);

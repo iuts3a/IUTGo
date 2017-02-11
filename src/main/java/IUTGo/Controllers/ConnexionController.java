@@ -94,7 +94,7 @@ public class ConnexionController {
     
     @FXML
     void go_back(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("home-page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePage.fxml"));
         Parent root = null;
         try {
             root = fxmlLoader.load();
