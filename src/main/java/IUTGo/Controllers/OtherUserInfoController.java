@@ -17,45 +17,50 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class OtherUserInfoController {
-
+public class OtherUserInfoController
+{
+    
     private ObservableList data = FXCollections.observableArrayList();
     @FXML
     private Button btn_show_roadtrip;
-
+    
     @FXML
     private Label lb_email;
-
+    
     @FXML
     private ListView<RoadTrip> tv_roadtrip;
-
+    
     @FXML
     private Button retour;
-
+    
     @FXML
     private Label lb_lastname;
-
+    
     @FXML
     private Label lb_telephone;
-
+    
     @FXML
     private Label lb_name;
-
+    
     @FXML
-    void show_roadtrip(ActionEvent event) {
+    void show_roadtrip (ActionEvent event)
+    {
         ArrayList<RoadTrip> listRoadTrip = new ArrayList<RoadTrip>((Collection<? extends RoadTrip>) tv_roadtrip);
-        for(RoadTrip roadTrip : listRoadTrip) {
+        for (RoadTrip roadTrip : listRoadTrip)
+        {
             data.add(roadTrip);
         }
         tv_roadtrip.setItems(data);
-
+        
     }
-
+    
     @FXML
-    void retour(ActionEvent event) {
+    void retour (ActionEvent event)
+    {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource("HomePage.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
+                    "HomePage.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) retour.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -67,5 +72,5 @@ public class OtherUserInfoController {
             e.printStackTrace();
         }
     }
-
+    
 }
