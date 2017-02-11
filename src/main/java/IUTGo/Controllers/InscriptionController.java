@@ -62,9 +62,4 @@ public class InscriptionController {
 
     }
 
-    @FXML
-    void homepage(ActionEvent event) {
-
-    }
-
 }

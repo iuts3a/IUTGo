@@ -1,6 +1,6 @@
 package models;
 
-import IUTGo.Models.Coordonee;
+import IUTGo.Models.Coordinates;
 import org.junit.After;
 import org.junit.Before;
 
@@ -8,11 +8,11 @@ import org.junit.Before;
  * Created by axelm on 18/11/2016.
  */
 public class CoordoneeTest {
-    private Coordonee testCoor;
+    private Coordinates testCoor;
 
     @Before
     public void setUp() throws Exception {
-        testCoor = new Coordonee(5,5,"Marseille");
+        testCoor = new Coordinates(5,5,"Marseille");
 
     }
 
