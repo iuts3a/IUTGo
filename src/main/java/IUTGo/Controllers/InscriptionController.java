@@ -1,10 +1,7 @@
 package IUTGo.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 /**
  * Created by xavier on 08/02/2017.
@@ -13,7 +10,7 @@ import javafx.scene.control.TextField;
 public class InscriptionController {
 
     @FXML
-    private Button valider;
+    private TextField firstName;
 
     @FXML
     private PasswordField password;
@@ -22,16 +19,16 @@ public class InscriptionController {
     private TextField mail;
 
     @FXML
-    private Button retour;
+    private TextField name;
 
     @FXML
     private PasswordField confirmPassword;
 
     @FXML
-    private TextField nom;
+    private Button back;
 
     @FXML
-    private TextField prenom;
+    private CheckBox conditions;
 
     @FXML
     private TextField user;
@@ -40,26 +37,22 @@ public class InscriptionController {
     private TextField numTel;
 
     @FXML
-    private RadioButton accept;
+    private Button validate;
+
+    @FXML
+    void validate(ActionEvent event) {
+
+    }
+
+    @FXML
+    void back(ActionEvent event) {
+
+    }
 
     @FXML
     void homepage(ActionEvent event) {
 
     }
 
-    @FXML
-    void valider(ActionEvent event) {
-
-    }
-
-    @FXML
-    void retour(ActionEvent event) {
-
-    }
-
-    @FXML
-    void accept(ActionEvent event) {
-
-    }
 
 }
