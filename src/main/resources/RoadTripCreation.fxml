@@ -8,14 +8,6 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="90.0" layoutY="422.0" text="Point de départ : " />
-      <ComboBox fx:id="combo_type" prefWidth="150.0" />
-      <TextField fx:id="textfield_depart" />
-      <TextField fx:id="textfield_nom" layoutX="207.0" layoutY="249.0" />
-      <Label alignment="CENTER" layoutX="62.0" layoutY="253.0" text="Nom du road trip : " />
-      <Label layoutX="63.0" layoutY="317.0" text="Description : " />
-      <Label layoutX="342.0" layoutY="402.0" text="Type de road trip : " />
-      <TextArea fx:id="textarea_description" layoutX="200.0" layoutY="324.0" prefHeight="79.0" prefWidth="315.0" />
       <Button fx:id="button_valider" alignment="CENTER" contentDisplay="CENTER" layoutX="387.0" layoutY="612.0" mnemonicParsing="false" onAction="#validateData" text="Valider" textAlignment="CENTER">
          <padding>
             <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
@@ -26,6 +18,58 @@
             <Image url="@img/iutGo.png" />
          </image>
       </ImageView>
-      <Button fx:id="btn_back" mnemonicParsing="false" onAction="#toBack" text="Retour" />
+      <Button fx:id="btn_back" layoutX="32.0" layoutY="36.0" mnemonicParsing="false" onAction="#toBack" text="Retour" />
+      <VBox layoutX="56.0" layoutY="274.0" prefHeight="200.0" prefWidth="137.0">
+         <children>
+            <Label alignment="CENTER" text="Nom du road trip : ">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Description : ">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Type de road trip : ">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Point de départ : ">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="244.0" layoutY="274.0" prefHeight="200.0" prefWidth="243.0">
+         <children>
+            <TextField fx:id="textfield_nom">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextArea fx:id="textarea_description" prefHeight="40.0" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextArea>
+            <ComboBox fx:id="combo_type" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </ComboBox>
+            <TextField fx:id="textfield_depart">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
+      <Label layoutX="505.0" layoutY="289.0" text="Label" />
+      <Label layoutX="506.0" layoutY="342.0" text="Label" />
+      <Label layoutX="506.0" layoutY="385.0" text="Label" />
+      <Label layoutX="504.0" layoutY="421.0" text="Label" />
    </children>
 </AnchorPane>
