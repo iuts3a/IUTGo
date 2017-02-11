@@ -24,11 +24,16 @@ public class RoadTrip implements Serializable
     {
         File file = new File("./Sauv/RoadTrip.ser");
         
-        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(file));
-        
-        HashMap<String, RoadTrip> hashMap;
-        hashMap = (HashMap<String, RoadTrip>) ooi.readObject();
-        return hashMap;
+        ObjectInputStream ooi;
+        try {
+            ooi = new ObjectInputStream(new FileInputStream(file));
+        }
+        catch (IOException e){
+            RoadTrip.createSaveFile();
+            ooi = new ObjectInputStream(new FileInputStream(file));
+        }
+
+        return (HashMap<String, RoadTrip>) ooi.readObject();
     }
     
     //region Getters and Setters
@@ -111,7 +116,7 @@ public class RoadTrip implements Serializable
         return "RoadTrip{" + "name='" + name + '\'' + ", pointInterests=" + pointInterests.toString() + ", prix Itinéraire=" + getPrice() + '}';
     }
     
-    public void createSaveFile () throws IOException
+    private static void createSaveFile () throws IOException
     {
         File file = new File("./Sauv/RoadTrip.ser");
         

@@ -48,11 +48,16 @@ public class PointInterest implements Serializable
     {
         File file = new File("./Sauv/PI.ser");
         
-        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(file));
-        
-        HashMap<String, PointInterest> hashMap;
-        hashMap = (HashMap<String, PointInterest>) ooi.readObject();
-        return hashMap;
+        ObjectInputStream ooi ;
+        try {
+            PointInterest.createSaveFile();
+            ooi = new ObjectInputStream(new FileInputStream(file));
+        }
+        catch (IOException e){
+            ooi = new ObjectInputStream(new FileInputStream(file));
+        }
+
+        return (HashMap<String, PointInterest>) ooi.readObject();
     }
     
     //region Getters and Setters
@@ -162,7 +167,7 @@ public class PointInterest implements Serializable
         return "PointInterest{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", type='" + getType() + '\'' + ", price=" + price + ", note=" + getGrade() + '}';
     }
     
-    public void createSaveFile () throws IOException
+    private static void createSaveFile () throws IOException
     {
         File file = new File("./Sauv/PI.ser");
         
