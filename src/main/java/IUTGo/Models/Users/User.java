@@ -35,9 +35,19 @@ public class User implements Serializable
     public static HashMap<String, User> read () throws IOException, ClassNotFoundException
     {
         File file = new File("./Sauv/User.ser");
+    
+        ObjectInputStream ooi;
         
-        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(file));
-        
+        try
+        {
+            ooi = new ObjectInputStream(new FileInputStream(file));
+        }
+        catch (IOException e)
+        {
+            User.createSaveFile();
+            ooi = new ObjectInputStream(new FileInputStream(file));
+        }
+    
         return (HashMap<String, User>) ooi.readObject();
     }
     
@@ -361,7 +371,7 @@ public class User implements Serializable
         //endregion
     }
     
-    public void createSaveFile () throws IOException
+    public static void createSaveFile () throws IOException
     {
         File file = new File("./Sauv/User.ser");
         HashMap<String, User> hashMap = new HashMap<String, User>();
