@@ -1,6 +1,7 @@
 package IUTGo.Controllers;
 
 import IUTGo.Models.Coordinates;
+import IUTGo.Models.CurrentUser;
 import IUTGo.Models.Users.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,10 +49,7 @@ public class InscriptionController
     
     @FXML
     private TextField user;
-    
-    @FXML
-    private TextField numTel;
-    
+        
     @FXML
     private Button validate;
     
@@ -106,7 +104,7 @@ public class InscriptionController
                                         new Coordinates(1, 2, "Ville"));
                 
                 newUser.save();
-                
+                CurrentUser.Init(mail.getText());
                 
                 FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
                         "Inscription.fxml"));
@@ -115,7 +113,6 @@ public class InscriptionController
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-                
             }
             else
             {
