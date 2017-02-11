@@ -31,5 +31,7 @@
       </ImageView>
       <TextField fx:id="mail" layoutX="452.0" layoutY="350.0" prefHeight="26.0" prefWidth="245.0" />
       <CheckBox fx:id="conditions" layoutX="292.0" layoutY="592.0" mnemonicParsing="false" text="En cliquant sur ce bouton, j'accepte les conditions d'utiisation" />
+      <Label fx:id="error_user" layoutX="738.0" layoutY="297.0" text="Choisir un pseudo plus long" textFill="RED" />
+      <Label fx:id="error_email" layoutX="732.0" layoutY="477.0" text="Le mot de passe n'est pas identique" textFill="RED" />
    </children>
 </AnchorPane>
