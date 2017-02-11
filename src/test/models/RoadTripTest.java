@@ -34,9 +34,9 @@ public class RoadTripTest
                                PointInterestType.MUSEUM,
                                100,
                                new Coordinates(1, 1, "Paris"),
-                               new User("Axel", "Mouchiroud", "Axelle","@", "mdp", new Coordinates(1, 1, "Paris")));
+                               new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
         
-        itinineraire = new RoadTrip("Test", new User("Axel", "Mouchiroud", "Axelle","@", "mdp", new Coordinates(1, 1, "Paris")));
+        itinineraire = new RoadTrip("Test", new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
         
         //itinineraire.creerFichier();
     }
@@ -75,6 +75,14 @@ public class RoadTripTest
     {
         tabTest = RoadTrip.read();
         assertEquals(true, tabTest.containsKey("Test"));
+    }
+
+    @Test
+    public void getGrade() {
+        PI.addComment("Note",4);
+        itinineraire.addPointInterest(PI);
+        assertEquals(4,itinineraire.getGrade(),0.1);
+
     }
     
     @Test
