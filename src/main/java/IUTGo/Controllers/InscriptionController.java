@@ -55,6 +55,7 @@ public class InscriptionController
     @FXML
     private Button validate;
     
+    @FXML
     void initialize ()
     {
         error_email.setVisible(false);
@@ -67,6 +68,7 @@ public class InscriptionController
     {
         error_email.setVisible(false);
         error_user.setVisible(false);
+        error_password.setVisible(false);
         
         if(name.getText().trim().isEmpty()) return;
         if(firstName.getText().trim().isEmpty()) return;
