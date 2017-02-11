@@ -24,7 +24,7 @@
           <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Nom d'utilisateur :" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label text="Email" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
