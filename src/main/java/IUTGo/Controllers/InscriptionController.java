@@ -74,9 +74,6 @@ public class InscriptionController
                                         new Coordinates(1, 2, "Ville"));
                 
                 newUser.save();
-    
-                System.out.println(newUser);
-                System.out.println(listUsers);
             }
         }
         catch (IOException e)
