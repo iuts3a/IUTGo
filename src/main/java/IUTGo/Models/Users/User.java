@@ -13,16 +13,18 @@ public class User implements Serializable
 {
     private String      lastName;
     private String      firstName;
+    private String      userName;
     private String      email;
     private String      password;
     private Coordinates adresse;
     
     private ArrayList<RoadTrip> favoriteRoadTrips;
     
-    public User (String lastName, String firstName, String email, String password, Coordinates coordinates)
+    public User (String lastName, String firstName, String userName, String email, String password, Coordinates coordinates)
     {
         setLastName(lastName);
         setFirstName(firstName);
+        setUserName(userName);
         setEmail(email);
         setPassword(password);
         setAddress(coordinates);
@@ -58,6 +60,16 @@ public class User implements Serializable
     private void setFirstName (String firstName)
     {
         this.firstName = firstName;
+    }
+    
+    public String getUserName ()
+    {
+        return userName;
+    }
+    
+    private void setUserName (String userName)
+    {
+        this.userName = userName;
     }
     
     public Coordinates getAddress ()

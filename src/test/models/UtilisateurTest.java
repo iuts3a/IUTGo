@@ -23,7 +23,7 @@ public class UtilisateurTest
     public void setUp () throws Exception
     {
         coordTest = new Coordinates(1, 1, "Paris");
-        userTest = new User("WAYNE", "Bruce", "bruce.wayne@live.fr", "motdepasse", coordTest);
+        userTest = new User("WAYNE", "Bruce", "Batman","bruce.wayne@live.fr", "motdepasse", coordTest);
     }
     
     @Test

@@ -34,9 +34,9 @@ public class RoadTripTest
                                PointInterestType.MUSEUM,
                                100,
                                new Coordinates(1, 1, "Paris"),
-                               new User("Axel", "Mouchiroud", "@", "mdp", new Coordinates(1, 1, "Paris")));
+                               new User("Axel", "Mouchiroud", "Axelle","@", "mdp", new Coordinates(1, 1, "Paris")));
         
-        itinineraire = new RoadTrip("Test", new User("Axel", "Mouchiroud", "@", "mdp", new Coordinates(1, 1, "Paris")));
+        itinineraire = new RoadTrip("Test", new User("Axel", "Mouchiroud", "Axelle","@", "mdp", new Coordinates(1, 1, "Paris")));
         
         //itinineraire.creerFichier();
     }
