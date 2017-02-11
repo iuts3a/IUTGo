@@ -45,6 +45,7 @@
             <Image url="@img/iutGo.png" />
          </image>
       </ImageView>
-      <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" text="Retour" />
+      <Button fx:id="btn_back" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#go_back" text="Retour" />
+      <Label fx:id="connection_error" layoutX="454.0" layoutY="479.0" text="Vos identifiants sont invalides" textFill="#ff0202" />
    </children>
 </AnchorPane>

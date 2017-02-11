@@ -41,7 +41,7 @@ public class HomePageController {
     @FXML
     void connect(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(ConnexionController.class.getClassLoader().getResource("connection.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ConnexionController.class.getClassLoader().getResource("connexion.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_see_rt.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -56,7 +56,7 @@ public class HomePageController {
     @FXML
     void inscription(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("creation_itineraire.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource("Inscription.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_see_rt.getScene().getWindow();
             Scene scene = new Scene(root);
