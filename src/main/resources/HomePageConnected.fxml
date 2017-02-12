@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.HomePageConnectedController">
    <children>
       <Label layoutX="439.0" layoutY="89.0" text="IUTGo">
@@ -55,5 +54,6 @@
       </ImageView>
       <Hyperlink fx:id="hl_deco" layoutX="835.0" layoutY="4.0" onAction="#deco" text="Se déconnecter" />
       <Hyperlink fx:id="hl_info" layoutX="835.0" layoutY="39.0" onAction="#informations" text="Mes informations" />
+      <Hyperlink fx:id="hl_admin" layoutX="835.0" layoutY="74.0" onAction="#informations" text="Espace administrateur" />
    </children>
 </AnchorPane>

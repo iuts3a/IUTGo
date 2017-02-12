@@ -106,8 +106,8 @@ public class InscriptionController
                 newUser.save();
                 CurrentUser.Init(mail.getText());
                 
-                FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
-                        "Inscription.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                        "HomePageConnected.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = (Stage) validate.getScene().getWindow();
                 Scene scene = new Scene(root, 680, 700);
