@@ -158,11 +158,12 @@ public class PointInterest implements Serializable
     public boolean addComment (String message, Integer grade)
     {
         this.comments.add(new Comment(message, grade));
-        
+        PointInterest pointInterest;
         try
         {
-            PointInterest.read().remove(getName());
-            PointInterest.read().put(getName(), this);
+           // PointInterest.read().remove(getName());
+            //PointInterest.read().put(getName(), this);
+            this.save();
             return true;
         }
         catch (IOException e)

@@ -41,8 +41,7 @@ public class UserTest
     public void commentPointInteretTest () throws Exception
     {
         assertEquals(true, userTest.commentPointInteret("Buffalo", "Génial", 4));
-        assertEquals(4,PointInterest.read().get("Buffalo").getGrade(),0.1);
-
+        assertEquals((Integer)4,PointInterest.read().get("Buffalo").getComments().get(0).getGrade());
     }
     
     @Test

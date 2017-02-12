@@ -9,8 +9,6 @@ import IUTGo.Models.Users.User;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import static org.junit.Assert.assertEquals;
 
 /**

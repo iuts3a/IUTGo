@@ -1,6 +1,8 @@
 package IUTGo.Models;
 
-public class Comment
+import java.io.Serializable;
+
+public class Comment implements Serializable
 {
     private String  message;
     private Integer grade;
