@@ -371,7 +371,7 @@ public class User implements Serializable
         //endregion
     }
     
-    private static void createSaveFile () throws IOException
+    public static void createSaveFile () throws IOException
     {
         File file = new File("./Sauv/User.ser");
         HashMap<String, User> hashMap = new HashMap<String, User>();
