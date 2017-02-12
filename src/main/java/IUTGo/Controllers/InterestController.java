@@ -1,16 +1,19 @@
 package IUTGo.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class InterestController
 {
     @FXML
     private Button goBack;
-
-    @FXML
-    private Button addInterest;
 
     @FXML
     private Button modify;
@@ -39,16 +42,24 @@ public class InterestController
 
     @FXML
     public void goBack(){
-
+        FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePage.fxml"));
+        Parent root = null;
+        try
+        {
+            root = fxmlLoader.load();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        Stage stage = (Stage) goBack.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     public void modify(){
-
-    }
-
-    @FXML
-    public void goInterest(){
 
     }
 }
