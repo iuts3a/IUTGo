@@ -20,7 +20,7 @@ public class HomePageConnectedController
 {
     public  Hyperlink hl_admin;
     @FXML
-    private Button    btn_modify_rt;
+    private Button    btn_create_PI;
     
     @FXML
     private Button btn_create_rt;
@@ -65,19 +65,12 @@ public class HomePageConnectedController
     @FXML
     void see_rt (ActionEvent event)
     {
-        
-    }
-    
-    @FXML
-    void search_pi (ActionEvent event)
-    {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource(
-                    "RoadTripCreation.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("FilterRoadTrip.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Stage stage = (Stage) btn_see_rt.getScene().getWindow();
+            Scene scene = new Scene(root, 1000, 800);
             stage.setScene(scene);
             stage.show();
         }
@@ -88,9 +81,39 @@ public class HomePageConnectedController
     }
     
     @FXML
-    void modify_rt (ActionEvent event)
+    void search_pi (ActionEvent event)
     {
-        
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("FilterPoinInterest.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
+            Scene scene = new Scene(root,1000, 800);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex)
+        {
+            System.err.println("Erreur au chargement: " + ex);
+        }
+    }
+    
+    @FXML
+    void create_PI(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("FilterPoinInterest.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) btn_create_PI.getScene().getWindow();
+            Scene scene = new Scene(root,1000, 800);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex)
+        {
+            System.err.println("Erreur au chargement: " + ex);
+        }
     }
     
     @FXML
