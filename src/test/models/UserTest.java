@@ -58,13 +58,15 @@ public class UserTest
     @Test
     public void addPointInteretToRoadTripTest () throws Exception
     {
-        assertEquals(true,
+        //Deja contenue
+        assertEquals(false,
                     userTest.addPointInteretToRoadTrip("England roadtrip",
                             "Buffalo",
                             "Voyage pour faire le tour des coins touristique de l'Angleterre",
                             PointInterestType.RESTAURANT,
                             10,
                             coordTest));
+        //Bien contenue dans le road
         assertEquals(true,RoadTrip.read().get("England roadtrip").getPointInterests().containsKey("Buffalo"));
 
     }
@@ -73,12 +75,16 @@ public class UserTest
     public void deletePointInteretFromRoadTripTest () throws Exception
     {
         assertEquals(true, userTest.deletePointInteretFromRoadTrip("England roadtrip", "Buffalo"));
+        assertEquals(false,RoadTrip.read().get("England roadtrip").getPointInterests().containsKey(PiTest.getName()));
     }
     
     @Test
     public void addRoadTripToFavoriteTest () throws Exception
     {
-        assertEquals(true, userTest.deletePointInteretFromRoadTrip("England roadtrip", "Buffalo"));
+        assertEquals(true, userTest.addRoadTripToFavorite("England roadtrip"));
+        userTest.save();
+        assertEquals("England roadtrip",User.read().get(userTest.getEmail()).getFavoriteRoadTrips().get(0).getName());
+
     }
     
     @Test
@@ -95,6 +101,7 @@ public class UserTest
     }
 
     @Test
+
     public void saveTest() throws IOException, ClassNotFoundException {
         userTest.save();
         assertEquals(true,User.read().containsKey(userTest.getEmail()));

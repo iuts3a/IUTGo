@@ -259,7 +259,7 @@ public class User implements Serializable
         {
             if(!(PointInterest.read().containsKey(pointInterest.getName()))) return false;
             if(!(RoadTrip.read().containsKey(roadTripName))) return false;
-          //  if(RoadTrip.read().get(roadTripName).getPointInterests().containsKey(pointInterest.getName())) return false;
+            if(RoadTrip.read().get(roadTripName).getPointInterests().containsKey(pointInterest.getName())) return false;
             pointInterest.save();
             RoadTrip roadTrip= new RoadTrip(RoadTrip.read().get(roadTripName).getName(),this);
             roadTrip.addPointInterest(pointInterest);
@@ -284,7 +284,9 @@ public class User implements Serializable
     {
         try
         {
+            RoadTrip roadTrip= new RoadTrip(RoadTrip.read().get(roadTripName).getName(),this);
             RoadTrip.read().get(roadTripName).deletePointInterest(pointInteretName);
+            roadTrip.save();
             return true;
         }
         //region catch
