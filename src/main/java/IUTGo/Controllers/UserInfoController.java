@@ -2,6 +2,8 @@ package IUTGo.Controllers;
 
 import IUTGo.Models.CurrentUser;
 import IUTGo.Models.Users.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +39,15 @@ public class UserInfoController
         name.setText(user.getLastName());
         firstName.setText(user.getFirstName());
         email.setText(user.getEmail());
+
+        ObservableList data = FXCollections.observableArrayList();
+
+        for(int i= 0; i<user.getFavoriteRoadTrips().size(); i++){
+
+            data.add(user.getFavoriteRoadTrips().get(i).getName());
+        }
+        tv_roadtrip.setItems(data);
+
     }
     
     @FXML
