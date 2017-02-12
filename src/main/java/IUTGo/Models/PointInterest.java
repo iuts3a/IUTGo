@@ -50,7 +50,6 @@ public class PointInterest implements Serializable
         
         ObjectInputStream ooi ;
         try {
-            PointInterest.createSaveFile();
             ooi = new ObjectInputStream(new FileInputStream(file));
         }
         catch (IOException e){
@@ -167,7 +166,7 @@ public class PointInterest implements Serializable
         return "PointInterest{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", type='" + getType() + '\'' + ", price=" + price + ", note=" + getGrade() + '}';
     }
     
-    private static void createSaveFile () throws IOException
+    public static void createSaveFile () throws IOException
     {
         File file = new File("./Sauv/PI.ser");
         
