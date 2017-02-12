@@ -1,5 +1,7 @@
 package IUTGo.Controllers;
 
+import IUTGo.Models.CurrentUser;
+import IUTGo.Models.Users.Admin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +18,9 @@ import java.io.IOException;
  */
 public class HomePageConnectedController
 {
+    public  Hyperlink hl_admin;
     @FXML
-    private Button btn_modify_rt;
+    private Button    btn_modify_rt;
     
     @FXML
     private Button btn_create_rt;
@@ -34,6 +37,11 @@ public class HomePageConnectedController
     @FXML
     private Hyperlink hl_info;
     
+    @FXML
+    void initialize ()
+    {
+        if(!(CurrentUser.getInstance().getUser() instanceof Admin)) hl_admin.setVisible(false);
+    }
     
     @FXML
     void create_rt (ActionEvent event)

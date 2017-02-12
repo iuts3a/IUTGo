@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
 
@@ -20,13 +19,7 @@ public class HomePageController
     private Hyperlink hl_inscription;
     
     @FXML
-    private Button btn_search_pi;
-    
-    @FXML
     private Hyperlink hl_connect;
-    
-    @FXML
-    private Button btn_see_rt;
     
     @FXML
     void see_rt (ActionEvent event)
@@ -48,7 +41,7 @@ public class HomePageController
             FXMLLoader fxmlLoader = new FXMLLoader(ConnexionController.class.getClassLoader().getResource(
                     "Connection.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) btn_see_rt.getScene().getWindow();
+            Stage stage = (Stage) hl_connect.getScene().getWindow();
             Scene scene = new Scene(root, 700, 570);
             stage.setScene(scene);
             stage.show();
@@ -68,7 +61,7 @@ public class HomePageController
             FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
                     "Inscription.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) btn_see_rt.getScene().getWindow();
+            Stage stage = (Stage) hl_connect.getScene().getWindow();
             Scene scene = new Scene(root, 680, 700);
             stage.setScene(scene);
             stage.show();
