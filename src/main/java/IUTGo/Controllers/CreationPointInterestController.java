@@ -1,6 +1,10 @@
 package IUTGo.Controllers;
 
+import IUTGo.Models.Coordinates;
+import IUTGo.Models.CurrentUser;
+import IUTGo.Models.PointInterest;
 import IUTGo.Models.PointInterestType;
+import IUTGo.Models.Users.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,7 +72,33 @@ public class CreationPointInterestController
                 error_price.setVisible(true);
             }
         }
-        for(PointInterestType t : PointInterestType.values())
+        if(coords1.getText().trim().isEmpty())
+        {
+            try
+            {
+                Double.parseDouble(coords1.getText().trim());
+            }
+            catch (NumberFormatException e)
+            {
+                error_coords.setVisible(true);
+            }
+        }
+        if(coords2.getText().trim().isEmpty())
+        {
+            try
+            {
+                Double.parseDouble(coords2.getText().trim());
+            }
+            catch (NumberFormatException e)
+            {
+                error_coords.setVisible(true);
+            }
+        }
+        if(ville.getText().trim().isEmpty())
+        {
+            error_coords.setVisible(true);
+        }
+        for (PointInterestType t : PointInterestType.values())
         {
             if(t.toString().equalsIgnoreCase(type.getText()))
             {
@@ -77,7 +107,59 @@ public class CreationPointInterestController
         }
         if(!typeOk)
         {
+            error_type.setVisible(true);
+        }
+        
+        if(comment.getText().trim().isEmpty())
+        {
+            User currentUser = CurrentUser.getInstance().getUser();
             
+            //TODO
+            Coordinates coordinates = null; //new Coordinates((coords1.getText().trim()), Double.parseDouble(coords1.getText().trim()), ville.getText().trim());
+            
+            PointInterest newPointInterest = null; //new PointInterest(name.getText(),
+            //                                                  PointInterestType.valueOf(type.getText().trim()),
+            //                                                price.getText(), coordinates ,currentUser);
+    
+            try
+            {
+                newPointInterest.save();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            catch (ClassNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    
+        else
+        {
+    
+    
+            User currentUser = CurrentUser.getInstance().getUser();
+    
+            //TODO
+            Coordinates coordinates = null; //new Coordinates((coords1.getText().trim()), Double.parseDouble(coords1.getText().trim()), ville.getText().trim());
+    
+            PointInterest newPointInterest = null; //new PointInterest(name.getText(), comment.getText().trim(),
+            //                                                  PointInterestType.valueOf(type.getText().trim()),
+            //                                                price.getText(), coordinates ,currentUser);
+    
+            try
+            {
+                newPointInterest.save();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            catch (ClassNotFoundException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
     
