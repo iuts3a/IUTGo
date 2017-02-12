@@ -101,6 +101,9 @@ public class CreateItineraireController {
                 pointInterestList.put(textfield_depart.getText(), pointInterest);
                 roadTrip.save();
 
+                CurrentUser.getInstance().getUser().addRoadTripToFavorite(textfield_nom.getText());
+                CurrentUser.getInstance().getUser().save();
+
                 FXMLLoader fxmlLoader = new FXMLLoader(UserInfoController.class.getClassLoader().getResource("UserInfo.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = (Stage) button_valider.getScene().getWindow();
