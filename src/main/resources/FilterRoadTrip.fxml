@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.FilterInterestController">
+   <children>
+      <Label layoutX="388.0" layoutY="240.0" text="Nom :" />
+      <TextField fx:id="textfield_nom" layoutX="447.0" layoutY="236.0" />
+      <ImageView fitHeight="130.0" fitWidth="200.0" layoutX="403.0" layoutY="50.0" onMouseClicked="#homepage">
+         <image>
+            <Image url="@img/iutGo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="button_reset" layoutX="328.0" layoutY="284.0" mnemonicParsing="false" onAction="#resetFiltres" text="Effacer les filtres" />
+      <Button fx:id="button_filtrer" layoutX="605.0" layoutY="284.0" mnemonicParsing="false" onAction="#goTrier" text="Filtrer" />
+      <Button fx:id="button_valider" layoutX="477.0" layoutY="631.0" mnemonicParsing="false" onAction="#openPI" text="Valider" />
+      <Button fx:id="button_back" layoutX="24.0" layoutY="19.0" mnemonicParsing="false" text="Retour" />
+      <ListView fx:id="list_RoadTrip" layoutX="288.0" layoutY="359.0" prefHeight="200.0" prefWidth="441.0" />
+   </children>
+</AnchorPane>
