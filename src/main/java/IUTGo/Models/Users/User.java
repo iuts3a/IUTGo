@@ -257,12 +257,13 @@ public class User implements Serializable
         PointInterest pointInterest = new PointInterest(name, description, type, price, coordinates, this);
         try
         {
-            if(PointInterest.read().containsKey(pointInterest.getName())) return false;
-            if(PointInterest.read().containsValue(pointInterest)) return false;
-            if(!RoadTrip.read().containsKey(roadTripName)) return false;
-            
+            if(!(PointInterest.read().containsKey(pointInterest.getName()))) return false;
+            if(!(RoadTrip.read().containsKey(roadTripName))) return false;
+          //  if(RoadTrip.read().get(roadTripName).getPointInterests().containsKey(pointInterest.getName())) return false;
             pointInterest.save();
-            RoadTrip.read().get(roadTripName).addPointInterest(pointInterest);
+            RoadTrip roadTrip= new RoadTrip(RoadTrip.read().get(roadTripName).getName(),this);
+            roadTrip.addPointInterest(pointInterest);
+            roadTrip.save();
             return true;
         }
         //region catch

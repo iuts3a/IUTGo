@@ -1,7 +1,8 @@
-package TestUsers;
+package IUTGo.Models.Users;
 
 import IUTGo.Models.Coordinates;
 import IUTGo.Models.PointInterest;
+import IUTGo.Models.Users.User;
 
 import java.io.IOException;
 

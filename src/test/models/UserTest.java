@@ -1,0 +1,96 @@
+package models;
+
+import IUTGo.Models.Coordinates;
+import IUTGo.Models.PointInterest;
+import IUTGo.Models.PointInterestType;
+import IUTGo.Models.RoadTrip;
+import IUTGo.Models.Users.User;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
+
+import static org.junit.Assert.assertEquals;
+
+/**
+ Created by Antoine on 07/02/2017.
+ */
+public class UserTest
+{
+    int xRand = ThreadLocalRandom.current().nextInt(0, 150);
+    int yRand = ThreadLocalRandom.current().nextInt(0, 150);
+    private User          userTest;
+    private Coordinates   coordTest;
+    private PointInterest PiTest, PiTest2;
+    
+    @Before
+    public void setUp () throws Exception
+    {
+        coordTest = new Coordinates(xRand, yRand, "Paris");
+        userTest = new User("WAYNE", "Bruce", "Batman", "bruce.wayne@live.fr", "motdepasse", coordTest);
+        PiTest = new PointInterest("Buffalo", PointInterestType.RESTAURANT, 10, coordTest, userTest);
+        PiTest.save();
+        PiTest2 = new PointInterest("Buffalo", PointInterestType.RESTAURANT, 10, coordTest, userTest);
+        PiTest2.save();
+        //User.createSaveFile();
+    }
+
+    @Test
+    public void commentPointInteret () throws Exception
+    {
+        assertEquals(true, userTest.commentPointInteret("Buffalo", "Génial", 4));
+    }
+    
+    @Test
+    public void createRoadtrip () throws Exception
+    {
+        assertEquals(true, userTest.createRoadTrip("England roadtrip"));
+        assertEquals(true, RoadTrip.read().containsKey("England roadtrip"));
+    }
+
+    @Test
+    public void suggestPointInteretTest() throws IOException, ClassNotFoundException {
+        assertEquals(true,userTest.suggestPointInteret("Stade",PointInterestType.CHURCH,5,coordTest));
+        assertEquals(true,PointInterest.read().containsKey("Stade"));
+    }
+    
+    @Test
+    public void addPointInteretToRoadTrip () throws Exception
+    {
+        assertEquals(true,
+                    userTest.addPointInteretToRoadTrip("England roadtrip",
+                            "Buffalo",
+                            "Voyage pour faire le tour des coins touristique de l'Angleterre",
+                            PointInterestType.RESTAURANT,
+                            10,
+                            coordTest));
+        assertEquals(true,RoadTrip.read().get("England roadtrip").getPointInterests().containsKey("Buffalo"));
+
+    }
+    
+    @Test
+    public void deletePointInteretFromRoadTrip () throws Exception
+    {
+        assertEquals(true, userTest.deletePointInteretFromRoadTrip("England roadtrip", "Buffalo"));
+    }
+    
+    @Test
+    public void addRoadTripToFavorite () throws Exception
+    {
+        assertEquals(true, userTest.deletePointInteretFromRoadTrip("England roadtrip", "Buffalo"));
+    }
+    
+    @Test
+    public void getRoadTripPrice () throws Exception
+    {
+        userTest.addPointInteretToRoadTrip("England roadtrip",
+                                           "Buffalo",
+                                           "Voyage pour faire le tour des coins touristique de l'Angleterre",
+                                           PointInterestType.RESTAURANT,
+                                           10,
+                                           coordTest);
+        
+        assertEquals(10, userTest.getRoadTripPrice("England roadtrip"), 0.0001);
+    }
+}
