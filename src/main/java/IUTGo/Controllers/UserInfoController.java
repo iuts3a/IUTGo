@@ -120,10 +120,9 @@ public class UserInfoController
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
-                    "HomePageConnected.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
+            Stage stage = (Stage) retour.getScene().getWindow();
             Scene scene = new Scene(root, 1000, 510);
             stage.setScene(scene);
             stage.show();
@@ -133,17 +132,4 @@ public class UserInfoController
             System.err.println("Erreur au chargement: " + ex);
         }
     }
-    
-    @FXML
-    void accept_notif (ActionEvent event)
-    {
-        
-    }
-    
-    @FXML
-    void refuse_modif (ActionEvent event)
-    {
-        
-    }
-    
 }
