@@ -112,8 +112,22 @@ public class ConnexionController
     @FXML
     void homepage (MouseEvent event)
     {
-        
-        
+        FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                "HomePage.fxml"));
+        Parent root = null;
+        try
+        {
+            root = fxmlLoader.load();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        Stage stage = (Stage) button_register.getScene().getWindow();
+        assert root != null;
+        Scene scene = new Scene(root, 830, 560);
+        stage.setScene(scene);
+        stage.show();
     }
     
     @FXML
