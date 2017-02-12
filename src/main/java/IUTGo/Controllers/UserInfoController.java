@@ -76,7 +76,7 @@ public class UserInfoController
         if(tv_roadtrip.getSelectionModel().getSelectedItem() != null){
             try
             {
-                FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("roadtrip.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("Roadtrip.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = (Stage) btn_create_rt.getScene().getWindow();
                 Scene scene = new Scene(root);

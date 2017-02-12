@@ -1,6 +1,7 @@
 package IUTGo;
 
 import IUTGo.Models.Coordinates;
+import IUTGo.Models.PointInterest;
 import IUTGo.Models.RoadTrip;
 import IUTGo.Models.Users.User;
 import javafx.application.Application;
@@ -19,6 +20,9 @@ public class App extends Application
        /* User u = new User("coupigny-Warot", "chloe", "chloee", "chloe.coupwarot@orange.fr","Chloe01234", new Coordinates(1, 2, "Ville") );
         User.createSaveFile();
         u.save();*/
+       /*RoadTrip.createSaveFile();
+        User.createSaveFile();
+        PointInterest.createSaveFile();*/
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
