@@ -37,13 +37,13 @@ public class UserTest
     }
 
     @Test
-    public void commentPointInteret () throws Exception
+    public void commentPointInteretTest () throws Exception
     {
         assertEquals(true, userTest.commentPointInteret("Buffalo", "Génial", 4));
     }
     
     @Test
-    public void createRoadtrip () throws Exception
+    public void createRoadtripTest () throws Exception
     {
         assertEquals(true, userTest.createRoadTrip("England roadtrip"));
         assertEquals(true, RoadTrip.read().containsKey("England roadtrip"));
@@ -56,7 +56,7 @@ public class UserTest
     }
     
     @Test
-    public void addPointInteretToRoadTrip () throws Exception
+    public void addPointInteretToRoadTripTest () throws Exception
     {
         assertEquals(true,
                     userTest.addPointInteretToRoadTrip("England roadtrip",
@@ -70,19 +70,19 @@ public class UserTest
     }
     
     @Test
-    public void deletePointInteretFromRoadTrip () throws Exception
+    public void deletePointInteretFromRoadTripTest () throws Exception
     {
         assertEquals(true, userTest.deletePointInteretFromRoadTrip("England roadtrip", "Buffalo"));
     }
     
     @Test
-    public void addRoadTripToFavorite () throws Exception
+    public void addRoadTripToFavoriteTest () throws Exception
     {
         assertEquals(true, userTest.deletePointInteretFromRoadTrip("England roadtrip", "Buffalo"));
     }
     
     @Test
-    public void getRoadTripPrice () throws Exception
+    public void getRoadTripPriceTest () throws Exception
     {
         userTest.addPointInteretToRoadTrip("England roadtrip",
                                            "Buffalo",
@@ -92,5 +92,16 @@ public class UserTest
                                            coordTest);
         
         assertEquals(10, userTest.getRoadTripPrice("England roadtrip"), 0.0001);
+    }
+
+    @Test
+    public void saveTest() throws IOException, ClassNotFoundException {
+        userTest.save();
+        assertEquals(true,User.read().containsKey(userTest.getEmail()));
+    }
+
+    @Test
+    public void readTest() throws IOException, ClassNotFoundException {
+        assertEquals(true,User.read().containsKey(userTest.getEmail()));
     }
 }
