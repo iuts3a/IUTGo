@@ -1,5 +1,8 @@
 package IUTGo.Controllers;
 
+import IUTGo.Models.PointInterest;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by vmonsch on 08/02/2017.
@@ -73,11 +78,41 @@ public class FilterInterestController {
 
     @FXML
     void resetFiltres(ActionEvent event) {
-
+        textfield_nom.setText(null);
+        textfield_ville.setText(null);
     }
 
     @FXML
     void goTrier(ActionEvent event) {
+        ObservableList data = FXCollections.observableArrayList();
+        HashMap<String, PointInterest> pointInterest = null;
+        try {
+            pointInterest = PointInterest.read();
+            for(Map.Entry<String, PointInterest> entry : pointInterest.entrySet()) {
+                if(!textfield_ville.getText().trim().isEmpty()){
+                    if(pointInterest.get(entry.getKey()).getCoordinates().getCity().equals(textfield_ville.getText())){
+                        data.add(entry.getKey());
+                    }
+                }
+                if(!textfield_nom.getText().trim().isEmpty()){
+                    if(pointInterest.get(entry.getKey()).getName().equals(textfield_nom.getText())){
+                        data.add(entry.getKey());
+                    }
+                }
+
+            }
+            list_PI.setItems(data);
+
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
 
     }
 
