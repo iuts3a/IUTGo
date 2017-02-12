@@ -34,7 +34,6 @@ public class UserTest
         PiTest.save();
         PiTest2 = new PointInterest("Buffalo", PointInterestType.RESTAURANT, 10, coordTest, userTest);
         PiTest2.save();
-
     }
 
     @Test
