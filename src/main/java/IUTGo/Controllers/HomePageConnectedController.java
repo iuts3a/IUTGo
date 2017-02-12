@@ -18,9 +18,11 @@ import java.io.IOException;
  */
 public class HomePageConnectedController
 {
-    public  Hyperlink hl_admin;
     @FXML
-    private Button    btn_modify_rt;
+    public Hyperlink hl_admin;
+    
+    @FXML
+    private Button btn_modify_rt;
     
     @FXML
     private Button btn_create_rt;
