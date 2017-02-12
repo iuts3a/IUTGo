@@ -71,17 +71,17 @@ public class RoadTripController {
     void homepage(MouseEvent event) {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
-                    "HomePage.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                    "HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) Lieu.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Stage stage = (Stage) prix_roadtrip.getScene().getWindow();
+            Scene scene = new Scene(root, 1000, 510);
             stage.setScene(scene);
             stage.show();
         }
-        catch (IOException e)
+        catch (IOException ex)
         {
-            e.printStackTrace();
+            System.err.println("Erreur au chargement: " + ex);
         }
 
     }

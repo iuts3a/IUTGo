@@ -75,8 +75,8 @@ public class HomePageConnectedController
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource(
-                    "RoadTripCreation.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(FilterInterestController.class.getClassLoader().getResource(
+                    "FilterPoinInterest.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root);

@@ -98,8 +98,12 @@ public class UserInfoController
     {
         if(tv_roadtrip.getSelectionModel().getSelectedItem() != null){
             try {
-                RoadTrip.read().get(tv_roadtrip.getSelectionModel().getSelectedItem()).deleteParticipants(CurrentUser.getInstance().getUser().getEmail());
-                System.out.println(CurrentUser.getInstance().getUser().getFavoriteRoadTrips().remove(RoadTrip.read().get(tv_roadtrip.getSelectionModel().getSelectedItem())));
+                String emailUser = CurrentUser.getInstance().getUser().getEmail();
+                String roadTripSelected = (String)tv_roadtrip.getSelectionModel().getSelectedItem();
+
+
+                RoadTrip.read().get(roadTripSelected).deleteParticipants(emailUser);
+                CurrentUser.getInstance().getUser().getFavoriteRoadTrips().remove(RoadTrip.read().get(roadTripSelected));
 
             } catch (IOException e) {
                 e.printStackTrace();
