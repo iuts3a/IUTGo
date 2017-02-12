@@ -1,4 +1,4 @@
-package IUTGo.Models.Users;
+package TestUsers;
 
 import IUTGo.Models.Coordinates;
 import IUTGo.Models.PointInterest;
