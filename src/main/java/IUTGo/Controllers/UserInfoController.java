@@ -1,6 +1,7 @@
 package IUTGo.Controllers;
 
 import IUTGo.Models.CurrentUser;
+import IUTGo.Models.RoadTrip;
 import IUTGo.Models.Users.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,7 +44,6 @@ public class UserInfoController
         ObservableList data = FXCollections.observableArrayList();
 
         for(int i= 0; i<user.getFavoriteRoadTrips().size(); i++){
-
             data.add(user.getFavoriteRoadTrips().get(i).getName());
         }
         tv_roadtrip.setItems(data);
@@ -96,7 +96,19 @@ public class UserInfoController
     @FXML
     void delete_rt (ActionEvent event)
     {
-        
+        if(tv_roadtrip.getSelectionModel().getSelectedItem() != null){
+            try {
+                RoadTrip.read().get(tv_roadtrip.getSelectionModel().getSelectedItem()).deleteParticipants(CurrentUser.getInstance().getUser().getEmail());
+                System.out.println(CurrentUser.getInstance().getUser().getFavoriteRoadTrips().remove(RoadTrip.read().get(tv_roadtrip.getSelectionModel().getSelectedItem())));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            //initialize();
+        }
     }
     
     @FXML
