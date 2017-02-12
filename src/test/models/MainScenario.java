@@ -36,15 +36,24 @@ public class MainScenario {
 
     @Test
     public void Scenario () throws Exception {
+        // En tant qu'utilisateur je veux suggérer l'ajout d'un Point d'interet
         assertEquals(true,  userTest.suggestPointInteret("Casino",PointInterestType.MUSEUM,5,coordTest));
+        //En tant qu'administrateur je veux suggérer l'ajout d'un Point d'interet
         assertEquals(true,  adminTest.validatePointInterest("Casino"));
+        //En tant qu'utilisateur je veux créer un roadTrip
         assertEquals(true,  userTest.createRoadTrip("EnglandRoadTrip"));
+        /*
         RoadTrip roadTripTest = RoadTrip.read().get("EnglandRoadTrip");
         assertEquals(true, roadTripTest.addParticipants(participanTest));
+        */
+        //En tant qu'utilisateur je veux ajouter un Point d'interet au roadTrip
         assertEquals(true, userTest.addPointInteretToRoadTrip("England roadtrip","Buffalo","Voyage pour faire le tour des coins touristique de l'Angleterre",PointInterestType.RESTAURANT,10,coordTest));
-        assertEquals("RoadTrip name=Englant roadtrip, pointInterests=Buffalo, prix Itinéraire=10",roadTripTest.toString());
+        // En tant qu'utilisateur je veux commenter un Point d'interet
+        assertEquals(true, userTest.commentPointInteret("Buffalo","Génial",4));
+        //En tant qu'administrateur je veux changer le prix d'un Point d'interet
         assertEquals(true,adminTest.changePricePointInterest ("Buffalo", 15));
         assertEquals(15,PointInterest.read().get("Buffalo"));
+        //
 
 
 
