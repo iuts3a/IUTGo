@@ -1,6 +1,7 @@
 package IUTGo.Controllers;
 
 import IUTGo.Models.CurrentUser;
+import IUTGo.Models.RoadTrip;
 import IUTGo.Models.Users.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,7 +44,6 @@ public class UserInfoController
         ObservableList data = FXCollections.observableArrayList();
 
         for(int i= 0; i<user.getFavoriteRoadTrips().size(); i++){
-
             data.add(user.getFavoriteRoadTrips().get(i).getName());
         }
         tv_roadtrip.setItems(data);
@@ -96,7 +96,23 @@ public class UserInfoController
     @FXML
     void delete_rt (ActionEvent event)
     {
-        
+        if(tv_roadtrip.getSelectionModel().getSelectedItem() != null){
+            try {
+                String emailUser = CurrentUser.getInstance().getUser().getEmail();
+                String roadTripSelected = (String)tv_roadtrip.getSelectionModel().getSelectedItem();
+
+
+                RoadTrip.read().get(roadTripSelected).deleteParticipants(emailUser);
+                CurrentUser.getInstance().getUser().getFavoriteRoadTrips().remove(RoadTrip.read().get(roadTripSelected));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            //initialize();
+        }
     }
     
     @FXML
@@ -104,10 +120,9 @@ public class UserInfoController
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
-                    "HomePageConnected.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
+            Stage stage = (Stage) retour.getScene().getWindow();
             Scene scene = new Scene(root, 1000, 510);
             stage.setScene(scene);
             stage.show();
@@ -117,17 +132,4 @@ public class UserInfoController
             System.err.println("Erreur au chargement: " + ex);
         }
     }
-    
-    @FXML
-    void accept_notif (ActionEvent event)
-    {
-        
-    }
-    
-    @FXML
-    void refuse_modif (ActionEvent event)
-    {
-        
-    }
-    
 }

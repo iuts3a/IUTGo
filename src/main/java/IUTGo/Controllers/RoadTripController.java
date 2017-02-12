@@ -7,9 +7,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Map;
@@ -64,7 +68,21 @@ public class RoadTripController {
     }
 
     @FXML
-    void homepage(ActionEvent event) {
+    void homepage(MouseEvent event) {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                    "HomePageConnected.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) prix_roadtrip.getScene().getWindow();
+            Scene scene = new Scene(root, 1000, 510);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex)
+        {
+            System.err.println("Erreur au chargement: " + ex);
+        }
 
     }
 
@@ -87,7 +105,22 @@ public class RoadTripController {
 
     @FXML
     void retour(ActionEvent event) {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("Roadtrip.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) Lieu.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex)
+        {
+            System.err.println("test " + ex);
+        }
 
     }
 
+    public void supprimerPi(ActionEvent actionEvent) {
+    }
 }

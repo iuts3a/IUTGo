@@ -39,7 +39,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btn_modify_rt" mnemonicParsing="false" onAction="#modify_rt" prefHeight="238.0" prefWidth="243.0" text="Modifier un de mes RoadTrips" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="btn_create_PI" mnemonicParsing="false" onAction="#create_PI" prefHeight="238.0" prefWidth="243.0" text="Modifier un de mes RoadTrips" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>

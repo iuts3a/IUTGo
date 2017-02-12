@@ -44,7 +44,6 @@ public class User implements Serializable
         }
         catch (IOException e)
         {
-            User.createSaveFile();
             ooi = new ObjectInputStream(new FileInputStream(file));
         }
     
