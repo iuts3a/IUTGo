@@ -16,44 +16,47 @@ import static org.junit.Assert.assertEquals;
 /**
  Created by Antoine on 07/02/2017.
  */
-public class MainScenario
-{
+public class MainScenario {
+    private Admin adminTest;
+    private User userTest,participanTest;
+    private Coordinates coordTest;
+
     int xRand = ThreadLocalRandom.current().nextInt(0, 150);
     int yRand = ThreadLocalRandom.current().nextInt(0, 150);
-    private Admin adminTest;
-    private User  userTest, participanTest;
-    private Coordinates coordTest;
-    
+
+
     @Before
     public void setUp () throws Exception
     {
-        adminTest = new Admin("WAYNE", "Bruce", "Batman", "bruce.wayne@mail.fr", "motdepasse", coordTest);
+        adminTest = new Admin("WAYNE", "Bruce","Batman", "bruce.wayne@mail.fr", "motdepasse", coordTest);
         coordTest = new Coordinates(xRand, yRand, "Paris");
-        userTest = new User("WAYNE", "Bruce", "Batman", "bruce.wayne@mail.fr", "motdepasse", coordTest);
-        participanTest = new User("kent", "Clark", "Superman", "clark.kent@mail.fr", "motdepasse", coordTest);
+        userTest = new User("WAYNE", "Bruce", "Batman","bruce.wayne@mail.fr", "motdepasse", coordTest);
+        participanTest = new User("kent", "Clark", "Superman","clark.kent@mail.fr", "motdepasse", coordTest);
     }
-    
+
     @Test
-    public void Scenario () throws Exception
-    {
-        assertEquals(true, userTest.suggestPointInteret("Casino", PointInterestType.MUSEUM, 5, coordTest));
-        assertEquals(true, adminTest.validatePointInterest("Casino"));
-        assertEquals(true, userTest.createRoadTrip("EnglandRoadTrip"));
+    public void Scenario () throws Exception {
+        // En tant qu'utilisateur je veux suggérer l'ajout d'un Point d'interet
+        assertEquals(true,  userTest.suggestPointInteret("Casino",PointInterestType.MUSEUM,5,coordTest));
+        //En tant qu'administrateur je veux suggérer l'ajout d'un Point d'interet
+        assertEquals(true,  adminTest.validatePointInterest("Casino"));
+        //En tant qu'utilisateur je veux créer un roadTrip
+        assertEquals(true,  userTest.createRoadTrip("EnglandRoadTrip"));
+        /*
         RoadTrip roadTripTest = RoadTrip.read().get("EnglandRoadTrip");
         assertEquals(true, roadTripTest.addParticipants(participanTest));
-        assertEquals(true,
-                     userTest.addPointInteretToRoadTrip("England roadtrip",
-                                                        "Buffalo",
-                                                        "Voyage pour faire le tour des coins touristique de l'Angleterre",
-                                                        PointInterestType.RESTAURANT,
-                                                        10,
-                                                        coordTest));
-        assertEquals("RoadTrip name=Englant roadtrip, pointInterests=Buffalo, prix Itinéraire=10",
-                     roadTripTest.toString());
-        assertEquals(true, adminTest.changePricePointInterest("Buffalo", 15));
-        assertEquals(15, PointInterest.read().get("Buffalo").getPrice(), 0.0001);
-        
-        
+        */
+        //En tant qu'utilisateur je veux ajouter un Point d'interet au roadTrip
+        assertEquals(true, userTest.addPointInteretToRoadTrip("England roadtrip","Buffalo","Voyage pour faire le tour des coins touristique de l'Angleterre",PointInterestType.RESTAURANT,10,coordTest));
+        // En tant qu'utilisateur je veux commenter un Point d'interet
+        assertEquals(true, userTest.commentPointInteret("Buffalo","Génial",4));
+        //En tant qu'administrateur je veux changer le prix d'un Point d'interet
+        assertEquals(true,adminTest.changePricePointInterest ("Buffalo", 15));
+        assertEquals(15,PointInterest.read().get("Buffalo"));
+        //
+
+
+
     }
-    
+
 }
