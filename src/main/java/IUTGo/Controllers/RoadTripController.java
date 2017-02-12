@@ -1,5 +1,6 @@
 package IUTGo.Controllers;
 import IUTGo.Models.CurrentUser;
+import IUTGo.Models.PointInterest;
 import IUTGo.Models.RoadTrip;
 import IUTGo.Models.Users.User;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by xavier on 08/02/2017.
@@ -28,27 +30,29 @@ public class RoadTripController {
     private ListView<?> table_PI;
 
     @FXML
-    private Text roadtrip_name;
+    private Text roadtrip_name ;
 
-    String roadTripSelected;
+    String roadTripSelected ;
 
     public void pipeline(String r){
         roadTripSelected = r;
+        next();
     }
 
     @FXML
-    void initialize()
+    void next()
     {
         roadtrip_name.setText(roadTripSelected);
         try {
             RoadTrip roadTrip = RoadTrip.read().get(roadTripSelected);
-            prix_roadtrip.setText(roadTrip.getName());
+            prix_roadtrip.setText(String.valueOf(roadTrip.getPrice()));
             ObservableList data = FXCollections.observableArrayList();
 
-            for(int i= 0; i<roadTrip.getPointInterests().size(); i++){
-
-                data.add(roadTrip.getPointInterests().get(i).getName());
+            for(Map.Entry<String, PointInterest> entry : roadTrip.getPointInterests().entrySet()) {
+                data.add(entry.getKey());
             }
+
+
             table_PI.setItems(data);
         } catch (IOException e) {
             e.printStackTrace();
