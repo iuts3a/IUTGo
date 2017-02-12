@@ -70,7 +70,19 @@ public class RoadTripController {
 
     @FXML
     void valider(ActionEvent event) {
+        if(!Lieu.getText().trim().isEmpty())
+        {
+            try {
+                if(PointInterest.read().get(Lieu.getText()) != null){
+                    RoadTrip.read().get(roadTripSelected).addPointInterest(PointInterest.read().get(Lieu.getText()));
+                }
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
