@@ -12,14 +12,6 @@
       <Label layoutX="643.0" layoutY="241.0" text="Type :" />
       <TextField fx:id="textfield_ville" layoutX="191.0" layoutY="236.0" />
       <TextField fx:id="textfield_nom" layoutX="447.0" layoutY="236.0" />
-      <TableView fx:id="tableview_PI" layoutX="68.0" layoutY="331.0" prefHeight="281.0" prefWidth="861.0">
-         <columns>
-            <TableColumn fx:id="column_nom" prefWidth="320.3333282470703" text="Nom" />
-            <TableColumn fx:id="column_ville" prefWidth="265.0" text="Ville" />
-            <TableColumn fx:id="column_type" prefWidth="161.0" text="Type" />
-            <TableColumn fx:id="column_note" prefWidth="115.00003051757812" text="Note" />
-         </columns>
-      </TableView>
       <ImageView fitHeight="130.0" fitWidth="200.0" layoutX="403.0" layoutY="50.0" onMouseClicked="#homepage">
          <image>
             <Image url="@img/iutGo.png" />
@@ -30,5 +22,6 @@
       <ChoiceBox fx:id="choice_type" layoutX="721.0" layoutY="237.0" prefWidth="150.0" />
       <Button fx:id="button_valider" layoutX="477.0" layoutY="631.0" mnemonicParsing="false" onAction="#openPI" text="Valider" />
       <Button fx:id="button_back" layoutX="24.0" layoutY="19.0" mnemonicParsing="false" text="Retour" />
+      <ListView fx:id="list_PI" layoutX="288.0" layoutY="359.0" prefHeight="200.0" prefWidth="441.0" />
    </children>
 </AnchorPane>
