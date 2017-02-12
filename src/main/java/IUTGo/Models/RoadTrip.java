@@ -116,7 +116,7 @@ public class RoadTrip implements Serializable
         return "RoadTrip{" + "name='" + name + '\'' + ", pointInterests=" + pointInterests.toString() + ", prix Itinéraire=" + getPrice() + '}';
     }
     
-    private static void createSaveFile () throws IOException
+    public static void createSaveFile () throws IOException
     {
         File file = new File("./Sauv/RoadTrip.ser");
         

@@ -34,11 +34,10 @@ public class RoadTripTest
                                PointInterestType.MUSEUM,
                                100,
                                new Coordinates(1, 1, "Paris"),
-                               new User("Axel", "Mouchiroud", "Axelle","@", "mdp", new Coordinates(1, 1, "Paris")));
+                               new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
         
-        itinineraire = new RoadTrip("Test", new User("Axel", "Mouchiroud", "Axelle","@", "mdp", new Coordinates(1, 1, "Paris")));
-        
-        //itinineraire.creerFichier();
+        itinineraire = new RoadTrip("Test", new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
+        //RoadTrip.createSaveFile();
     }
     
     @After
@@ -52,13 +51,17 @@ public class RoadTripTest
     {
         itinineraire.addPointInterest(PI);
         assertEquals(true, itinineraire.getPointInterests().containsKey("Parc des Princes"));
+        assertEquals(1,itinineraire.getPointInterests().size());
     }
     
     @Test
     public void deletePI () throws Exception
     {
-        itinineraire.deletePointInterest(PI.getName());
+        itinineraire.addPointInterest(PI);
+        assertEquals(true, itinineraire.getPointInterests().containsKey("Parc des Princes"));
+        assertEquals(1,itinineraire.getPointInterests().size());
         itinineraire.deletePointInterest("Parc des Princes");
+        assertEquals(false,itinineraire.getPointInterests().containsKey("Parc des Princes"));
         assertEquals(0, itinineraire.getPointInterests().size());
     }
     
@@ -75,11 +78,37 @@ public class RoadTripTest
     {
         tabTest = RoadTrip.read();
         assertEquals(true, tabTest.containsKey("Test"));
+        assertEquals(1,tabTest.size());
     }
-    
+
     @Test
-    public void toStringTest () throws Exception
-    {
+    public void getGrade() {
+        PI.addComment("Note",4);
         itinineraire.addPointInterest(PI);
+        assertEquals(4,itinineraire.getGrade(),0.1);
+
     }
+
+    @Test
+    public void addParticipants() throws IOException {
+        itinineraire.addParticipants(new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
+        assertEquals(true,itinineraire.getParticipants().containsKey("@"));
+        assertEquals(1,itinineraire.getParticipants().size());
+        itinineraire.addParticipants(new User("Axel", "Mouchiroud", "Axel","55", "mdp", new Coordinates(1, 1, "Paris")));
+        assertEquals(false,itinineraire.getParticipants().containsKey("aaa"));
+        assertEquals(true,itinineraire.getParticipants().containsKey("55"));
+        assertEquals(2,itinineraire.getParticipants().size());
+
+    }
+
+    @Test
+    public void deletePartipants() throws IOException {
+        itinineraire.addParticipants(new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
+        assertEquals(true,itinineraire.getParticipants().containsKey("@"));
+        assertEquals(1,itinineraire.getParticipants().size());
+        itinineraire.deleteParticipants("@");
+        assertEquals(false,itinineraire.getParticipants().containsKey("@"));
+        assertEquals(0,itinineraire.getParticipants().size());
+    }
+
 }
