@@ -91,7 +91,7 @@ public class UserInfoController
                     "HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 1000, 510);
             stage.setScene(scene);
             stage.show();
         }
@@ -99,7 +99,6 @@ public class UserInfoController
         {
             System.err.println("Erreur au chargement: " + ex);
         }
-        
     }
     
     @FXML
