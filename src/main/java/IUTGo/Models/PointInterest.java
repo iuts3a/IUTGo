@@ -48,18 +48,31 @@ public class PointInterest implements Serializable
     {
         File file = new File("./Sauv/PI.ser");
         
-        ObjectInputStream ooi ;
-        try {
+        ObjectInputStream ooi;
+        try
+        {
             ooi = new ObjectInputStream(new FileInputStream(file));
         }
-        catch (IOException e){
+        catch (IOException e)
+        {
             ooi = new ObjectInputStream(new FileInputStream(file));
         }
-
+        
         return (HashMap<String, PointInterest>) ooi.readObject();
     }
     
     //region Getters and Setters
+    
+    public static void createSaveFile () throws IOException
+    {
+        File file = new File("./Sauv/PI.ser");
+        
+        HashMap<String, PointInterest> hashMap = new HashMap<String, PointInterest>();
+        
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(hashMap);
+        
+    }
     
     public String getName ()
     {
@@ -135,17 +148,33 @@ public class PointInterest implements Serializable
     {
         return creator;
     }
+    //endregion
     
     private void setCreator (User utilisateur)
     {
         this.creator = utilisateur;
     }
-    //endregion
     
     public boolean addComment (String message, Integer grade)
     {
         this.comments.add(new Comment(message, grade));
-        return true;
+        
+        try
+        {
+            PointInterest.read().remove(getName());
+            PointInterest.read().put(getName(), this);
+            return true;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
     }
     
     public float getGrade ()
@@ -164,17 +193,6 @@ public class PointInterest implements Serializable
     public String toString ()
     {
         return "PointInterest{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", type='" + getType() + '\'' + ", price=" + price + ", note=" + getGrade() + '}';
-    }
-    
-    public static void createSaveFile () throws IOException
-    {
-        File file = new File("./Sauv/PI.ser");
-        
-        HashMap<String, PointInterest> hashMap = new HashMap<String, PointInterest>();
-        
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-        oos.writeObject(hashMap);
-        
     }
     
     public void save () throws IOException, ClassNotFoundException
