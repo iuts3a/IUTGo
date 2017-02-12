@@ -108,8 +108,25 @@ public class FilterInterestController {
 
 
     @FXML
-    void openPI(ActionEvent event) {
-
+    void openPI(ActionEvent event)
+    {
+        
     }
-
+    
+    public void back (ActionEvent actionEvent) {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
+                    "HomePageConnected.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) button_back.getScene().getWindow();
+            Scene scene = new Scene(root, 1000, 510);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
