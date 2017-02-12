@@ -73,6 +73,23 @@ public class UserInfoController
     @FXML
     void show_roadtrip (ActionEvent event)
     {
+        if(tv_roadtrip.getSelectionModel().getSelectedItem() != null){
+            try
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("roadtrip.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = (Stage) btn_create_rt.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                ((RoadTripController)fxmlLoader.getController()).pipeline((String)tv_roadtrip.getSelectionModel().getSelectedItem());
+                stage.show();
+            }
+            catch (IOException ex)
+            {
+                System.err.println("test " + ex);
+            }
+        }
+
         
     }
     
