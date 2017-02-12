@@ -78,7 +78,6 @@ public class RoadTripTest
     {
         tabTest = RoadTrip.read();
         assertEquals(true, tabTest.containsKey("Test"));
-        assertEquals(1,tabTest.size());
     }
 
     @Test

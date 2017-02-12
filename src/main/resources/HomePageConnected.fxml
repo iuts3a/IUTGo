@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.HomePageConnectedController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="510.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.HomePageConnectedController">
    <children>
       <Label layoutX="439.0" layoutY="89.0" text="IUTGo">
          <font>
@@ -22,7 +22,7 @@
             <Font name="Cooper Black" size="35.0" />
          </font>
       </Label>
-      <HBox layoutX="14.0" layoutY="408.0" prefHeight="237.0" prefWidth="975.0">
+      <HBox layoutX="14.0" layoutY="408.0" prefHeight="78.0" prefWidth="975.0">
          <children>
             <Button fx:id="btn_create_rt" mnemonicParsing="false" onAction="#create_rt" prefHeight="237.0" prefWidth="243.0" text="Créer un RoadTrip">
                <font>
