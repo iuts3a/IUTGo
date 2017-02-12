@@ -26,6 +26,5 @@
       <Text layoutX="441.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix du roadtrip : " />
       <Label fx:id="prix_roadtrip" layoutX="560.0" layoutY="205.0" text="Label" />
       <ListView fx:id="table_PI" layoutX="440.0" layoutY="240.0" prefHeight="308.0" prefWidth="315.0" />
-      <Button fx:id="btn_supprPI" layoutX="481.0" layoutY="553.0" mnemonicParsing="false" onAction="#supprimerPi" prefHeight="71.0" prefWidth="233.0" text="Supprimer ce point d'intérêt de mon Roadtrip" textAlignment="CENTER" wrapText="true" />
    </children>
 </AnchorPane>

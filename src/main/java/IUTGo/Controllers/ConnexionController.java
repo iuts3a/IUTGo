@@ -71,7 +71,6 @@ public class ConnexionController
         connection_error.setVisible(false);
         if((username.getText().trim().length() > 0) && (username.getText() != null) && (password.getText() != null))
         {
-            
             try
             {
                 HashMap<String, User> user = User.read();
@@ -99,7 +98,6 @@ public class ConnexionController
             {
                 e.printStackTrace();
             }
-            
         }
         else
         {
