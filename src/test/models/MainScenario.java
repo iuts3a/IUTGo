@@ -21,15 +21,11 @@ public class MainScenario {
     private User userTest,participanTest;
     private Coordinates coordTest;
 
-    int xRand = ThreadLocalRandom.current().nextInt(0, 150);
-    int yRand = ThreadLocalRandom.current().nextInt(0, 150);
-
-
     @Before
     public void setUp () throws Exception
     {
         adminTest = new Admin("WAYNE", "Bruce","Batman", "bruce.wayne@mail.fr", "motdepasse", coordTest);
-        coordTest = new Coordinates(xRand, yRand, "Paris");
+        coordTest = new Coordinates(1, 1, "Paris");
         userTest = new User("WAYNE", "Bruce", "Batman","bruce.wayne@mail.fr", "motdepasse", coordTest);
         participanTest = new User("kent", "Clark", "Superman","clark.kent@mail.fr", "motdepasse", coordTest);
     }
