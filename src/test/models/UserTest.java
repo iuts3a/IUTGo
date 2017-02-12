@@ -27,19 +27,22 @@ public class UserTest
     @Before
     public void setUp () throws Exception
     {
+        //User.createSaveFile();
         coordTest = new Coordinates(xRand, yRand, "Paris");
         userTest = new User("WAYNE", "Bruce", "Batman", "bruce.wayne@live.fr", "motdepasse", coordTest);
         PiTest = new PointInterest("Buffalo", PointInterestType.RESTAURANT, 10, coordTest, userTest);
         PiTest.save();
         PiTest2 = new PointInterest("Buffalo", PointInterestType.RESTAURANT, 10, coordTest, userTest);
         PiTest2.save();
-        //User.createSaveFile();
+
     }
 
     @Test
     public void commentPointInteretTest () throws Exception
     {
         assertEquals(true, userTest.commentPointInteret("Buffalo", "Génial", 4));
+        assertEquals(4,PointInterest.read().get("Buffalo").getGrade(),0.1);
+
     }
     
     @Test
@@ -86,6 +89,8 @@ public class UserTest
         assertEquals("England roadtrip",User.read().get(userTest.getEmail()).getFavoriteRoadTrips().get(0).getName());
 
     }
+
+
     
     @Test
     public void getRoadTripPriceTest () throws Exception
@@ -100,8 +105,16 @@ public class UserTest
         assertEquals(10, userTest.getRoadTripPrice("England roadtrip"), 0.0001);
     }
 
-    @Test
 
+
+    @Test
+    public void getRoadTripByScore () {
+       System.out.print( userTest.getRoadTripByScore(4));
+
+
+    }
+
+    @Test
     public void saveTest() throws IOException, ClassNotFoundException {
         userTest.save();
         assertEquals(true,User.read().containsKey(userTest.getEmail()));

@@ -323,6 +323,8 @@ public class User implements Serializable
         }
         //endregion
     }
+
+
     
     public float getRoadTripPrice (String roadTripName)
     {
