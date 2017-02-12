@@ -49,7 +49,7 @@ public class HomePageController
                     "Connection.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_see_rt.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 700, 570);
             stage.setScene(scene);
             stage.show();
         }

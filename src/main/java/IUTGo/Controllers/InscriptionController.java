@@ -110,7 +110,7 @@ public class InscriptionController
                         "HomePageConnected.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = (Stage) validate.getScene().getWindow();
-                Scene scene = new Scene(root, 680, 700);
+                Scene scene = new Scene(root, 1000, 510);
                 stage.setScene(scene);
                 stage.show();
             }

@@ -93,7 +93,7 @@ public class HomePageConnectedController
             FXMLLoader fxmlLoader = new FXMLLoader(HomePageController.class.getClassLoader().getResource("HomePage.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 830, 560);
             stage.setScene(scene);
             stage.show();
         }

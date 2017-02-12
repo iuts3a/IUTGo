@@ -51,10 +51,10 @@ public class ConnexionController
         try
         {
             FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource(
-                    "inscription.fxml"));
+                    "Inscription.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) button_register.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 860, 700);
             stage.setScene(scene);
             stage.show();
         }
@@ -85,7 +85,7 @@ public class ConnexionController
                                 "HomePageConnected.fxml"));
                         Parent root = fxmlLoader.load();
                         Stage stage = (Stage) button_register.getScene().getWindow();
-                        Scene scene = new Scene(root);
+                        Scene scene = new Scene(root, 1000, 510);
                         stage.setScene(scene);
                         stage.show();
                     }
@@ -131,7 +131,8 @@ public class ConnexionController
             e.printStackTrace();
         }
         Stage stage = (Stage) button_register.getScene().getWindow();
-        Scene scene = new Scene(root);
+        assert root != null;
+        Scene scene = new Scene(root, 830, 560);
         stage.setScene(scene);
         stage.show();
     }

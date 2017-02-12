@@ -25,7 +25,7 @@ public class App extends Application
             Parent root = FXMLLoader.load(fxml);
 
             primaryStage.setTitle("Home");
-            primaryStage.setScene(new Scene(root, 800, 800));
+            primaryStage.setScene(new Scene(root, 830, 560));
             primaryStage.show();
         }
         catch (NullPointerException npe)
