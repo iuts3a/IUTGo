@@ -96,18 +96,18 @@ public class RoadTripController {
     @FXML
     void valider(ActionEvent event) throws IOException, ClassNotFoundException {
         RoadTrip roadTrip = RoadTrip.read().get(roadTripSelected);
+        User user = CurrentUser.getInstance().getUser();
         if(check.isSelected()){
-            roadTrip.addParticipants(CurrentUser.getInstance().getUser());
+            user.signIn(roadTripSelected);
         }
         if(!Lieu.getText().equals(""))
         {
             PointInterest pi = PointInterest.read().get(Lieu.getText());
             try {
-
-                if(CurrentUser.getInstance().getUser().getFavoriteRoadTrips().contains(roadTripSelected) || check.isSelected()){
+                if(!RoadTrip.read().get(roadTripSelected).getPointInterests().containsKey(Lieu.getText())){
                     if(pi != null){
                         RoadTrip.read().get(roadTripSelected).addPointInterest(pi);
-                        CurrentUser.getInstance().getUser().getFavoriteRoadTrips().add(RoadTrip.read().get(roadTripSelected));
+                        next();
                     }
 
                 }
