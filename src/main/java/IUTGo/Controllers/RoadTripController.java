@@ -51,12 +51,9 @@ public class RoadTripController {
             RoadTrip roadTrip = RoadTrip.read().get(roadTripSelected);
             prix_roadtrip.setText(String.valueOf(roadTrip.getPrice()));
             ObservableList data = FXCollections.observableArrayList();
-
             for(Map.Entry<String, PointInterest> entry : roadTrip.getPointInterests().entrySet()) {
                 data.add(entry.getKey());
             }
-
-
             table_PI.setItems(data);
         } catch (IOException e) {
             e.printStackTrace();
