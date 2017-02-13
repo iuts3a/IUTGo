@@ -89,12 +89,16 @@ public class FilterRoadTripController {
 
     @FXML
     void goTrier(ActionEvent event) throws IOException, ClassNotFoundException {
-        ObservableList data = FXCollections.observableArrayList();
-        HashMap<String, RoadTrip> h = RoadTrip.read();
-        for(Object s : h.keySet()){
-            data.add(h.get(s).getName());
+        if (!textfield_nom.getText().equals(""))
+        {
+            ObservableList data = FXCollections.observableArrayList();
+            HashMap<String, RoadTrip> h = RoadTrip.read();
+            for(Object s : h.keySet()){
+                if (h.get(s).getName().contains(textfield_nom.getText()))
+                    data.add(h.get(s).getName());
+            }
+            list_RoadTrip.setItems(data);
         }
-        list_RoadTrip.setItems(data);
     }
 
     @FXML
