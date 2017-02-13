@@ -41,6 +41,9 @@ public class FilterInterestController {
     private Button button_back;
 
     @FXML
+    private TextField textfield_note;
+
+    @FXML
     private Button button_filtrer;
 
     @FXML
@@ -53,7 +56,8 @@ public class FilterInterestController {
         ObservableList data = FXCollections.observableArrayList();
         HashMap<String, PointInterest> h = PointInterest.read();
         for(Object s : h.keySet()){
-            data.add(h.get(s).getName());
+            if (h.get(s).isValidated())
+                data.add(h.get(s).getName());
         }
         list_PI.setItems(data);
 
@@ -97,7 +101,8 @@ public class FilterInterestController {
         ObservableList data = FXCollections.observableArrayList();
         HashMap<String, PointInterest> h = PointInterest.read();
         for(Object s : h.keySet()){
-            data.add(h.get(s).getName());
+            if (h.get(s).isValidated())
+                data.add(h.get(s).getName());
         }
         list_PI.setItems(data);
     }

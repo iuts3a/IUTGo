@@ -14,7 +14,7 @@
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.FilterInterestController">
    <children>
-      <Label layoutX="388.0" layoutY="240.0" text="Type :" />
+      <Label layoutX="303.0" layoutY="239.0" text="Type :" />
       <ImageView fitHeight="130.0" fitWidth="200.0" layoutX="403.0" layoutY="50.0" onMouseClicked="#homepage">
          <image>
             <Image url="@img/iutGo.png" />
@@ -25,6 +25,8 @@
       <Button fx:id="button_valider" layoutX="477.0" layoutY="631.0" mnemonicParsing="false" onAction="#openPI" text="Valider" />
       <Button fx:id="button_back" layoutX="24.0" layoutY="19.0" mnemonicParsing="false" onAction="#goBack" text="Retour" />
       <ListView fx:id="list_PI" layoutX="288.0" layoutY="359.0" prefHeight="200.0" prefWidth="441.0" />
-      <ComboBox fx:id="combo_box_type" layoutX="458.0" layoutY="236.0" prefWidth="150.0" />
+      <ComboBox fx:id="combo_box_type" layoutX="373.0" layoutY="235.0" prefWidth="150.0" />
+      <Label layoutX="591.0" layoutY="239.0" text="Note : " />
+      <TextField fx:id="textfield_note" layoutX="664.0" layoutY="235.0" prefHeight="25.0" prefWidth="40.0" />
    </children>
 </AnchorPane>
