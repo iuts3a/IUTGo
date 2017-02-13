@@ -7,6 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.collections.FXCollections?>
 <AnchorPane prefHeight="550.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.CreationPointInterestController">
     <children>
         <Button fx:id="button_valider" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="478.0" mnemonicParsing="false" onAction="#validateData" text="Valider" textAlignment="CENTER">
@@ -22,8 +23,8 @@
         <Button fx:id="btn_back" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#toBack" text="Retour" />
         <TextField fx:id="name" layoutX="228.0" layoutY="240.0" />
         <TextField fx:id="comment" layoutX="228.0" layoutY="280.0" />
-        <TextField fx:id="type" layoutX="228.0" layoutY="360.0" />
-        <TextField fx:id="price" layoutX="228.0" layoutY="400.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+        <TextField fx:id="price" layoutX="228.0" layoutY="360.0" />
+        <TextField fx:id="coords1" layoutX="228.0" layoutY="400.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
         <TextField fx:id="coords2" layoutX="311.0" layoutY="400.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
         <TextField fx:id="ville" layoutX="228.0" layoutY="430.0" />
         <Label layoutX="104.0" layoutY="245.0" text="Nom :" />
@@ -36,6 +37,16 @@
         <Label fx:id="error_type" layoutX="410.0" layoutY="325.0" text="Type invalide" textFill="RED" />
         <Label fx:id="error_price" layoutX="410.0" layoutY="365.0" text="Prix invalide" textFill="RED" />
         <Label fx:id="error_coords" layoutX="410.0" layoutY="405.0" text="Coordonnées Invalides" textFill="RED" />
-      <ComboBox fx:id="coords1" layoutX="230.0" layoutY="321.0" prefWidth="150.0" />
+      <ComboBox fx:id="type" layoutX="230.0" layoutY="321.0" prefWidth="150.0" >
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="MUSEUM" />
+                <String fx:value="RESTAURANT" />
+                <String fx:value="VILLAGE" />
+                <String fx:value="NIGHT_CLUB" />
+                <String fx:value="CHURCH" />
+            </FXCollections>
+        </items>
+    </ComboBox>
     </children>
 </AnchorPane>

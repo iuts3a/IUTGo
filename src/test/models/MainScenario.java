@@ -47,7 +47,7 @@ public class MainScenario {
 
         //En tant qu'administrateur je veux changer le prix d'un Point d'interet
         assertEquals(true,adminTest.changePricePointInterest ("Buffalo", 15));
-        assertEquals(15,PointInterest.read().get("Buffalo"));
+        assertEquals(15,PointInterest.read().get("Buffalo").getPrice(),0.01);
 
         //En tant qu'utilisateur je souhaite pouvoir ajouter un road trip à mes favoris.
         assertEquals(true,userTest.addRoadTripToFavorite("EnglandRT"));

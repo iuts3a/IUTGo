@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -22,9 +23,9 @@ public class CreationPointInterestController
 {
     public TextField name;
     public TextField comment;
-    public TextField type;
-    public TextField price;
     public TextField coords1;
+    public TextField price;
+    public ComboBox type;
     public TextField coords2;
     public TextField ville;
     public Label     error_name;
@@ -45,6 +46,8 @@ public class CreationPointInterestController
         error_price.setVisible(false);
         error_type.setVisible(false);
         error_coords.setVisible(false);
+
+
     }
     
     @FXML
@@ -100,7 +103,7 @@ public class CreationPointInterestController
         }
         for (PointInterestType t : PointInterestType.values())
         {
-            if(t.toString().equalsIgnoreCase(type.getText()))
+            if(t.toString().equalsIgnoreCase((String)type.getSelectionModel().getSelectedItem()))
             {
                 typeOk = true;
             }
@@ -115,24 +118,19 @@ public class CreationPointInterestController
             User currentUser = CurrentUser.getInstance().getUser();
             
             //TODO
-            Coordinates coordinates = null; //new Coordinates((coords1.getText().trim()), Double.parseDouble(coords1.getText().trim()), ville.getText().trim());
-            
-            PointInterest newPointInterest = null; //new PointInterest(name.getText(),
-            //                                                  PointInterestType.valueOf(type.getText().trim()),
-            //                                                price.getText(), coordinates ,currentUser);
-    
-            try
-            {
+            try {
+                Coordinates coordinates = new Coordinates((Float.valueOf(coords1.getText().trim())), Float.valueOf(coords1.getText().trim()), ville.getText().trim());
+                PointInterest newPointInterest = new PointInterest(name.getText(),
+                        PointInterestType.valueOf((String)type.getSelectionModel().getSelectedItem()),
+                        Float.valueOf(price.getText()), coordinates ,currentUser);
                 newPointInterest.save();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            catch (ClassNotFoundException e)
-            {
-                e.printStackTrace();
-            }
+
+
         }
     
         else
@@ -143,11 +141,20 @@ public class CreationPointInterestController
     
             //TODO
             try {
-                Coordinates coordinates = new Coordinates(Float.valueOf(coords1.getText().trim()), Float.valueOf(coords1.getText().trim()), ville.getText().trim());
+                Coordinates coordinates = new Coordinates(Float.valueOf((String)coords1.getText().trim()), Float.valueOf((String)coords2.getText().trim()), ville.getText().trim());
                 PointInterest newPointInterest = new PointInterest(name.getText(), comment.getText().trim(),
-                        PointInterestType.valueOf(type.getText().trim()),
+                        PointInterestType.valueOf((String)type.getSelectionModel().getSelectedItem()),
                         Float.valueOf(price.getText()), coordinates ,currentUser);
                 newPointInterest.save();
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                            "HomePageConnected.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Stage stage = (Stage) button_valider.getScene().getWindow();
+                    Scene scene = new Scene(root, 1000, 510);
+                    stage.setScene(scene);
+                    stage.show();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -181,7 +188,20 @@ public class CreationPointInterestController
     @FXML
     void toBack (ActionEvent event)
     {
-        
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                    "HomePageConnected.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) button_valider.getScene().getWindow();
+            Scene scene = new Scene(root, 1000, 510);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex)
+        {
+            System.err.println("Erreur au chargement: " + ex);
+        }
     }
     
 }
