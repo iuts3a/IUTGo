@@ -235,6 +235,13 @@ public class User implements Serializable
         roadTrip.addParticipants(this);
         roadTrip.save();
     }
+
+
+    public void signOut (String nameRoad) throws IOException, ClassNotFoundException {
+        RoadTrip roadTrip=RoadTrip.read().get(nameRoad);
+        roadTrip.deleteParticipants(this.getEmail());
+        roadTrip.save();
+    }
     
     public boolean addPointInteretToRoadTrip (String roadTripName, String name, PointInterestType type, float price, Coordinates coordinates)
     {

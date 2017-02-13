@@ -92,7 +92,14 @@ public class UserTest
         userTest.signIn("England roadtrip");
         assertEquals(true,RoadTrip.read().get("England roadtrip").getParticipants().containsKey(userTest.getEmail()));
     }
-    
+
+    @Test
+    public void signOutTest() throws IOException, ClassNotFoundException {
+        userTest.signOut("England roadtrip");
+        assertEquals(false,RoadTrip.read().get("England roadtrip").getParticipants().containsKey(userTest.getEmail()));
+    }
+
+
     @Test
     public void addRoadTripToFavoriteTest () throws Exception
     {
