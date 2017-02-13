@@ -27,6 +27,6 @@
       <ListView fx:id="list_PI" layoutX="288.0" layoutY="359.0" prefHeight="200.0" prefWidth="441.0" />
       <ComboBox fx:id="combo_box_type" layoutX="373.0" layoutY="235.0" prefWidth="150.0" />
       <Label layoutX="591.0" layoutY="239.0" text="Note : " />
-      <TextField fx:id="textfield_note" layoutX="664.0" layoutY="235.0" prefHeight="25.0" prefWidth="40.0" />
+      <ComboBox fx:id="combo_box_note" layoutX="677.0" layoutY="235.0" prefHeight="25.0" prefWidth="77.0" />
    </children>
 </AnchorPane>

@@ -1,5 +1,9 @@
 package IUTGo.Controllers;
 
+import IUTGo.Models.PointInterest;
+import IUTGo.Models.RoadTrip;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class InterestController
 {
@@ -25,9 +30,6 @@ public class InterestController
     private Label label_town;
 
     @FXML
-    private Label label_horaires;
-
-    @FXML
     private Label label_note;
 
     @FXML
@@ -37,8 +39,28 @@ public class InterestController
     private Label label_description;
 
     @FXML
+    private Label label_nom;
+
+    @FXML
     private Label label_prix;
 
+    String pi = null;
+
+    public void pipeline(String r) throws IOException, ClassNotFoundException {
+        pi = PointInterest.read().get(r).getName();
+        next();
+    }
+
+    @FXML
+    void next() throws IOException, ClassNotFoundException {
+        label_nom.setText(pi);
+        PointInterest p = PointInterest.read().get(pi);
+        label_description.setText(p.getDescription());
+        label_note.setText(String.valueOf(p.getGrade()));
+        label_prix.setText(String.valueOf(p.getPrice()));
+        label_town.setText(p.getCoordinates().getCity());
+        label_type.setText(p.getType().toString());
+    }
 
     @FXML
     public void goBack(){

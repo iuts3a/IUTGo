@@ -29,10 +29,10 @@ public class FilterInterestController {
     private Button button_reset;
 
     @FXML
-    private ComboBox<?> combo_box_type;
+    private ComboBox<String> combo_box_type;
 
     @FXML
-    private ListView<?> list_PI;
+    private ListView<String> list_PI;
 
     @FXML
     private Button button_valider;
@@ -41,7 +41,7 @@ public class FilterInterestController {
     private Button button_back;
 
     @FXML
-    private TextField textfield_note;
+    private ComboBox<Integer> combo_box_note;
 
     @FXML
     private Button button_filtrer;
@@ -49,14 +49,19 @@ public class FilterInterestController {
     @FXML
     void initialize() throws IOException, ClassNotFoundException {
         ObservableList a = FXCollections.observableArrayList();
+        ObservableList b = FXCollections.observableArrayList();
         for (PointInterestType t : PointInterestType.values()) {
             a.add(t.toString());
         }
+        for (int i=1 ; i<6 ; i++) {
+            b.add(i);
+        }
+        combo_box_note.setItems(b);
         combo_box_type.setItems(a);
         ObservableList data = FXCollections.observableArrayList();
         HashMap<String, PointInterest> h = PointInterest.read();
         for(Object s : h.keySet()){
-            if (h.get(s).isValidated())
+            //if (h.get(s).isValidated())
                 data.add(h.get(s).getName());
         }
         list_PI.setItems(data);
@@ -80,6 +85,7 @@ public class FilterInterestController {
     @FXML
     void resetFiltres(ActionEvent event) throws IOException, ClassNotFoundException {
         combo_box_type.getSelectionModel().clearSelection();
+        combo_box_note.getSelectionModel().clearSelection();
         initialize();
     }
     @FXML
@@ -101,8 +107,15 @@ public class FilterInterestController {
         ObservableList data = FXCollections.observableArrayList();
         HashMap<String, PointInterest> h = PointInterest.read();
         for(Object s : h.keySet()){
-            if (h.get(s).isValidated())
-                data.add(h.get(s).getName());
+            if (h.get(s).getType().toString().equals(combo_box_type.getSelectionModel().getSelectedItem()))
+            {
+                if (h.get(s).getGrade() > (combo_box_note.getSelectionModel().getSelectedIndex())+1) {
+                    //if (h.get(s).isValidated())
+                    data.add(h.get(s).getName());
+                }
+
+            }
+
         }
         list_PI.setItems(data);
     }
@@ -111,7 +124,21 @@ public class FilterInterestController {
     @FXML
     void openPI(ActionEvent event)
     {
-        
+        if(list_PI.getSelectionModel().getSelectedItem() != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("PointInterest.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = (Stage) button_valider.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                ((InterestController) fxmlLoader.getController()).pipeline(list_PI.getSelectionModel().getSelectedItem());
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println("test " + ex);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
     
     public void back (ActionEvent actionEvent) {
