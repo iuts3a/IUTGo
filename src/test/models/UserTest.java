@@ -51,6 +51,14 @@ public class UserTest
     }
 
     @Test
+    public void deleteRoadTripTest() throws IOException, ClassNotFoundException {
+        assertEquals(true, userTest.createRoadTrip("TESTTTT"));
+        assertEquals(true, RoadTrip.read().containsKey("TESTTTT"));
+        assertEquals(true,userTest.deleteRoadTrip("TESTTTT"));
+        assertEquals(false, RoadTrip.read().containsKey("TESTTTT"));
+    }
+
+    @Test
     public void suggestPointInteretTest() throws IOException, ClassNotFoundException {
         assertEquals(true,userTest.suggestPointInteret("Stade",PointInterestType.CHURCH,5,coordTest));
         assertEquals(true,PointInterest.read().containsKey("Stade"));
