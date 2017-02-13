@@ -60,19 +60,19 @@ public class PointInterest implements Serializable
         
         return (HashMap<String, PointInterest>) ooi.readObject();
     }
-    
-    //region Getters and Setters
-    
+
     public static void createSaveFile () throws IOException
     {
         File file = new File("./Sauv/PI.ser");
-        
+
         HashMap<String, PointInterest> hashMap = new HashMap<String, PointInterest>();
-        
+
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(hashMap);
-        
+
     }
+
+    //region Getters and Setters
     
     public String getName ()
     {
