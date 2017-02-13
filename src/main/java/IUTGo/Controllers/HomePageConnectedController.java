@@ -42,6 +42,7 @@ public class HomePageConnectedController
     {
         if(!(CurrentUser.getInstance().getUser() instanceof Admin)) hl_admin.setVisible(false);
         hl_admin.setVisible(true);
+        hl_info.setVisible(true);
     }
     
     @FXML

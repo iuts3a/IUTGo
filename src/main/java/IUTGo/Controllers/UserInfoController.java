@@ -33,8 +33,7 @@ public class UserInfoController
     public Label email;
     
     @FXML
-    void initialize()
-    {
+    void initialize() throws IOException, ClassNotFoundException {
         User user = CurrentUser.getInstance().getUser();
         
         name.setText(user.getLastName());
@@ -43,8 +42,9 @@ public class UserInfoController
 
         ObservableList data = FXCollections.observableArrayList();
 
-        for(int i= 0; i<user.getFavoriteRoadTrips().size(); i++){
-            data.add(user.getFavoriteRoadTrips().get(i).getName());
+        for(String s : RoadTrip.read().keySet()){
+            if (RoadTrip.read().get(s).getParticipants().containsKey(user.getEmail()))
+            data.add(s);
         }
         tv_roadtrip.setItems(data);
 
