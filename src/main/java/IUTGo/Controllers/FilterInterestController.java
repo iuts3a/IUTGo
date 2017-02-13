@@ -107,15 +107,13 @@ public class FilterInterestController {
         ObservableList data = FXCollections.observableArrayList();
         HashMap<String, PointInterest> h = PointInterest.read();
         for(Object s : h.keySet()){
-            if (h.get(s).getType().toString().equals(combo_box_type.getSelectionModel().getSelectedItem()))
+            if (h.get(s).getType().toString().equals(combo_box_type.getSelectionModel().getSelectedItem()) && !combo_box_type.getSelectionModel().getSelectedItem().equals(""))
             {
-                if (h.get(s).getGrade() > (combo_box_note.getSelectionModel().getSelectedIndex())+1) {
+                if (!combo_box_note.getSelectionModel().getSelectedItem().equals("") && (h.get(s).getGrade() != 0) && h.get(s).getGrade() > (combo_box_note.getSelectionModel().getSelectedIndex())+1) {
                     //if (h.get(s).isValidated())
                     data.add(h.get(s).getName());
                 }
-
             }
-
         }
         list_PI.setItems(data);
     }
