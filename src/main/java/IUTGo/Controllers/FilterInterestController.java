@@ -104,18 +104,29 @@ public class FilterInterestController {
 
     @FXML
     void goTrier(ActionEvent event) throws IOException, ClassNotFoundException {
-        ObservableList data = FXCollections.observableArrayList();
-        HashMap<String, PointInterest> h = PointInterest.read();
-        for(Object s : h.keySet()){
-            if (h.get(s).getType().toString().equals(combo_box_type.getSelectionModel().getSelectedItem()) && !combo_box_type.getSelectionModel().getSelectedItem().equals(""))
-            {
-                if (!combo_box_note.getSelectionModel().getSelectedItem().equals("") && (h.get(s).getGrade() != 0) && h.get(s).getGrade() > (combo_box_note.getSelectionModel().getSelectedIndex())+1) {
-                    //if (h.get(s).isValidated())
-                    data.add(h.get(s).getName());
+        if (!(combo_box_note.getSelectionModel().getSelectedItem() == null) || !combo_box_type.getSelectionModel().getSelectedItem().equals(""))
+        {
+            ObservableList data = FXCollections.observableArrayList();
+            HashMap<String, PointInterest> h = PointInterest.read();
+            for(Object s : h.keySet()){
+                if (!(combo_box_note.getSelectionModel().getSelectedItem() == null))
+                {
+                    if (h.get(s).getGrade() >= combo_box_note.getSelectionModel().getSelectedItem()) {
+                        //if (h.get(s).isValidated())
+                        data.add(h.get(s).getName());
+                    }
                 }
+                else
+                {
+                    if (h.get(s).getType().toString().equals(combo_box_type.getSelectionModel().getSelectedItem())) {
+                        //if (h.get(s).isValidated())
+                        data.add(h.get(s).getName());
+                    }
+                }
+
             }
+            list_PI.setItems(data);
         }
-        list_PI.setItems(data);
     }
 
 
