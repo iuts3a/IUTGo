@@ -87,12 +87,13 @@ public class RoadTripController {
     }
 
     @FXML
-    void valider(ActionEvent event) {
+    void valider(ActionEvent event) throws IOException, ClassNotFoundException {
         if(!Lieu.getText().equals(""))
         {
+            PointInterest pi = PointInterest.read().get(Lieu.getText());
             try {
-                if(PointInterest.read().get(Lieu.getText()) != null){
-                    RoadTrip.read().get(roadTripSelected).addPointInterest(PointInterest.read().get(Lieu.getText()));
+                if(pi != null){
+                    RoadTrip.read().get(roadTripSelected).addPointInterest(pi);
                 }
 
             } catch (IOException e) {
