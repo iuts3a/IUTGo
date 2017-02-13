@@ -44,6 +44,7 @@ public class UserInfoController
         ObservableList data = FXCollections.observableArrayList();
 
         for(int i= 0; i<user.getFavoriteRoadTrips().size(); i++){
+
             data.add(user.getFavoriteRoadTrips().get(i).getName());
         }
         tv_roadtrip.setItems(data);

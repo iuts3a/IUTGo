@@ -36,6 +36,9 @@ public class RoadTripController {
     @FXML
     private Text roadtrip_name ;
 
+    @FXML
+    private CheckBox check ;
+
     String roadTripSelected ;
 
     public void pipeline(String r){
@@ -47,14 +50,21 @@ public class RoadTripController {
     void next()
     {
         roadtrip_name.setText(roadTripSelected);
+        check.setVisible(false);
         try {
             RoadTrip roadTrip = RoadTrip.read().get(roadTripSelected);
             prix_roadtrip.setText(String.valueOf(roadTrip.getPrice()));
             ObservableList data = FXCollections.observableArrayList();
             for(Map.Entry<String, PointInterest> entry : roadTrip.getPointInterests().entrySet()) {
-                data.add(entry.getKey());
+                if(entry.getValue().isValidated()){
+                    data.add(entry.getKey());
+                }
             }
             table_PI.setItems(data);
+
+            if(!CurrentUser.getInstance().getUser().getFavoriteRoadTrips().contains(roadTripSelected)){
+                check.setVisible(true);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -85,13 +95,26 @@ public class RoadTripController {
 
     @FXML
     void valider(ActionEvent event) throws IOException, ClassNotFoundException {
+        if(check.isSelected()){
+            System.out.println("ok");
+            System.out.println(CurrentUser.getInstance().getUser().addRoadTripToFavorite(roadTripSelected));
+            CurrentUser.getInstance().getUser().save();
+            System.out.println(CurrentUser.getInstance().getUser().getFavoriteRoadTrips().contains(roadTripSelected));
+        }
         if(!Lieu.getText().equals(""))
         {
             PointInterest pi = PointInterest.read().get(Lieu.getText());
             try {
-                if(pi != null){
-                    RoadTrip.read().get(roadTripSelected).addPointInterest(pi);
+
+                if(CurrentUser.getInstance().getUser().getFavoriteRoadTrips().contains(roadTripSelected) || check.isSelected()){
+                    if(pi != null){
+                        RoadTrip.read().get(roadTripSelected).addPointInterest(pi);
+                        CurrentUser.getInstance().getUser().getFavoriteRoadTrips().add(RoadTrip.read().get(roadTripSelected));
+                    }
+
                 }
+                next();
+
 
             } catch (IOException e) {
                 e.printStackTrace();
