@@ -35,27 +35,20 @@ public class FilterRoadTripController {
     private ListView<RoadTrip> list_RoadTrip;
 
     @FXML
-    void goTrier(ActionEvent event) {
-
-    }
-
-    @FXML
-    void homepage(MouseEvent event) {
+    void goBack(ActionEvent event) {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
-                    "HomePageConnected.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource("HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) list_RoadTrip.getScene().getWindow();
+            Stage stage = (Stage) button_back.getScene().getWindow();
             Scene scene = new Scene(root, 1000, 510);
             stage.setScene(scene);
             stage.show();
         }
-        catch (IOException ex)
+        catch (IOException e)
         {
-            System.err.println("Erreur au chargement: " + ex);
+            e.printStackTrace();
         }
-    
     }
 
     @FXML
