@@ -43,26 +43,24 @@ public class RoadTripController {
 
     public void pipeline(String r){
         roadTripSelected = r;
+        roadtrip_name.setText(roadTripSelected);
         next();
     }
 
     @FXML
     void next()
     {
-        roadtrip_name.setText(roadTripSelected);
         check.setVisible(false);
         try {
             RoadTrip roadTrip = RoadTrip.read().get(roadTripSelected);
             prix_roadtrip.setText(String.valueOf(roadTrip.getPrice()));
             ObservableList data = FXCollections.observableArrayList();
-            for(Map.Entry<String, PointInterest> entry : roadTrip.getPointInterests().entrySet()) {
-                if(entry.getValue().isValidated()){
-                    data.add(entry.getKey());
-                }
+            for(String s : RoadTrip.read().get(roadTripSelected).getPointInterests().keySet()) {
+                    data.add(s);
             }
             table_PI.setItems(data);
 
-            if(!CurrentUser.getInstance().getUser().getFavoriteRoadTrips().contains(roadTripSelected)){
+            if(!RoadTrip.read().get(roadTripSelected).getParticipants().containsKey(CurrentUser.getInstance().getUser().getEmail())){
                 check.setVisible(true);
             }
         } catch (IOException e) {
@@ -102,22 +100,13 @@ public class RoadTripController {
         }
         if(!Lieu.getText().equals(""))
         {
-            PointInterest pi = PointInterest.read().get(Lieu.getText());
-            try {
-                if(!RoadTrip.read().get(roadTripSelected).getPointInterests().containsKey(Lieu.getText())){
-                    if(pi != null){
-                        RoadTrip.read().get(roadTripSelected).addPointInterest(pi);
-                        next();
-                    }
-
-                }
+            if (PointInterest.read().containsKey(Lieu.getText()))
+            {
+                RoadTrip r = RoadTrip.read().get(roadTripSelected);
+                PointInterest pi = PointInterest.read().get(Lieu.getText());
+                r.addPointInterest(pi);
+                r.save();
                 next();
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
     }
