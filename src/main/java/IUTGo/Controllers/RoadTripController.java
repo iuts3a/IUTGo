@@ -88,7 +88,7 @@ public class RoadTripController {
 
     @FXML
     void valider(ActionEvent event) {
-        if(!Lieu.getText().trim().isEmpty())
+        if(!Lieu.getText().equals(""))
         {
             try {
                 if(PointInterest.read().get(Lieu.getText()) != null){
@@ -107,18 +107,19 @@ public class RoadTripController {
     void retour(ActionEvent event) {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("Roadtrip.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                    "HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) Lieu.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Stage stage = (Stage) prix_roadtrip.getScene().getWindow();
+            Scene scene = new Scene(root, 830, 560);
             stage.setScene(scene);
             stage.show();
         }
         catch (IOException ex)
         {
-            System.err.println("test " + ex);
-        }
+            System.err.println("Erreur au chargement: " + ex);
 
+        }
     }
 
     public void supprimerPi(ActionEvent actionEvent) {
