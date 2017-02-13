@@ -1,6 +1,8 @@
 package IUTGo.Controllers;
 
 import IUTGo.Models.PointInterest;
+import IUTGo.Models.PointInterestType;
+import IUTGo.Models.RoadTrip;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,16 +26,13 @@ import java.util.Map;
 public class FilterInterestController {
 
     @FXML
-    private TextField textfield_ville;
-
-    @FXML
-    private TextField textfield_nom;
-
-    @FXML
     private Button button_reset;
 
     @FXML
-    private Button button_filtrer;
+    private ComboBox<?> combo_box_type;
+
+    @FXML
+    private ListView<?> list_PI;
 
     @FXML
     private Button button_valider;
@@ -41,10 +41,23 @@ public class FilterInterestController {
     private Button button_back;
 
     @FXML
-    private ListView<?> list_PI;
+    private Button button_filtrer;
 
     @FXML
-    private TextField textfield_nom1;
+    void initialize() throws IOException, ClassNotFoundException {
+        ObservableList a = FXCollections.observableArrayList();
+        for (PointInterestType t : PointInterestType.values()) {
+            a.add(t.toString());
+        }
+        combo_box_type.setItems(a);
+        ObservableList data = FXCollections.observableArrayList();
+        HashMap<String, PointInterest> h = PointInterest.read();
+        for(Object s : h.keySet()){
+            data.add(h.get(s).getName());
+        }
+        list_PI.setItems(data);
+
+    }
 
     @FXML
     void homepage (MouseEvent event) {
@@ -61,9 +74,9 @@ public class FilterInterestController {
     }
 
     @FXML
-    void resetFiltres(ActionEvent event) {
-        textfield_nom.setText(null);
-        textfield_ville.setText(null);
+    void resetFiltres(ActionEvent event) throws IOException, ClassNotFoundException {
+        combo_box_type.getSelectionModel().clearSelection();
+        initialize();
     }
     @FXML
     void goBack(ActionEvent event) {
@@ -80,35 +93,13 @@ public class FilterInterestController {
     }
 
     @FXML
-    void goTrier(ActionEvent event) {
+    void goTrier(ActionEvent event) throws IOException, ClassNotFoundException {
         ObservableList data = FXCollections.observableArrayList();
-        HashMap<String, PointInterest> pointInterest = null;
-        try {
-            pointInterest = PointInterest.read();
-            for(Map.Entry<String, PointInterest> entry : pointInterest.entrySet()) {
-                if(!textfield_ville.getText().trim().isEmpty()){
-                    if(pointInterest.get(entry.getKey()).getCoordinates().getCity().equals(textfield_ville.getText())){
-                        data.add(entry.getKey());
-                    }
-                }
-                if(!textfield_nom.getText().trim().isEmpty()){
-                    if(pointInterest.get(entry.getKey()).getName().equals(textfield_nom.getText())){
-                        data.add(entry.getKey());
-                    }
-                }
-                if(!textfield_nom1.getText().trim().isEmpty()){
-                    if(String.valueOf(pointInterest.get(entry.getKey()).getGrade()).equals(String.valueOf(textfield_nom1.getText()))){
-                        data.add(entry.getKey());
-                    }
-                }
-
-            }
-            list_PI.setItems(data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        HashMap<String, PointInterest> h = PointInterest.read();
+        for(Object s : h.keySet()){
+            data.add(h.get(s).getName());
         }
+        list_PI.setItems(data);
     }
 
 
