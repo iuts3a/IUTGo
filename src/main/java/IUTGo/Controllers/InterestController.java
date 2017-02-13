@@ -13,7 +13,7 @@ import java.io.IOException;
 public class InterestController
 {
     @FXML
-    private Button goBack;
+    private Button retour;
 
     @FXML
     private Button modify;
@@ -42,20 +42,19 @@ public class InterestController
 
     @FXML
     public void goBack(){
-        FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePage.fxml"));
-        Parent root = null;
         try
         {
-            root = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(InscriptionController.class.getClassLoader().getResource("HomePageConnected.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) retour.getScene().getWindow();
+            Scene scene = new Scene(root, 1000, 510);
+            stage.setScene(scene);
+            stage.show();
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-        Stage stage = (Stage) goBack.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     @FXML
