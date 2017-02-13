@@ -54,6 +54,6 @@
       </ImageView>
       <Hyperlink fx:id="hl_deco" layoutX="835.0" layoutY="4.0" onAction="#deco" text="Se déconnecter" />
       <Hyperlink fx:id="hl_info" layoutX="835.0" layoutY="39.0" onAction="#informations" text="Mes informations" />
-      <Hyperlink fx:id="hl_admin" layoutX="835.0" layoutY="74.0" onAction="#informations" text="Espace administrateur" />
+      <Hyperlink fx:id="hl_admin" layoutX="835.0" layoutY="74.0" onAction="#adminWindow" text="Espace administrateur" />
    </children>
 </AnchorPane>

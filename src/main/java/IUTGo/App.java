@@ -2,7 +2,7 @@ package IUTGo;
 
 import IUTGo.Models.Coordinates;
 import IUTGo.Models.PointInterest;
-import IUTGo.Models.RoadTrip;
+import IUTGo.Models.Users.Admin;
 import IUTGo.Models.Users.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +16,24 @@ public class App extends Application
 {
     public static void main( String[] args ) throws Exception
     {
-        launch(args);
-       /* User u = new User("coupigny-Warot", "chloe", "chloee", "chloe.coupwarot@orange.fr","Chloe01234", new Coordinates(1, 2, "Ville") );
-        User.createSaveFile();
-        u.save();*/
-       /*RoadTrip.createSaveFile();
+        /*RoadTrip.createSaveFile();
         User.createSaveFile();
         PointInterest.createSaveFile();*/
+    
+        for (PointInterest p : PointInterest.read().values())
+        {
+            System.out.println(p);
+        }
+        Admin admin = new Admin("Ad", "min", "administrateur", "aa@gmail.com", "a", new Coordinates(1, 2, "Ville"));
+        admin.save();
+
+        User alex = new User("bolot", "alexandre","Numinex222",  "bolotalex06@gmail.com", "@lexandr1", new Coordinates(1, 2, "Ville"));
+        alex.save();
+    
+        User chloe = new User("coupigny-Warot", "chloe", "chloee", "chloe.coupwarot@orange.fr","Chloe01234", new Coordinates(1, 2, "Ville") );
+        chloe.save();
+        
+        launch(args);
     }
     @Override
     public void start(Stage primaryStage) throws Exception {

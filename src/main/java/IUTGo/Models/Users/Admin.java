@@ -2,7 +2,7 @@ package IUTGo.Models.Users;
 
 import IUTGo.Models.Coordinates;
 import IUTGo.Models.PointInterest;
-import IUTGo.Models.Users.User;
+import IUTGo.Models.RoadTrip;
 
 import java.io.IOException;
 
@@ -18,7 +18,23 @@ public class Admin extends User
     {
         try
         {
-            PointInterest.read().get(name).setPrice(price);
+            PointInterest p = PointInterest.read().get(name);
+            
+            p.setPrice(price);
+            PointInterest.read().remove(name);
+            p.save();
+            
+            for (RoadTrip r : RoadTrip.read().values())
+            {
+                if(r.getPointInterests().containsKey(p.getName()))
+                {
+                    r.getPointInterests().remove(p.getName());
+                    r.getPointInterests().put(p.getName(), p);
+                    
+                    RoadTrip.read().remove(r.getName());
+                    r.save();
+                }
+            }
             return true;
         }
         catch (IOException e)

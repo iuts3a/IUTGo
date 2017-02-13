@@ -41,8 +41,6 @@ public class HomePageConnectedController
     void initialize ()
     {
         if(!(CurrentUser.getInstance().getUser() instanceof Admin)) hl_admin.setVisible(false);
-        hl_admin.setVisible(true);
-        hl_info.setVisible(true);
     }
     
     @FXML
@@ -69,7 +67,8 @@ public class HomePageConnectedController
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("FilterRoadTrip.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource(
+                    "FilterRoadTrip.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_see_rt.getScene().getWindow();
             Scene scene = new Scene(root, 1000, 800);
@@ -87,10 +86,11 @@ public class HomePageConnectedController
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("FilterPoinInterest.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource(
+                    "FilterPoinInterest.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_search_pi.getScene().getWindow();
-            Scene scene = new Scene(root,1000, 800);
+            Scene scene = new Scene(root, 1000, 800);
             stage.setScene(scene);
             stage.show();
         }
@@ -101,14 +101,15 @@ public class HomePageConnectedController
     }
     
     @FXML
-    void create_PI(ActionEvent event)
+    void create_PI (ActionEvent event)
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource("PointInterestCreation.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource(
+                    "PointInterestCreation.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_PI.getScene().getWindow();
-            Scene scene = new Scene(root,1000, 800);
+            Scene scene = new Scene(root, 1000, 800);
             stage.setScene(scene);
             stage.show();
         }
@@ -141,7 +142,25 @@ public class HomePageConnectedController
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(AdminController.class.getClassLoader().getResource("UserInfo.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(UserInfoController.class.getClassLoader().getResource("UserInfo.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
+            Scene scene = new Scene(root, 780, 700);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex)
+        {
+            System.err.println("Erreur au chargement: " + ex);
+        }
+    }
+    
+    public void adminWindow (ActionEvent actionEvent)
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(UserInfoController.class.getClassLoader().getResource(
+                    "AdminPage.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root, 780, 700);

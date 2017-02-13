@@ -76,6 +76,7 @@ public class CreateItineraireController
     }
     
     
+    @SuppressWarnings("ConstantConditions")
     @FXML
     void validateData (ActionEvent event)
     {
@@ -97,25 +98,33 @@ public class CreateItineraireController
             feedback_start.setVisible(true);
             return;
         }
-        
-        HashMap<String, RoadTrip> listRoadTrip = null;
         try
         {
-            listRoadTrip = RoadTrip.read();
-            if(!listRoadTrip.containsKey(textfield_nom.getText()))
+            if(!PointInterest.read().containsKey(textfield_depart.getText().trim()))
+            {
+                feedback_start.setVisible(true);
+                return;
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return;
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            return;
+        }
+    
+        try
+        {
+            HashMap<String, RoadTrip> listRoadTrip = RoadTrip.read();
+            HashMap<String, PointInterest> listPointInterest = PointInterest.read();
+            if(!listRoadTrip.containsKey(textfield_nom.getText()) && listPointInterest.containsKey(textfield_depart.getText().trim()))
             {
                 RoadTrip roadTrip = new RoadTrip(textfield_nom.getText(), CurrentUser.getInstance().getUser());
-                HashMap<String, PointInterest> pointInterestList = roadTrip.getPointInterests();
-                Coordinates coordinates = new Coordinates(0, 0, textfield_depart.getPromptText());
-                
-                PointInterest pointInterest = new PointInterest(textfield_depart.getText(),
-                                                                textarea_description.getPromptText(),
-                                                                PointInterestType.VILLAGE,
-                                                                0,
-                                                                coordinates,
-                                                                CurrentUser.getInstance().getUser());
-                pointInterest.save();
-                pointInterestList.put(textfield_depart.getText(), pointInterest);
+                roadTrip.addPointInterest(listPointInterest.get(textfield_depart.getText().trim()));
                 roadTrip.save();
                 
                 CurrentUser.getInstance().getUser().addRoadTripToFavorite(textfield_nom.getText());

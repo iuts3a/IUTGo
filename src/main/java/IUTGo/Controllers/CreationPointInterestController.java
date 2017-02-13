@@ -11,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -23,9 +22,9 @@ public class CreationPointInterestController
 {
     public TextField name;
     public TextField comment;
-    public TextField coords1;
+    public TextField type;
     public TextField price;
-    public ComboBox type;
+    public TextField coords1;
     public TextField coords2;
     public TextField ville;
     public Label     error_name;
@@ -46,10 +45,9 @@ public class CreationPointInterestController
         error_price.setVisible(false);
         error_type.setVisible(false);
         error_coords.setVisible(false);
-
-
     }
     
+    @SuppressWarnings("ConstantConditions")
     @FXML
     void validateData (ActionEvent event)
     {
@@ -68,7 +66,7 @@ public class CreationPointInterestController
         {
             try
             {
-                Double.parseDouble(price.getText().trim());
+                Float.parseFloat(price.getText().trim());
             }
             catch (NumberFormatException e)
             {
@@ -79,7 +77,7 @@ public class CreationPointInterestController
         {
             try
             {
-                Double.parseDouble(coords1.getText().trim());
+                Float.parseFloat(coords1.getText().trim());
             }
             catch (NumberFormatException e)
             {
@@ -90,7 +88,7 @@ public class CreationPointInterestController
         {
             try
             {
-                Double.parseDouble(coords2.getText().trim());
+                Float.parseFloat(coords2.getText().trim());
             }
             catch (NumberFormatException e)
             {
@@ -103,7 +101,7 @@ public class CreationPointInterestController
         }
         for (PointInterestType t : PointInterestType.values())
         {
-            if(t.toString().equalsIgnoreCase((String)type.getSelectionModel().getSelectedItem()))
+            if(t.toString().equalsIgnoreCase(type.getText()))
             {
                 typeOk = true;
             }
@@ -117,45 +115,57 @@ public class CreationPointInterestController
         {
             User currentUser = CurrentUser.getInstance().getUser();
             
-            //TODO
-            try {
-                Coordinates coordinates = new Coordinates((Float.valueOf(coords1.getText().trim())), Float.valueOf(coords1.getText().trim()), ville.getText().trim());
+            String x = coords1.getText().trim();
+            String y = coords2.getText().trim();
+            try
+            {
+                Coordinates coordinates = new Coordinates(Float.parseFloat(x),
+                                                          Float.parseFloat(y),
+                                                          ville.getText().trim());
+                
                 PointInterest newPointInterest = new PointInterest(name.getText(),
-                        PointInterestType.valueOf((String)type.getSelectionModel().getSelectedItem()),
-                        Float.valueOf(price.getText()), coordinates ,currentUser);
+                                                                   PointInterestType.valueOf(type.getText().trim().toUpperCase()),
+                                                                   Float.parseFloat(price.getText().trim()),
+                                                                   coordinates,
+                                                                   currentUser);
                 newPointInterest.save();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+                System.out.println(newPointInterest.getName());
+                
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
             }
-
-
+            catch (ClassNotFoundException e)
+            {
+                e.printStackTrace();
+            }
         }
-    
+        
         else
         {
-    
-    
             User currentUser = CurrentUser.getInstance().getUser();
-    
-            //TODO
-            try {
-                Coordinates coordinates = new Coordinates(Float.valueOf((String)coords1.getText().trim()), Float.valueOf((String)coords2.getText().trim()), ville.getText().trim());
-                PointInterest newPointInterest = new PointInterest(name.getText(), comment.getText().trim(),
-                        PointInterestType.valueOf((String)type.getSelectionModel().getSelectedItem()),
-                        Float.valueOf(price.getText()), coordinates ,currentUser);
+            
+            String x = coords1.getText().trim();
+            String y = coords2.getText().trim();
+            try
+            {
+                Coordinates coordinates = new Coordinates(Float.parseFloat(x),
+                                                          Float.parseFloat(y),
+                                                          ville.getText().trim());
+                
+                PointInterest newPointInterest = new PointInterest(name.getText(),
+                                                                   comment.getText().trim(),
+                                                                   PointInterestType.valueOf(type.getText().trim()),
+                                                                   Float.parseFloat(price.getText().trim()),
+                                                                   coordinates,
+                                                                   currentUser);
                 newPointInterest.save();
-
-                    FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
-                            "HomePageConnected.fxml"));
-                    Parent root = fxmlLoader.load();
-                    Stage stage = (Stage) button_valider.getScene().getWindow();
-                    Scene scene = new Scene(root, 1000, 510);
-                    stage.setScene(scene);
-                    stage.show();
-
-            } catch (IOException e) {
+                System.out.println(newPointInterest.getName());
+                
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
             }
             catch (ClassNotFoundException e)

@@ -25,15 +25,27 @@ public class RoadTrip implements Serializable
         File file = new File("./Sauv/RoadTrip.ser");
         
         ObjectInputStream ooi;
-        try {
+        try
+        {
             ooi = new ObjectInputStream(new FileInputStream(file));
         }
-        catch (IOException e){
+        catch (IOException e)
+        {
             RoadTrip.createSaveFile();
             ooi = new ObjectInputStream(new FileInputStream(file));
         }
-
+        
         return (HashMap<String, RoadTrip>) ooi.readObject();
+    }
+    
+    public static void createSaveFile () throws IOException
+    {
+        File file = new File("./Sauv/RoadTrip.ser");
+        
+        HashMap<String, RoadTrip> hashMap = new HashMap<String, RoadTrip>();
+        
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(hashMap);
     }
     
     //region Getters and Setters
@@ -68,14 +80,14 @@ public class RoadTrip implements Serializable
             totalGrade += pointInterest.getGrade();
         }
         
-        return totalGrade / pointInterests.size();
+        return pointInterests.size() > 0 ? totalGrade / pointInterests.size() : totalGrade;
     }
+    //endregion
     
     public HashMap<String, User> getParticipants ()
     {
         return participants;
     }
-    //endregion
     
     public boolean addPointInterest (PointInterest pointInterest)
     {
@@ -83,7 +95,21 @@ public class RoadTrip implements Serializable
         if(pointInterests.containsValue(pointInterest)) return false;
         
         pointInterests.put(pointInterest.getName(), pointInterest);
-        return true;
+        try
+        {
+            this.save();
+            return true;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
     }
     
     public boolean deletePointInterest (String name)
@@ -91,7 +117,21 @@ public class RoadTrip implements Serializable
         if(!pointInterests.containsKey(name)) return false;
         
         pointInterests.remove(name);
-        return true;
+        try
+        {
+            this.save();
+            return true;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
     }
     
     public boolean addParticipants (User participant)
@@ -99,31 +139,48 @@ public class RoadTrip implements Serializable
         if(participants.containsValue(participant)) return false;
         
         participants.put(participant.getEmail(), participant);
-        return true;
+        try
+        {
+            this.save();
+            return true;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
     }
     
     public boolean deleteParticipants (String name)
     {
         if(!participants.containsKey(name)) return false;
-    
+        
         participants.remove(name);
-        return true;
-    }
+        try
+        {
+            this.save();
+            return true;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            return false;
+        }    }
     
     @Override
     public String toString ()
     {
         return "RoadTrip{" + "name='" + name + '\'' + ", pointInterests=" + pointInterests.toString() + ", prix Itinéraire=" + getPrice() + '}';
-    }
-    
-    public static void createSaveFile () throws IOException
-    {
-        File file = new File("./Sauv/RoadTrip.ser");
-        
-        HashMap<String, RoadTrip> hashMap = new HashMap<String, RoadTrip>();
-        
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-        oos.writeObject(hashMap);
     }
     
     @SuppressWarnings("unchecked")
@@ -135,6 +192,11 @@ public class RoadTrip implements Serializable
         
         HashMap<String, RoadTrip> hashMap;
         hashMap = (HashMap<String, RoadTrip>) ooi.readObject();
+        
+        if(hashMap.containsKey(this.getName()))
+        {
+            hashMap.remove(this.getName());
+        }
         hashMap.put(this.getName(), this);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(hashMap);

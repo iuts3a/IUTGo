@@ -18,7 +18,7 @@ public class User implements Serializable
     private String      password;
     private Coordinates adresse;
     
-    private ArrayList<RoadTrip> favoriteRoadTrips;
+    private HashMap<String, RoadTrip> favoriteRoadTrips;
     
     public User (String lastName, String firstName, String userName, String email, String password, Coordinates coordinates)
     {
@@ -28,14 +28,14 @@ public class User implements Serializable
         setEmail(email);
         setPassword(password);
         setAddress(coordinates);
-        favoriteRoadTrips = new ArrayList<RoadTrip>();
+        favoriteRoadTrips = new HashMap<String, RoadTrip>();
     }
     
     @SuppressWarnings("unchecked")
     public static HashMap<String, User> read () throws IOException, ClassNotFoundException
     {
         File file = new File("./Sauv/User.ser");
-    
+        
         ObjectInputStream ooi;
         
         try
@@ -46,8 +46,17 @@ public class User implements Serializable
         {
             ooi = new ObjectInputStream(new FileInputStream(file));
         }
-    
+        
         return (HashMap<String, User>) ooi.readObject();
+    }
+    
+    public static void createSaveFile () throws IOException
+    {
+        File file = new File("./Sauv/User.ser");
+        HashMap<String, User> hashMap = new HashMap<String, User>();
+        
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(hashMap);
     }
     
     //region Getters and Setters
@@ -111,12 +120,12 @@ public class User implements Serializable
         this.email = email;
     }
     
-    public ArrayList<RoadTrip> getFavoriteRoadTrips ()
+    //endregion
+    
+    public HashMap<String, RoadTrip> getFavoriteRoadTrips ()
     {
         return favoriteRoadTrips;
     }
-    
-    //endregion
     
     public boolean suggestPointInteret (String namePointInterest, PointInterestType type, float price, Coordinates coordinates)
     {
@@ -168,7 +177,9 @@ public class User implements Serializable
     {
         try
         {
-            PointInterest.read().get(namePointInterest).addComment(comment, grade);
+            PointInterest p = PointInterest.read().get(namePointInterest);
+            p.addComment(comment, grade);
+            p.save();
             return true;
         }
         //region catch
@@ -212,8 +223,13 @@ public class User implements Serializable
     {
         try
         {
-            RoadTrip roadTrip = RoadTrip.read().get(roadTripName);
-            roadTrip.delete();
+            HashMap<String, RoadTrip> roadTripList = RoadTrip.read();
+            roadTripList.remove(roadTripName);
+    
+            File file = new File("./Sauv/User.ser");
+    
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(roadTripList);
             return true;
         }
         //region catch
@@ -228,19 +244,6 @@ public class User implements Serializable
             return false;
         }
         //endregion
-    }
-
-    public void signIn (String nameRoad) throws IOException, ClassNotFoundException {
-        RoadTrip roadTrip=RoadTrip.read().get(nameRoad);
-        roadTrip.addParticipants(this);
-        roadTrip.save();
-    }
-
-
-    public void signOut (String nameRoad) throws IOException, ClassNotFoundException {
-        RoadTrip roadTrip=RoadTrip.read().get(nameRoad);
-        roadTrip.deleteParticipants(this.getEmail());
-        roadTrip.save();
     }
     
     public boolean addPointInteretToRoadTrip (String roadTripName, String name, PointInterestType type, float price, Coordinates coordinates)
@@ -275,7 +278,7 @@ public class User implements Serializable
             if(!(RoadTrip.read().containsKey(roadTripName))) return false;
             if(RoadTrip.read().get(roadTripName).getPointInterests().containsKey(pointInterest.getName())) return false;
             pointInterest.save();
-            RoadTrip roadTrip= new RoadTrip(RoadTrip.read().get(roadTripName).getName(),this);
+            RoadTrip roadTrip = RoadTrip.read().get(roadTripName);
             roadTrip.addPointInterest(pointInterest);
             roadTrip.save();
             return true;
@@ -298,9 +301,7 @@ public class User implements Serializable
     {
         try
         {
-            RoadTrip roadTrip= new RoadTrip(RoadTrip.read().get(roadTripName).getName(),this);
             RoadTrip.read().get(roadTripName).deletePointInterest(pointInteretName);
-            roadTrip.save();
             return true;
         }
         //region catch
@@ -321,8 +322,13 @@ public class User implements Serializable
     {
         try
         {
-            if(RoadTrip.read().containsKey(name)) favoriteRoadTrips.add(RoadTrip.read().get(name));
-            return true;
+            if(RoadTrip.read().containsKey(name) && !favoriteRoadTrips.containsKey(name))
+            {
+                favoriteRoadTrips.put(RoadTrip.read().get(name).getName(), RoadTrip.read().get(name));
+                this.save();
+                return true;
+            }
+            return false;
         }
         //region catch
         catch (IOException e)
@@ -337,8 +343,6 @@ public class User implements Serializable
         }
         //endregion
     }
-
-
     
     public float getRoadTripPrice (String roadTripName)
     {
@@ -389,15 +393,6 @@ public class User implements Serializable
         //endregion
     }
     
-    public static void createSaveFile () throws IOException
-    {
-        File file = new File("./Sauv/User.ser");
-        HashMap<String, User> hashMap = new HashMap<String, User>();
-        
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-        oos.writeObject(hashMap);
-    }
-    
     @SuppressWarnings("unchecked")
     public void save () throws IOException, ClassNotFoundException
     {
@@ -408,11 +403,15 @@ public class User implements Serializable
         HashMap<String, User> hashMap;
         
         hashMap = (HashMap<String, User>) ooi.readObject();
+        
+        if(hashMap.containsKey(this.getEmail()))
+        {
+            hashMap.remove(this.getEmail());
+        }
         hashMap.put(this.getEmail(), this);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         
         oos.writeObject(hashMap);
     }
-
-
+    
 }

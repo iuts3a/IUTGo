@@ -60,19 +60,19 @@ public class PointInterest implements Serializable
         
         return (HashMap<String, PointInterest>) ooi.readObject();
     }
-
+    
+    //region Getters and Setters
+    
     public static void createSaveFile () throws IOException
     {
         File file = new File("./Sauv/PI.ser");
-
+        
         HashMap<String, PointInterest> hashMap = new HashMap<String, PointInterest>();
-
+        
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(hashMap);
-
+        
     }
-
-    //region Getters and Setters
     
     public String getName ()
     {
@@ -186,8 +186,7 @@ public class PointInterest implements Serializable
         {
             grade += comment.getGrade();
         }
-        
-        return grade / comments.size();
+        return comments.size() > 0 ? grade/comments.size() : grade;
     }
     
     @Override
@@ -195,16 +194,17 @@ public class PointInterest implements Serializable
     {
         return "PointInterest{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", type='" + getType() + '\'' + ", price=" + price + ", note=" + getGrade() + '}';
     }
-
+    
+    @SuppressWarnings("unchecked")
     public void save () throws IOException, ClassNotFoundException
     {
         File file = new File("./Sauv/PI.ser");
-
+    
         ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(file));
-
+    
         HashMap<String, PointInterest> hashMap;
         hashMap = (HashMap<String, PointInterest>) ooi.readObject();
-
+    
         if(hashMap.containsKey(this.getName()))
         {
             hashMap.remove(this.getName());
