@@ -212,7 +212,8 @@ public class User implements Serializable
     {
         try
         {
-            RoadTrip.read().remove(roadTripName);
+            RoadTrip roadTrip = RoadTrip.read().get(roadTripName);
+            roadTrip.delete();
             return true;
         }
         //region catch

@@ -138,7 +138,18 @@ public class RoadTrip implements Serializable
         hashMap.put(this.getName(), this);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(hashMap);
-        
+    }
+
+    public void delete() throws IOException, ClassNotFoundException {
+        File file = new File("./Sauv/RoadTrip.ser");
+
+        ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(file));
+
+        HashMap<String, RoadTrip> hashMap;
+        hashMap = (HashMap<String, RoadTrip>) ooi.readObject();
+        hashMap.remove(this.getName());
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(hashMap);
     }
     
     

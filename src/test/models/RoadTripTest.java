@@ -24,6 +24,7 @@ public class RoadTripTest
     HashMap<String, RoadTrip> tabTest = new HashMap<String, RoadTrip>();
     private PointInterest PI;
     private RoadTrip      itinineraire;
+    private RoadTrip itinineraire2;
     private Coordinates   coordinates;
     
     @Before
@@ -37,6 +38,7 @@ public class RoadTripTest
                                new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
         
         itinineraire = new RoadTrip("Test", new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
+        itinineraire2 = new RoadTrip("Test2", new User("Axel", "Mouchiroud", "Axel","@", "mdp", new Coordinates(1, 1, "Paris")));
         //RoadTrip.createSaveFile();
     }
     
@@ -109,5 +111,14 @@ public class RoadTripTest
         assertEquals(false,itinineraire.getParticipants().containsKey("@"));
         assertEquals(0,itinineraire.getParticipants().size());
     }
+
+    @Test
+    public void deleteTest() throws IOException, ClassNotFoundException {
+       itinineraire2.save();
+        assertEquals(true,RoadTrip.read().containsKey(itinineraire2.getName()));
+        itinineraire2.delete();
+        assertEquals(false,RoadTrip.read().containsKey(itinineraire2.getName()));
+    }
+
 
 }
