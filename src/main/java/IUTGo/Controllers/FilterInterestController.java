@@ -96,6 +96,11 @@ public class FilterInterestController {
                         data.add(entry.getKey());
                     }
                 }
+                if(!textfield_nom1.getText().trim().isEmpty()){
+                    if(String.valueOf(pointInterest.get(entry.getKey()).getGrade()).equals(String.valueOf(textfield_nom1.getText()))){
+                        data.add(entry.getKey());
+                    }
+                }
 
             }
             list_PI.setItems(data);
