@@ -86,6 +86,12 @@ public class UserTest
         assertEquals(true, userTest.deletePointInteretFromRoadTrip("England roadtrip", "Buffalo"));
         assertEquals(false,RoadTrip.read().get("England roadtrip").getPointInterests().containsKey(PiTest.getName()));
     }
+
+    @Test
+    public void signInTest() throws IOException, ClassNotFoundException {
+        userTest.signIn("England roadtrip");
+        assertEquals(true,RoadTrip.read().get("England roadtrip").getParticipants().containsKey(userTest.getEmail()));
+    }
     
     @Test
     public void addRoadTripToFavoriteTest () throws Exception
@@ -95,7 +101,6 @@ public class UserTest
         assertEquals("England roadtrip",User.read().get(userTest.getEmail()).getFavoriteRoadTrips().get(0).getName());
 
     }
-
 
     
     @Test

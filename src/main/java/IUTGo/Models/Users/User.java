@@ -229,6 +229,12 @@ public class User implements Serializable
         }
         //endregion
     }
+
+    public void signIn (String nameRoad) throws IOException, ClassNotFoundException {
+        RoadTrip roadTrip=RoadTrip.read().get(nameRoad);
+        roadTrip.addParticipants(this);
+        roadTrip.save();
+    }
     
     public boolean addPointInteretToRoadTrip (String roadTripName, String name, PointInterestType type, float price, Coordinates coordinates)
     {
@@ -400,5 +406,6 @@ public class User implements Serializable
         
         oos.writeObject(hashMap);
     }
-    
+
+
 }
