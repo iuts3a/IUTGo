@@ -142,18 +142,13 @@ public class CreationPointInterestController
             User currentUser = CurrentUser.getInstance().getUser();
     
             //TODO
-            Coordinates coordinates = null; //new Coordinates((coords1.getText().trim()), Double.parseDouble(coords1.getText().trim()), ville.getText().trim());
-    
-            PointInterest newPointInterest = null; //new PointInterest(name.getText(), comment.getText().trim(),
-            //                                                  PointInterestType.valueOf(type.getText().trim()),
-            //                                                price.getText(), coordinates ,currentUser);
-    
-            try
-            {
+            try {
+                Coordinates coordinates = new Coordinates(Float.valueOf(coords1.getText().trim()), Float.valueOf(coords1.getText().trim()), ville.getText().trim());
+                PointInterest newPointInterest = new PointInterest(name.getText(), comment.getText().trim(),
+                        PointInterestType.valueOf(type.getText().trim()),
+                        Float.valueOf(price.getText()), coordinates ,currentUser);
                 newPointInterest.save();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             catch (ClassNotFoundException e)

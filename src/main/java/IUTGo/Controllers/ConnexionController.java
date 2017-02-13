@@ -78,8 +78,9 @@ public class ConnexionController
                 {
                     if(user.get(username.getText()).getPassword().equals(password.getText()))
                     {
+
                         CurrentUser.Init(username.getText());
-                        
+
                         FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
                                 "HomePageConnected.fxml"));
                         Parent root = fxmlLoader.load();
