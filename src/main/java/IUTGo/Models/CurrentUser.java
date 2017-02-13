@@ -25,7 +25,7 @@ public class CurrentUser
         }
     }
     
-    public static synchronized CurrentUser getInstance ()
+    public static synchronized CurrentUser getInstance () // Singleton Pattern
     {
         if(uniqueInstance != null)
         {
