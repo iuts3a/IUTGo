@@ -195,19 +195,22 @@ public class PointInterest implements Serializable
     {
         return "PointInterest{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", type='" + getType() + '\'' + ", price=" + price + ", note=" + getGrade() + '}';
     }
-    
+
     public void save () throws IOException, ClassNotFoundException
     {
-        
         File file = new File("./Sauv/PI.ser");
-        
+
         ObjectInputStream ooi = new ObjectInputStream(new FileInputStream(file));
-        
+
         HashMap<String, PointInterest> hashMap;
         hashMap = (HashMap<String, PointInterest>) ooi.readObject();
+
+        if(hashMap.containsKey(this.getName()))
+        {
+            hashMap.remove(this.getName());
+        }
         hashMap.put(this.getName(), this);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(hashMap);
-        
     }
 }
