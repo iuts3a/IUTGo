@@ -38,6 +38,35 @@ public class CreationPointInterestController
     @FXML
     private Button button_valider;
     
+    {
+        User currentUser = CurrentUser.getInstance().getUser();
+        
+        String x = coords1.getText().trim();
+        String y = coords2.getText().trim();
+        try
+        {
+            Coordinates coordinates = new Coordinates(Float.parseFloat(x), Float.parseFloat(y), ville.getText().trim());
+            
+            PointInterest newPointInterest = new PointInterest(name.getText(),
+                                                               comment.getText().trim(),
+                                                               PointInterestType.valueOf(type.getText().trim()),
+                                                               Float.parseFloat(price.getText().trim()),
+                                                               coordinates,
+                                                               currentUser);
+            newPointInterest.save();
+            System.out.println(newPointInterest.getName());
+            
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
     @FXML
     void initialize ()
     {
@@ -123,25 +152,19 @@ public class CreationPointInterestController
                                                           Float.parseFloat(y),
                                                           ville.getText().trim());
                 
-                PointInterest newPointInterest = new PointInterest(name.getText(),
-                                                                   PointInterestType.valueOf(type.getText().trim().toUpperCase()),
-                                                                   Float.parseFloat(price.getText().trim()),
-                                                                   coordinates,
-                                                                   currentUser);
-                newPointInterest.save();
-                System.out.println(newPointInterest.getName());
+                currentUser.suggestPointInteret(name.getText(),
+                                                PointInterestType.valueOf(type.getText().trim().toUpperCase()),
+                                                Float.parseFloat(price.getText().trim()),
+                                                coordinates);
+                
+                System.out.println(name.getText().trim());
                 
             }
             catch (IOException e)
             {
                 e.printStackTrace();
             }
-            catch (ClassNotFoundException e)
-            {
-                e.printStackTrace();
-            }
         }
-        
         else
         {
             User currentUser = CurrentUser.getInstance().getUser();
@@ -154,26 +177,22 @@ public class CreationPointInterestController
                                                           Float.parseFloat(y),
                                                           ville.getText().trim());
                 
-                PointInterest newPointInterest = new PointInterest(name.getText(),
-                                                                   comment.getText().trim(),
-                                                                   PointInterestType.valueOf(type.getText().trim()),
-                                                                   Float.parseFloat(price.getText().trim()),
-                                                                   coordinates,
-                                                                   currentUser);
-                newPointInterest.save();
-                System.out.println(newPointInterest.getName());
+                currentUser.suggestPointInteret(name.getText(),
+                                                comment.getText().trim(),
+                                                PointInterestType.valueOf(type.getText().trim().toUpperCase()),
+                                                Float.parseFloat(price.getText().trim()),
+                                                coordinates);
+                
+                System.out.println(name.getText().trim());
                 
             }
             catch (IOException e)
             {
                 e.printStackTrace();
             }
-            catch (ClassNotFoundException e)
-            {
-                e.printStackTrace();
-            }
         }
     }
+    
     
     @FXML
     void homepage (MouseEvent event)

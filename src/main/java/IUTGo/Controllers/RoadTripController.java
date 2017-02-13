@@ -1,8 +1,7 @@
 package IUTGo.Controllers;
-import IUTGo.Models.CurrentUser;
+
 import IUTGo.Models.PointInterest;
 import IUTGo.Models.RoadTrip;
-import IUTGo.Models.Users.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -19,61 +20,61 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by xavier on 08/02/2017.
+ Created by xavier on 08/02/2017.
  */
 
-public class RoadTripController {
-
+public class RoadTripController
+{
+    
+    private String      roadTripSelected;
     @FXML
-    private Label prix_roadtrip;
-
+    private Label       prix_roadtrip;
     @FXML
-    private TextField Lieu;
-
+    private TextField   Lieu;
     @FXML
     private ListView<?> table_PI;
-
     @FXML
-    private Text roadtrip_name ;
-
-    @FXML
-    private CheckBox check ;
-
-    String roadTripSelected ;
-
-    public void pipeline(String r){
+    private Text        roadtrip_name;
+    
+    public void pipeline (String r)
+    {
         roadTripSelected = r;
-        roadtrip_name.setText(roadTripSelected);
         next();
     }
-
+    
     @FXML
-    void next()
+    void next ()
     {
-        check.setVisible(false);
-        try {
+        roadtrip_name.setText(roadTripSelected);
+        try
+        {
             RoadTrip roadTrip = RoadTrip.read().get(roadTripSelected);
             prix_roadtrip.setText(String.valueOf(roadTrip.getPrice()));
             ObservableList data = FXCollections.observableArrayList();
-            for(String s : RoadTrip.read().get(roadTripSelected).getPointInterests().keySet()) {
-                    data.add(s);
+            
+            for (Map.Entry<String, PointInterest> entry : roadTrip.getPointInterests().entrySet())
+            {
+                data.add(entry.getKey());
             }
+            
+            
             table_PI.setItems(data);
-
-            if(!RoadTrip.read().get(roadTripSelected).getParticipants().containsKey(CurrentUser.getInstance().getUser().getEmail())){
-                check.setVisible(true);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
-
-
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        
+        
     }
-
+    
     @FXML
-    void homepage(MouseEvent event) {
+    void homepage (MouseEvent event)
+    {
         try
         {
             FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
@@ -88,48 +89,53 @@ public class RoadTripController {
         {
             System.err.println("Erreur au chargement: " + ex);
         }
-
+        
     }
-
+    
     @FXML
-    void valider(ActionEvent event) throws IOException, ClassNotFoundException {
-        RoadTrip roadTrip = RoadTrip.read().get(roadTripSelected);
-        User user = CurrentUser.getInstance().getUser();
-        if(check.isSelected()){
-            user.signIn(roadTripSelected);
-        }
-        if(!Lieu.getText().equals(""))
+    void valider (ActionEvent event)
+    {
+        if(!Lieu.getText().trim().isEmpty())
         {
-            if (PointInterest.read().containsKey(Lieu.getText()))
+            try
             {
-                RoadTrip r = RoadTrip.read().get(roadTripSelected);
-                PointInterest pi = PointInterest.read().get(Lieu.getText());
-                r.addPointInterest(pi);
-                r.save();
-                next();
+                if(PointInterest.read().get(Lieu.getText()) != null)
+                {
+                    RoadTrip.read().get(roadTripSelected).addPointInterest(PointInterest.read().get(Lieu.getText()));
+                }
+                
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            catch (ClassNotFoundException e)
+            {
+                e.printStackTrace();
             }
         }
     }
-
+    
     @FXML
-    void retour(ActionEvent event) {
+    void retour (ActionEvent event)
+    {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
-                    "HomePageConnected.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("Roadtrip.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) prix_roadtrip.getScene().getWindow();
-            Scene scene = new Scene(root, 830, 560);
+            Stage stage = (Stage) Lieu.getScene().getWindow();
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
         catch (IOException ex)
         {
-            System.err.println("Erreur au chargement: " + ex);
-
+            System.err.println("test " + ex);
         }
+        
     }
-
-    public void supprimerPi(ActionEvent actionEvent) {
+    
+    public void supprimerPi (ActionEvent actionEvent)
+    {
     }
 }

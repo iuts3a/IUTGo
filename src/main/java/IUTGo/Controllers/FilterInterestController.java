@@ -25,6 +25,7 @@ import java.util.Map;
 public class FilterInterestController
 {
     
+    public ListView list_RoadTrip;
     @FXML
     private TextField textfield_ville;
     
@@ -161,7 +162,22 @@ public class FilterInterestController
     @FXML
     void openPI (ActionEvent event)
     {
-        
+        if(list_PI.getSelectionModel().getSelectedItem() != null){
+            try
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("PointInterest.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = (Stage) button_back.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                ((InterestController)fxmlLoader.getController()).pipeline((String)list_PI.getSelectionModel().getSelectedItem());
+                stage.show();
+            }
+            catch (IOException ex)
+            {
+                System.err.println("test " + ex);
+            }
+        }
     }
     
     public void back (ActionEvent actionEvent)

@@ -21,33 +21,43 @@ import java.io.IOException;
  Created by vmonsch on 08/02/2017.
  */
 
+@SuppressWarnings({"unchecked", "ConstantConditions"})
 public class UserInfoController
 {
-    public ListView tv_roadtrip;
-    public Button btn_show_roadtrip;
-    public Button btn_delete_rt;
-    public Button retour;
-    public Button btn_create_rt;
-    public Label name;
-    public Label firstName;
-    public Label email;
+    @FXML
+    private ListView<String> tv_roadtrip;
+    @FXML
+    private Button   btn_show_roadtrip;
+    @FXML
+    private Button   btn_delete_rt;
+    @FXML
+    private Button   retour;
+    @FXML
+    private Button   btn_create_rt;
+    @FXML
+    private Label    name;
+    @FXML
+    private Label    firstName;
+    @FXML
+    private Label    email;
     
     @FXML
-    void initialize() throws IOException, ClassNotFoundException {
+    void initialize ()
+    {
         User user = CurrentUser.getInstance().getUser();
         
         name.setText(user.getLastName());
         firstName.setText(user.getFirstName());
         email.setText(user.getEmail());
-
+        
         ObservableList data = FXCollections.observableArrayList();
-
-        for(String s : RoadTrip.read().keySet()){
-            if (RoadTrip.read().get(s).getParticipants().containsKey(user.getEmail()))
-            data.add(s);
+        
+        for (int i = 0; i < user.getFavoriteRoadTrips().size(); i++)
+        {
+            data.add(user.getFavoriteRoadTrips().get(i).getName());
         }
         tv_roadtrip.setItems(data);
-
+        
     }
     
     @FXML
@@ -73,15 +83,17 @@ public class UserInfoController
     @FXML
     void show_roadtrip (ActionEvent event)
     {
-        if(tv_roadtrip.getSelectionModel().getSelectedItem() != null){
+        if(tv_roadtrip.getSelectionModel().getSelectedItem() != null)
+        {
             try
             {
-                FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("Roadtrip.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource(
+                        "Roadtrip.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = (Stage) btn_create_rt.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                ((RoadTripController)fxmlLoader.getController()).pipeline((String)tv_roadtrip.getSelectionModel().getSelectedItem());
+                ((RoadTripController) fxmlLoader.getController()).pipeline((String) tv_roadtrip.getSelectionModel().getSelectedItem());
                 stage.show();
             }
             catch (IOException ex)
@@ -89,28 +101,32 @@ public class UserInfoController
                 System.err.println("test " + ex);
             }
         }
-
-        
     }
     
     @FXML
     void delete_rt (ActionEvent event)
     {
-        if(tv_roadtrip.getSelectionModel().getSelectedItem() != null){
-            try {
+        if(tv_roadtrip.getSelectionModel().getSelectedItem() != null)
+        {
+            try
+            {
                 String emailUser = CurrentUser.getInstance().getUser().getEmail();
-                String roadTripSelected = (String)tv_roadtrip.getSelectionModel().getSelectedItem();
-
-
+                String roadTripSelected = (String) tv_roadtrip.getSelectionModel().getSelectedItem();
+                
+                
                 RoadTrip.read().get(roadTripSelected).deleteParticipants(emailUser);
                 CurrentUser.getInstance().getUser().getFavoriteRoadTrips().remove(RoadTrip.read().get(roadTripSelected));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+                
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
             }
-
+            catch (ClassNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+            
             //initialize();
         }
     }
@@ -120,7 +136,8 @@ public class UserInfoController
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource("HomePageConnected.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                    "HomePageConnected.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) retour.getScene().getWindow();
             Scene scene = new Scene(root, 1000, 510);

@@ -121,13 +121,10 @@ public class CreateItineraireController
         {
             HashMap<String, RoadTrip> listRoadTrip = RoadTrip.read();
             HashMap<String, PointInterest> listPointInterest = PointInterest.read();
-            if(!listRoadTrip.containsKey(textfield_nom.getText()) && listPointInterest.containsKey(textfield_depart.getText().trim()))
+            if(!listRoadTrip.containsKey(textfield_nom.getText().trim()) && listPointInterest.containsKey(textfield_depart.getText().trim()))
             {
-                RoadTrip roadTrip = new RoadTrip(textfield_nom.getText(), CurrentUser.getInstance().getUser());
-                roadTrip.addPointInterest(listPointInterest.get(textfield_depart.getText().trim()));
-                roadTrip.save();
-                
-                CurrentUser.getInstance().getUser().addRoadTripToFavorite(textfield_nom.getText());
+                CurrentUser.getInstance().getUser().createRoadTrip(textfield_nom.getText().trim());
+                CurrentUser.getInstance().getUser().addRoadTripToFavorite(textfield_nom.getText().trim());
                 CurrentUser.getInstance().getUser().save();
                 
                 FXMLLoader fxmlLoader = new FXMLLoader(UserInfoController.class.getClassLoader().getResource(
@@ -152,7 +149,6 @@ public class CreateItineraireController
     @FXML
     void homepage (MouseEvent event)
     {
-        
         try
         {
             FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
