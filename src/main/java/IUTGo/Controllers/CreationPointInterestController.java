@@ -146,6 +146,15 @@ public class CreationPointInterestController
                         PointInterestType.valueOf((String)type.getSelectionModel().getSelectedItem()),
                         Float.valueOf(price.getText()), coordinates ,currentUser);
                 newPointInterest.save();
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                            "HomePageConnected.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Stage stage = (Stage) button_valider.getScene().getWindow();
+                    Scene scene = new Scene(root, 1000, 510);
+                    stage.setScene(scene);
+                    stage.show();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -179,7 +188,20 @@ public class CreationPointInterestController
     @FXML
     void toBack (ActionEvent event)
     {
-        
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
+                    "HomePageConnected.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) button_valider.getScene().getWindow();
+            Scene scene = new Scene(root, 1000, 510);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException ex)
+        {
+            System.err.println("Erreur au chargement: " + ex);
+        }
     }
     
 }
