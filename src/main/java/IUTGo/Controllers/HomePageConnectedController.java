@@ -42,7 +42,7 @@ public class HomePageConnectedController
     {
         if(!(CurrentUser.getInstance().getUser() instanceof Admin)) hl_admin.setVisible(false);
         hl_admin.setVisible(true);
-        hl_info.setVisible(false);
+        hl_info.setVisible(true);
     }
     
     @FXML
@@ -141,7 +141,7 @@ public class HomePageConnectedController
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(AdminController.class.getClassLoader().getResource("AdminPage.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(AdminController.class.getClassLoader().getResource("UserInfo.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) btn_create_rt.getScene().getWindow();
             Scene scene = new Scene(root, 780, 700);
