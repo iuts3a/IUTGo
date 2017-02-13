@@ -2,6 +2,7 @@ package IUTGo.Controllers;
 
 import IUTGo.Models.Coordinates;
 import IUTGo.Models.CurrentUser;
+import IUTGo.Models.Users.Admin;
 import IUTGo.Models.Users.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,14 +97,27 @@ public class InscriptionController
             
             if(!listUsers.containsKey(mail.getText()))
             {
-                User newUser = new User(name.getText(),
-                                        firstName.getText(),
-                                        user.getText(),
-                                        mail.getText(),
-                                        password.getText(),
-                                        new Coordinates(1, 2, "Ville"));
-                
-                newUser.save();
+                if(user.equals("unAdmin")){
+                    Admin admin = new Admin(name.getText(),
+                            firstName.getText(),
+                            user.getText(),
+                            mail.getText(),
+                            password.getText(),
+                            new Coordinates(1, 2, "Ville"));
+
+                    admin.save();
+                }
+                else{
+                    User newUser = new User(name.getText(),
+                            firstName.getText(),
+                            user.getText(),
+                            mail.getText(),
+                            password.getText(),
+                            new Coordinates(1, 2, "Ville"));
+
+                    newUser.save();
+                }
+
                 CurrentUser.Init(mail.getText());
                 
                 FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
