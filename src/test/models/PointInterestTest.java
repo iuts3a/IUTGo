@@ -1,6 +1,5 @@
 package models;
 
-import IUTGo.Models.Comment;
 import IUTGo.Models.Coordinates;
 import IUTGo.Models.PointInterest;
 import IUTGo.Models.PointInterestType;
@@ -19,7 +18,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class PointInterestTest
 {
-    
     HashMap<String, PointInterest> H = new HashMap<String, PointInterest>();
     private PointInterest PI;
     private Coordinates   coordinates;
@@ -58,20 +56,22 @@ public class PointInterestTest
         H = PointInterest.read();
         assertEquals(true, H.containsKey("Parc des Princes"));
     }
-
+    
     @Test
-    public void addCommentTest(){
-        assertEquals(true,PI.addComment("cool",4));
-        assertEquals("cool",PI.getComments().get(0).getMessage());
-        assertEquals((Integer)4,PI.getComments().get(0).getGrade());
-
+    public void addCommentTest ()
+    {
+        assertEquals(true, PI.addComment("cool", 4));
+        assertEquals("cool", PI.getComments().get(0).getMessage());
+        assertEquals((Integer) 4, PI.getComments().get(0).getGrade());
+        
     }
-
+    
     @Test
-    public void getGradeTest(){
-        assertEquals(true,PI.addComment("cool",4));
-        assertEquals(true,PI.addComment("frai",3));
-        assertEquals(3.5,PI.getGrade(),0.1);
+    public void getGradeTest ()
+    {
+        assertEquals(true, PI.addComment("cool", 4));
+        assertEquals(true, PI.addComment("frai", 3));
+        assertEquals(3.5, PI.getGrade(), 0.1);
     }
     
     

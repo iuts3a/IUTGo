@@ -16,26 +16,28 @@ public class User implements Serializable
     private String      userName;
     private String      email;
     private String      password;
-    private Coordinates adresse;
+    private Coordinates address;
+    private Boolean     isAdmin;
     
     private HashMap<String, RoadTrip> favoriteRoadTrips;
     
     public User (String lastName, String firstName, String userName, String email, String password, Coordinates coordinates)
     {
-        setLastName(lastName);
-        setFirstName(firstName);
+        setLastName(lastName.toUpperCase());
+        setFirstName(firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase());
         setUserName(userName);
         setEmail(email);
         setPassword(password);
         setAddress(coordinates);
-        favoriteRoadTrips = new HashMap<String, RoadTrip>();
+        setFavoriteRoadTrips(new HashMap<String, RoadTrip>());
+        setAdmin(false);
     }
     
     @SuppressWarnings("unchecked")
     public static HashMap<String, User> read () throws IOException, ClassNotFoundException
     {
         File file = new File("./Sauv/User.ser");
-        
+    
         ObjectInputStream ooi;
         
         try
@@ -46,7 +48,7 @@ public class User implements Serializable
         {
             ooi = new ObjectInputStream(new FileInputStream(file));
         }
-        
+    
         return (HashMap<String, User>) ooi.readObject();
     }
     
@@ -65,7 +67,7 @@ public class User implements Serializable
         return lastName;
     }
     
-    public void setLastName (String lastName)
+    private void setLastName (String lastName)
     {
         this.lastName = lastName;
     }
@@ -90,16 +92,6 @@ public class User implements Serializable
         this.userName = userName;
     }
     
-    public Coordinates getAddress ()
-    {
-        return adresse;
-    }
-    
-    private void setAddress (Coordinates adresse)
-    {
-        this.adresse = adresse;
-    }
-    
     public String getPassword ()
     {
         return password;
@@ -120,16 +112,41 @@ public class User implements Serializable
         this.email = email;
     }
     
-    //endregion
+    public Coordinates getAddress ()
+    {
+        return address;
+    }
+    
+    private void setAddress (Coordinates adresse)
+    {
+        this.address = adresse;
+    }
+    
+    public Boolean getAdmin ()
+    {
+        return isAdmin;
+    }
+    
+    public void setAdmin (Boolean admin)
+    {
+        isAdmin = admin;
+    }
     
     public HashMap<String, RoadTrip> getFavoriteRoadTrips ()
     {
         return favoriteRoadTrips;
     }
     
-    public boolean suggestPointInteret (String namePointInterest, PointInterestType type, float price, Coordinates coordinates)
+    private void setFavoriteRoadTrips (HashMap<String, RoadTrip> favoriteRoadTrips)
     {
-        PointInterest newPointInterest = new PointInterest(namePointInterest, type, price, coordinates, this);
+        this.favoriteRoadTrips = favoriteRoadTrips;
+    }
+    
+    //endregion
+    
+    public boolean suggestPointInteret (String poinInterestName, PointInterestType type, float price, Coordinates coordinates)
+    {
+        PointInterest newPointInterest = new PointInterest(poinInterestName, type, price, coordinates, this);
         
         try
         {
@@ -150,9 +167,9 @@ public class User implements Serializable
         //endregion
     }
     
-    public boolean suggestPointInteret (String namePointInterest, String comment, PointInterestType type, float price, Coordinates coordinates)
+    public boolean suggestPointInteret (String poinInterestName, String comment, PointInterestType type, float price, Coordinates coordinates)
     {
-        PointInterest newPointInterest = new PointInterest(namePointInterest, comment, type, price, coordinates, this);
+        PointInterest newPointInterest = new PointInterest(poinInterestName, comment, type, price, coordinates, this);
         
         try
         {
@@ -173,13 +190,11 @@ public class User implements Serializable
         //endregion
     }
     
-    public boolean commentPointInteret (String namePointInterest, String comment, Integer grade)
+    public boolean commentPointInteret (String poinInterestName, String comment, Integer grade)
     {
         try
         {
-            PointInterest p = PointInterest.read().get(namePointInterest);
-            p.addComment(comment, grade);
-            p.save();
+            PointInterest.read().get(poinInterestName).addComment(comment, grade);
             return true;
         }
         //region catch
@@ -199,10 +214,35 @@ public class User implements Serializable
     public boolean createRoadTrip (String roadTripName)
     {
         RoadTrip newRoadTrip = new RoadTrip(roadTripName, this);
+    
+        try
+        {
+            newRoadTrip.save();
+            addRoadTripToFavorite(newRoadTrip.getName());
+            return true;
+        }
+        //region catch
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        //endregion
+    }
+    
+    public boolean createRoadTrip (String roadTripName, String pointInterestName)
+    {
+        RoadTrip newRoadTrip = new RoadTrip(roadTripName, pointInterestName, this);
         
         try
         {
             newRoadTrip.save();
+            addRoadTripToFavorite(newRoadTrip.getName());
             return true;
         }
         //region catch
@@ -223,64 +263,70 @@ public class User implements Serializable
     {
         try
         {
-            HashMap<String, RoadTrip> roadTripList = RoadTrip.read();
-            roadTripList.remove(roadTripName);
-    
-            File file = new File("./Sauv/User.ser");
-    
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(roadTripList);
-            return true;
-        }
-        //region catch
-        catch (IOException e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-        //endregion
-    }
-    
-    public boolean addPointInteretToRoadTrip (String roadTripName, String name, PointInterestType type, float price, Coordinates coordinates)
-    {
-        PointInterest pointInterest = new PointInterest(name, type, price, coordinates, this);
-        try
-        {
-            pointInterest.save();
-            RoadTrip.read().get(roadTripName).addPointInterest(pointInterest);
-            return true;
-        }
-        //region catch
-        catch (IOException e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-        //endregion
-    }
-    
-    public boolean addPointInteretToRoadTrip (String roadTripName, String name, String description, PointInterestType type, float price, Coordinates coordinates)
-    {
-        PointInterest pointInterest = new PointInterest(name, description, type, price, coordinates, this);
-        try
-        {
-            if(!(PointInterest.read().containsKey(pointInterest.getName()))) return false;
-            if(!(RoadTrip.read().containsKey(roadTripName))) return false;
-            if(RoadTrip.read().get(roadTripName).getPointInterests().containsKey(pointInterest.getName())) return false;
-            pointInterest.save();
             RoadTrip roadTrip = RoadTrip.read().get(roadTripName);
-            roadTrip.addPointInterest(pointInterest);
+            roadTrip.delete();
+            return true;
+        }
+        //region catch
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        //endregion
+    }
+    
+    public void signIn (String roadTripName)
+    {
+        try
+        {
+            RoadTrip roadTrip = RoadTrip.read().get(roadTripName);
+            roadTrip.addParticipants(this);
             roadTrip.save();
+        }
+        //region catch
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        //endregion
+    }
+    
+    public void signOut (String roadTripName)
+    {
+        try
+        {
+            RoadTrip roadTrip = RoadTrip.read().get(roadTripName);
+            roadTrip.deleteParticipants(this.getEmail());
+            roadTrip.save();
+        }
+        //region catch
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        //endregion
+    }
+    
+    public boolean addPointInteretToRoadTrip (String roadTripName, String pointInterestName)
+    {
+        try
+        {
+            PointInterest pointInterest = PointInterest.read().get(pointInterestName);
+            RoadTrip.read().get(roadTripName).addPointInterest(pointInterest);
             return true;
         }
         //region catch
@@ -301,7 +347,9 @@ public class User implements Serializable
     {
         try
         {
+            RoadTrip roadTrip = new RoadTrip(RoadTrip.read().get(roadTripName).getName(), this);
             RoadTrip.read().get(roadTripName).deletePointInterest(pointInteretName);
+            roadTrip.save();
             return true;
         }
         //region catch
@@ -318,17 +366,16 @@ public class User implements Serializable
         //endregion
     }
     
-    public boolean addRoadTripToFavorite (String name)
+    public boolean addRoadTripToFavorite (String roadTripName)
     {
         try
         {
-            if(RoadTrip.read().containsKey(name) && !favoriteRoadTrips.containsKey(name))
-            {
-                favoriteRoadTrips.put(RoadTrip.read().get(name).getName(), RoadTrip.read().get(name));
-                this.save();
-                return true;
-            }
-            return false;
+            if(!RoadTrip.read().containsKey(roadTripName)) return false;
+    
+            RoadTrip RT = RoadTrip.read().get(roadTripName);
+    
+            favoriteRoadTrips.put(RT.getName(), RT);
+            return true;
         }
         //region catch
         catch (IOException e)
@@ -364,7 +411,7 @@ public class User implements Serializable
         //endregion
     }
     
-    public ArrayList<RoadTrip> getRoadTripByScore (float score)
+    public ArrayList<RoadTrip> getRoadTripByGrade (float grade)
     {
         ArrayList<RoadTrip> listResult = new ArrayList<RoadTrip>();
         
@@ -372,7 +419,7 @@ public class User implements Serializable
         {
             for (RoadTrip roadTrip : RoadTrip.read().values())
             {
-                if(roadTrip.getGrade() >= score)
+                if(roadTrip.getGrade() >= grade)
                 {
                     listResult.add(roadTrip);
                 }
@@ -403,15 +450,15 @@ public class User implements Serializable
         HashMap<String, User> hashMap;
         
         hashMap = (HashMap<String, User>) ooi.readObject();
-        
-        if(hashMap.containsKey(this.getEmail()))
-        {
-            hashMap.remove(this.getEmail());
-        }
         hashMap.put(this.getEmail(), this);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         
         oos.writeObject(hashMap);
     }
     
+    @Override
+    public String toString ()
+    {
+        return getUserName() + " (" + getLastName() + " " + getFirstName() + ")";
+    }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="IUTGo.Controllers.PointInterestSearchController">
+    <children>
+        <Label layoutX="85.0" layoutY="250.0" prefHeight="26.0" text="Type :" AnchorPane.rightAnchor="663.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <ImageView fitHeight="130.0" fitWidth="230.0" layoutX="285.0" layoutY="70.0"
+                   onMouseClicked="#homePage_onMouseClick">
+            <image>
+                <Image url="@img/iutGo.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="btnReset" layoutX="90.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnReset_onAction"
+                prefHeight="26.0" text="Reset"/>
+        <Button fx:id="btnSearch" defaultButton="true" layoutX="170.0" layoutY="360.0" mnemonicParsing="false"
+                onAction="#btnSearch_onAction" prefHeight="26.0" text="Search"/>
+        <Button fx:id="btnShowPI" layoutX="515.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnShowPI_onAction"
+                prefHeight="26.0" text="Show Point Interest" AnchorPane.rightAnchor="150.0"/>
+        <Button fx:id="btnBack" cancelButton="true" layoutX="24.0" layoutY="19.0" mnemonicParsing="false"
+                onAction="#btnBack_onAction" onMouseClicked="#homePage_onMouseClick" text="Back"
+                AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0"/>
+        <ListView fx:id="listViewPI" layoutX="320.0" layoutY="250.0" prefHeight="225.0" prefWidth="330.0"/>
+        <ComboBox fx:id="ddlType" layoutX="137.0" layoutY="250.0" prefHeight="26.0" prefWidth="150.0"/>
+        <Label layoutX="97.0" layoutY="290.0" prefHeight="26.0" text="Grade : " AnchorPane.rightAnchor="663.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <ComboBox fx:id="ddlGrade" layoutX="137.0" layoutY="290.0" prefHeight="26.0" prefWidth="77.0"/>
+    </children>
+</AnchorPane>

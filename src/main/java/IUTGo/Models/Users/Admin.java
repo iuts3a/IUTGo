@@ -8,7 +8,6 @@ import java.io.IOException;
 
 public class Admin extends User
 {
-    
     public Admin (String firstName, String lastName, String userName, String email, String password, Coordinates coordinates)
     {
         super(firstName, lastName, userName, email, password, coordinates);

@@ -61,18 +61,18 @@ public class PointInterest implements Serializable
         return (HashMap<String, PointInterest>) ooi.readObject();
     }
     
-    //region Getters and Setters
-    
     public static void createSaveFile () throws IOException
     {
         File file = new File("./Sauv/PI.ser");
-        
+    
         HashMap<String, PointInterest> hashMap = new HashMap<String, PointInterest>();
-        
+    
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(hashMap);
-        
+    
     }
+    
+    //region Getters and Setters
     
     public String getName ()
     {
@@ -161,8 +161,6 @@ public class PointInterest implements Serializable
         PointInterest pointInterest;
         try
         {
-           // PointInterest.read().remove(getName());
-            //PointInterest.read().put(getName(), this);
             this.save();
             return true;
         }
@@ -186,16 +184,10 @@ public class PointInterest implements Serializable
         {
             grade += comment.getGrade();
         }
-        return comments.size() > 0 ? grade/comments.size() : grade;
+        
+        return grade / comments.size();
     }
     
-    @Override
-    public String toString ()
-    {
-        return "PointInterest{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", type='" + getType() + '\'' + ", price=" + price + ", note=" + getGrade() + '}';
-    }
-    
-    @SuppressWarnings("unchecked")
     public void save () throws IOException, ClassNotFoundException
     {
         File file = new File("./Sauv/PI.ser");
@@ -212,5 +204,25 @@ public class PointInterest implements Serializable
         hashMap.put(this.getName(), this);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(hashMap);
+    }
+    
+    @Override
+    public String toString ()
+    {
+        String commentsToString = "";
+        
+        for (Comment c : getComments())
+        {
+            commentsToString += "\n\t\t\t\t" + c;
+        }
+        
+        if(getDescription().isEmpty())
+        {
+            return getName() + " :\ttype : " + getType() + " :\tprice : " + getPrice() + "€\tgrade : " + getGrade() + "/5\n\t\t\tcomments : " + commentsToString;
+        }
+        else
+        {
+            return getName() + " :\ttype : " + getType() + " :\tprice : " + getPrice() + "€\tgrade : " + getGrade() + "/5\n\tdescription : " + getDescription() + "\n\t\t\tcomments : " + commentsToString;
+        }
     }
 }

@@ -3,121 +3,72 @@ package IUTGo.Controllers;
 import IUTGo.Models.CurrentUser;
 import IUTGo.Models.RoadTrip;
 import IUTGo.Models.Users.User;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- Created by vmonsch on 08/02/2017.
- */
-
-@SuppressWarnings({"unchecked", "ConstantConditions"})
 public class UserInfoController
 {
-    @FXML
-    private ListView<String> tv_roadtrip;
-    @FXML
-    private Button   btn_show_roadtrip;
-    @FXML
-    private Button   btn_delete_rt;
-    @FXML
-    private Button   retour;
-    @FXML
-    private Button   btn_create_rt;
-    @FXML
-    private Label    name;
-    @FXML
-    private Label    firstName;
-    @FXML
-    private Label    email;
+    public Button           btnBack;
+    public Button           btnShowRT;
+    public Label            lblEmail;
+    public Label            lblFullName;
+    public ListView<String> listViewRT;
+    public Label            lblUserName;
+    public Button           btnRemoveRT;
     
     @FXML
     void initialize ()
     {
         User user = CurrentUser.getInstance().getUser();
-        
-        name.setText(user.getLastName());
-        firstName.setText(user.getFirstName());
-        email.setText(user.getEmail());
-        
-        ObservableList data = FXCollections.observableArrayList();
-        
-        for (int i = 0; i < user.getFavoriteRoadTrips().size(); i++)
-        {
-            data.add(user.getFavoriteRoadTrips().get(i).getName());
-        }
-        tv_roadtrip.setItems(data);
-        
+    
+        lblEmail.setText(user.getEmail());
+        lblFullName.setText(user.getUserName());
+        lblFullName.setText(user.getLastName() + " " + user.getFirstName());
+    
+        listViewRT.getItems().clear();
+        Service.populateListView(listViewRT, user.getFavoriteRoadTrips().keySet());
     }
     
-    @FXML
-    void create_rt (ActionEvent event)
+    public void btnShowRT (ActionEvent actionEvent)
     {
-        try
+        if(listViewRT.getSelectionModel().getSelectedItem() != null)
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(CreateItineraireController.class.getClassLoader().getResource(
-                    "RoadTripCreation.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = (Stage) btn_create_rt.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource("Roadtrip.fxml"));
+    
+            String selectedItem = listViewRT.getSelectionModel().getSelectedItem();
+    
+            ((RoadTripController) fxmlLoader.getController()).pipeline(selectedItem, "UserInfo.fxml");
+    
+            Service.goTo("RoadTrip.fxml", (Stage) btnBack.getScene().getWindow());
         }
-        catch (IOException ex)
-        {
-            System.err.println("Erreur au chargement: " + ex);
-        }
-        
+    
+        initialize();
     }
     
-    @FXML
-    void show_roadtrip (ActionEvent event)
+    public void btnRemoveRT (ActionEvent actionEvent)
     {
-        if(tv_roadtrip.getSelectionModel().getSelectedItem() != null)
+        if(listViewRT.getSelectionModel().getSelectedItem() != null)
         {
             try
             {
-                FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource(
-                        "Roadtrip.fxml"));
-                Parent root = fxmlLoader.load();
-                Stage stage = (Stage) btn_create_rt.getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                ((RoadTripController) fxmlLoader.getController()).pipeline((String) tv_roadtrip.getSelectionModel().getSelectedItem());
-                stage.show();
+                User currentUser = CurrentUser.getInstance().getUser();
+                String selectedRoadTrip = listViewRT.getSelectionModel().getSelectedItem();
+                RoadTrip roadTrip = RoadTrip.read().get(selectedRoadTrip);
+            
+                roadTrip.deleteParticipants(currentUser.getUserName());
+            
+                currentUser.getFavoriteRoadTrips().remove(selectedRoadTrip);
+            
             }
-            catch (IOException ex)
-            {
-                System.err.println("test " + ex);
-            }
-        }
-    }
-    
-    @FXML
-    void delete_rt (ActionEvent event)
-    {
-        if(tv_roadtrip.getSelectionModel().getSelectedItem() != null)
-        {
-            try
-            {
-                String emailUser = CurrentUser.getInstance().getUser().getEmail();
-                String roadTripSelected = (String) tv_roadtrip.getSelectionModel().getSelectedItem();
-                
-                
-                RoadTrip.read().get(roadTripSelected).deleteParticipants(emailUser);
-                CurrentUser.getInstance().getUser().getFavoriteRoadTrips().remove(RoadTrip.read().get(roadTripSelected));
-                
-            }
+            //region catch
             catch (IOException e)
             {
                 e.printStackTrace();
@@ -126,27 +77,19 @@ public class UserInfoController
             {
                 e.printStackTrace();
             }
-            
-            //initialize();
+            //endregion
         }
+    
+        initialize();
     }
     
-    @FXML
-    void retour (ActionEvent event)
+    public void btnBack_onAction (ActionEvent actionEvent)
     {
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomePageConnectedController.class.getClassLoader().getResource(
-                    "HomePageConnected.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = (Stage) retour.getScene().getWindow();
-            Scene scene = new Scene(root, 1000, 510);
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch (IOException ex)
-        {
-            System.err.println("Erreur au chargement: " + ex);
-        }
+        Service.goTo("HomePageConnected.fxml", (Stage) btnBack.getScene().getWindow());
+    }
+    
+    public void homePage_onMouseClick (MouseEvent mouseEvent)
+    {
+        Service.goTo("HomePageConnected.fxml", (Stage) btnBack.getScene().getWindow());
     }
 }

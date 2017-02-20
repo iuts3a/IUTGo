@@ -1,46 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.AdminController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="IUTGo.Controllers.AdminController">
     <children>
-        <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="223.0" layoutY="37.0" onMouseClicked="#homepage">
+        <ImageView fitHeight="130.0" fitWidth="230.0" layoutX="285.0" layoutY="70.0"
+                   onMouseClicked="#homePage_onMouseClicks">
             <image>
-                <Image url="@./img/iutGo.png" />
+                <Image url="@./img/iutGo.png"/>
             </image>
         </ImageView>
-        <Label layoutX="210.0" layoutY="195.0" text="Espace administrateur">
+        <Label layoutX="298.0" layoutY="228.0" prefHeight="26.0" text="Point Interest Validation :">
             <font>
-                <Font name="Arial Bold" size="24.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
-        <VBox layoutX="155.0" layoutY="277.0" prefHeight="270.0" prefWidth="353.0">
-            <children>
-                <HBox prefHeight="48.0" prefWidth="345.0">
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </HBox>
-                <ListView fx:id="tv_pending_approval" prefHeight="180.0" prefWidth="345.0" />
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                        <Button fx:id="btn_accept" mnemonicParsing="false" onAction="#accept" prefHeight="66.0" prefWidth="169.0" text="Accepter laproposition" textAlignment="CENTER" wrapText="true" />
-                        <Button fx:id="btn_refuse" mnemonicParsing="false" onAction="#refuse" prefHeight="66.0" prefWidth="172.0" text="Refuser laproposition" textAlignment="CENTER" wrapText="true">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Button>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </HBox>
-            </children>
-        </VBox>
-        <Button fx:id="retour" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#goBack" text="Retour" />
+        <Button fx:id="btnRejecet" layoutX="503.0" layoutY="466.0" mnemonicParsing="false"
+                onAction="#btnRejecet_onAction" prefHeight="26.0" prefWidth="70.0" text="Reject" textAlignment="CENTER"
+                wrapText="true">
+            <HBox.margin>
+                <Insets left="10.0"/>
+            </HBox.margin>
+        </Button>
+        <Button fx:id="btnAccept" defaultButton="true" layoutX="228.0" layoutY="466.0" mnemonicParsing="false"
+                onAction="#btnAccept_onAction" prefHeight="26.0" prefWidth="70.0" text="Accept" textAlignment="CENTER"
+                wrapText="true"/>
+        <ListView fx:id="listViewPendingAprouval" layoutX="228.0" layoutY="271.0" prefHeight="180.0" prefWidth="345.0"/>
+        <Button fx:id="btnBack" cancelButton="true" mnemonicParsing="false" onAction="#btnBack_onAction"
+                prefHeight="26.0" text="Back" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0"/>
     </children>
 </AnchorPane>

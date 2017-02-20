@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="IUTGo.Controllers.RoadTripSearchController">
+    <children>
+        <Label layoutX="180.0" layoutY="235.0" prefHeight="26.0" text="RoadTrip's Name :">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <TextField fx:id="txtRTName" layoutX="306.0" layoutY="235.0" prefHeight="26.0" promptText="MyRoadTrip"/>
+        <ImageView fitHeight="130.0" fitWidth="220.0" layoutX="275.0" layoutY="70.0"
+                   onMouseClicked="#homePage_onMouseClick">
+            <image>
+                <Image url="@img/iutGo.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="btnReset" layoutX="551.0" layoutY="235.0" mnemonicParsing="false" onAction="#btnReset_onAction"
+                prefHeight="26.0" text="Reset"/>
+        <Button fx:id="btnFilter" defaultButton="true" layoutX="480.0" layoutY="235.0" mnemonicParsing="false"
+                onAction="#btnFilter_onAction" prefHeight="26.0" text="Search"/>
+        <Button fx:id="btnShowRT" layoutX="318.0" layoutY="491.0" mnemonicParsing="false" onAction="#btnShowRTonAction"
+                prefHeight="26.0" text="Show selected RoadTrip"/>
+        <Button fx:id="btnBack" cancelButton="true" mnemonicParsing="false" onAction="#btnBack_onAction" text="Back"
+                AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0"/>
+        <ListView fx:id="listViewRT" layoutX="168.0" layoutY="276.0" prefHeight="200.0" prefWidth="440.0"/>
+    </children>
+</AnchorPane>

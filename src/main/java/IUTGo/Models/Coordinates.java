@@ -1,6 +1,5 @@
 package IUTGo.Models;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 public class Coordinates implements Serializable
@@ -8,13 +7,13 @@ public class Coordinates implements Serializable
     
     private float  latitude;
     private float  longitude;
-    private String city;
+    private String town;
     
-    public Coordinates (float latitude, float longitude, String city) throws IOException
+    public Coordinates (float latitude, float longitude, String town)
     {
         setLatitude(latitude);
         setLongitude(longitude);
-        setCity(city);
+        setTown(town);
     }
     
     //region Getters and Setters
@@ -38,20 +37,20 @@ public class Coordinates implements Serializable
         this.longitude = longitude;
     }
     
-    public String getCity ()
+    public String getTown ()
     {
-        return city;
+        return town;
     }
     
-    private void setCity (String city)
+    private void setTown (String town)
     {
-        this.city = city;
+        this.town = town;
     }
     //endregion
     
     @Override
     public String toString ()
     {
-        return "Coordinates{" + "latitude=" + latitude + ", longitude=" + longitude + ", city='" + city + '\'' + '}';
+        return "Coordinates{" + "latitude=" + latitude + ", longitude=" + longitude + ", town='" + town + '\'' + '}';
     }
 }

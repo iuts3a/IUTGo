@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="IUTGo.Controllers.ConnexionController">
+    <children>
+        <Label layoutX="355.0" layoutY="212.0" prefWidth="90.0" text="Sign in :">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <Button fx:id="btnConnexion" defaultButton="true" layoutX="364.0" layoutY="353.0" mnemonicParsing="false"
+                onAction="#btnConnexion_onAction" prefHeight="26.0" text="Let's go !" GridPane.columnIndex="1"
+                GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+        <Label layoutX="250.0" layoutY="262.0" prefHeight="26.0" text="Email :" GridPane.halignment="CENTER"
+               GridPane.valignment="CENTER">
+            <font>
+                <Font size="18.0"/>
+            </font>
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="213.0" layoutY="302.0" prefHeight="26.0" text="Password :" GridPane.halignment="CENTER"
+               GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <font>
+                <Font size="18.0"/>
+            </font>
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <TextField fx:id="txtEmail" layoutX="320.0" layoutY="262.0" prefHeight="26.0" prefWidth="160.0"
+                   promptText="my.email@gmail.com" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                   GridPane.valignment="CENTER"/>
+        <PasswordField fx:id="txtPassword" layoutX="320.0" layoutY="302.0" prefHeight="26.0" prefWidth="160.0"
+                       promptText="mySecretPassword" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                       GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
+        <ImageView fitHeight="130.0" fitWidth="230.0" layoutX="285.0" layoutY="70.0"
+                   onMouseClicked="#homePage_onMouseClick">
+            <image>
+                <Image url="@img/iutGo.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="btnBack" cancelButton="true" mnemonicParsing="false" onAction="#btnBack_onAction"
+                prefHeight="26.0" text="Back" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0"/>
+        <Label fx:id="error_login" layoutX="499.0" layoutY="282.0" prefHeight="26.0" textFill="#ff0202"/>
+    </children>
+</AnchorPane>

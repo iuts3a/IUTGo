@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
@@ -7,30 +8,111 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.InscriptionController">
-   <children>
-      <TextField fx:id="name" layoutX="324.0" layoutY="189.0" prefHeight="26.0" prefWidth="246.0" />
-      <TextField fx:id="firstName" layoutX="324.0" layoutY="243.0" prefHeight="26.0" prefWidth="247.0" />
-      <TextField fx:id="user" layoutX="325.0" layoutY="298.0" prefHeight="26.0" prefWidth="245.0" promptText="Doit contenir minimum 6 caracteres. " />
-      <TextField fx:id="mail" layoutX="326.0" layoutY="356.0" prefHeight="26.0" prefWidth="245.0" />
-      <PasswordField fx:id="password" layoutX="324.0" layoutY="417.0" prefHeight="26.0" prefWidth="249.0" />
-      <PasswordField fx:id="confirmPassword" layoutX="324.0" layoutY="478.0" prefHeight="26.0" prefWidth="251.0" />
-      <CheckBox fx:id="conditions" layoutX="196.0" layoutY="548.0" mnemonicParsing="false" text="En cliquant sur ce bouton, j'accepte les conditions d'utiisation" />
-      <Button fx:id="validate" layoutX="380.0" layoutY="613.0" mnemonicParsing="false" onAction="#validate" prefHeight="20.0" prefWidth="100.0" text="Valider" />
-      <Label layoutX="120.0" layoutY="194.0" text="Nom : " />
-      <Label layoutX="120.0" layoutY="248.0" text="Prénom : " />
-      <Label layoutX="120.0" layoutY="303.0" text="Nom d'utilisateur : " />
-      <Label layoutX="119.0" layoutY="361.0" text="Adresse mail : " />
-      <Label layoutX="120.0" layoutY="422.0" text="Mot de passe : " />
-      <Label layoutX="119.0" layoutY="483.0" text="Confirmation mot de passe : " />
-      <Button fx:id="back" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="100.0" text="Retour" />
-      <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="289.0" layoutY="28.0" onMouseClicked="#homepage" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/iutGo.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="error_user" layoutX="602.0" layoutY="303.0" text="Choisir un pseudo plus long" textFill="RED" />
-      <Label fx:id="error_password" layoutX="596.0" layoutY="483.0" text="Le mot de passe n'est pas identique" textFill="RED" />
-      <Label fx:id="error_email" layoutX="602.0" layoutY="361.0" text="Cet email existe déja" textFill="RED" />
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="IUTGo.Controllers.InscriptionController">
+    <children>
+        <TextField fx:id="txtLastName" layoutX="270.0" layoutY="222.0" prefHeight="26.0" prefWidth="250.0"
+                   promptText="Only letters allowed"/>
+        <TextField fx:id="txtFirstName" layoutX="270.0" layoutY="262.0" prefHeight="26.0" prefWidth="250.0"
+                   promptText="Only letters allowed"/>
+        <TextField fx:id="txtUserName" layoutX="270.0" layoutY="302.0" prefHeight="26.0" prefWidth="250.0"
+                   promptText="Must be minimum 6 characters"/>
+        <TextField fx:id="txtEmail" layoutX="270.0" layoutY="342.0" prefHeight="26.0" prefWidth="250.0"
+                   promptText="Valid Email"/>
+        <PasswordField fx:id="txtPassword1" layoutX="270.0" layoutY="382.0" prefHeight="26.0" prefWidth="250.0"
+                       promptText="Strong Password"/>
+        <PasswordField fx:id="txtPassword2" layoutX="270.0" layoutY="422.0" prefHeight="26.0" prefWidth="250.0"
+                       promptText="Must match previous Password"/>
+        <TextField fx:id="txtXpos" layoutX="270.0" layoutY="462.0" prefHeight="26.0" prefWidth="70.0"
+                   promptText="Xpos"/>
+        <TextField fx:id="txtYpos" layoutX="350.0" layoutY="462.0" prefHeight="26.0" prefWidth="70.0"
+                   promptText="Ypos"/>
+        <TextField fx:id="txtTown" layoutX="430.0" layoutY="462.0" prefHeight="26.0" prefWidth="90.0"
+                   promptText="Town"/>
+        <Button fx:id="btnSubmit" defaultButton="true" layoutX="345.0" layoutY="502.0" mnemonicParsing="false"
+                onAction="#btnSubmit_onAction" prefHeight="20.0" prefWidth="100.0" text="Submit"/>
+        <Label layoutX="183.0" layoutY="222.0" prefHeight="26.0" text="Last Name :" AnchorPane.rightAnchor="530.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="183.0" layoutY="262.0" prefHeight="26.0" text="First Name :" AnchorPane.rightAnchor="530.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="177.0" layoutY="302.0" prefHeight="26.0" text="User Name :" AnchorPane.rightAnchor="530.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="211.0" layoutY="342.0" prefHeight="26.0" text="Email :" AnchorPane.rightAnchor="530.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="185.0" layoutY="382.0" prefHeight="26.0" text="Password :" AnchorPane.rightAnchor="530.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="127.0" layoutY="422.0" prefHeight="26.0" text="Confirm Password :"
+               AnchorPane.rightAnchor="530.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="147.0" layoutY="462.0" prefHeight="26.0" text="Coordinates :" AnchorPane.rightAnchor="530.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="error_user" layoutX="520.0" layoutY="302.0" prefHeight="26.0" textFill="RED"
+               AnchorPane.leftAnchor="520.0">
+            <padding>
+                <Insets left="15.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="error_password2" layoutX="520.0" layoutY="422.0" prefHeight="26.0" textFill="RED"
+               AnchorPane.leftAnchor="520.0">
+            <padding>
+                <Insets left="15.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="error_email" layoutX="520.0" layoutY="342.0" prefHeight="26.0" textFill="RED"
+               AnchorPane.leftAnchor="520.0">
+            <padding>
+                <Insets left="15.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="error_lastName" layoutX="520.0" layoutY="262.0" prefHeight="26.0" textFill="RED">
+            <padding>
+                <Insets left="15.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="error_firstName" layoutX="520.0" layoutY="222.0" prefHeight="26.0" textFill="RED">
+            <padding>
+                <Insets left="15.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="error_password1" layoutX="520.0" layoutY="382.0" prefHeight="26.0" textFill="RED">
+            <padding>
+                <Insets left="15.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="error_coordinates" layoutX="520.0" layoutY="462.0" prefHeight="26.0" textFill="RED">
+            <padding>
+                <Insets left="15.0"/>
+            </padding>
+        </Label>
+        <Button fx:id="btnBack" cancelButton="true" layoutX="14.0" layoutY="15.0" mnemonicParsing="false"
+                onAction="#btnBack_onAction" prefHeight="26.0" text="Back" AnchorPane.leftAnchor="30.0"
+                AnchorPane.topAnchor="30.0"/>
+        <ImageView fitHeight="130.0" fitWidth="230.0" layoutX="285.0" layoutY="70.0"
+                   onMouseClicked="#homePage_onMouseClick">
+            <image>
+                <Image url="@img/iutGo.png"/>
+            </image>
+        </ImageView>
+    </children>
 </AnchorPane>

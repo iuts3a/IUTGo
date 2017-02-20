@@ -7,84 +7,51 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.OtherUserInfoController">
-   <children>
-      <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="273.0" layoutY="37.0">
-         <image>
-            <Image url="@./img/iutGo.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="201.0" layoutY="186.0" text="Les information de">
-         <font>
-            <Font name="Arial Bold" size="24.0" />
-         </font>
-      </Label>
-      <VBox layoutX="201.0" layoutY="213.0" prefHeight="468.0" prefWidth="345.0">
-         <children>
-            <Label fx:id="lb_name" text="Nom">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="lb_lastname" text="Prenom">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="lb_email" text="E-mail">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="lb_telephone" text="Numéro de téléphone">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <HBox prefHeight="48.0" prefWidth="345.0">
-               <children>
-                  <Label text="Les RoadTrips">
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </HBox>
-            <ListView fx:id="tv_roadtrip" prefHeight="180.0" prefWidth="345.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="btn_show_roadtrip" mnemonicParsing="false" onAction="#show_roadtrip" prefHeight="66.0" prefWidth="169.0" text="Afficher ce RoadTrip" textAlignment="CENTER" wrapText="true">
-                     <HBox.margin>
-                        <Insets left="90.0" right="90.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </HBox>
-         </children>
-      </VBox>
-      <Button fx:id="retour" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
-      <Label fx:id="label_userName" layoutX="433.0" layoutY="186.0" text="User">
-         <font>
-            <Font name="Arial Bold" size="24.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="IUTGo.Controllers.OtherUserInfoController">
+    <children>
+        <ImageView fitHeight="130.0" fitWidth="230.0" layoutX="285.0" layoutY="70.0"
+                   onMouseClicked="#homePage_onMouseClick">
+            <image>
+                <Image url="@./img/iutGo.png"/>
+            </image>
+        </ImageView>
+        <Label alignment="CENTER" layoutX="228.0" layoutY="298.0" prefHeight="26.0" text="RoadTrips :">
+            <padding>
+                <Insets bottom="10.0"/>
+            </padding>
+        </Label>
+        <Button fx:id="btnShowRT" defaultButton="true" layoutX="228.0" layoutY="509.0" mnemonicParsing="false"
+                onAction="#btnShowRT_onAction" prefHeight="26.0" prefWidth="120.0" text="Show RoadTrip"
+                textAlignment="CENTER" wrapText="true">
+            <HBox.margin>
+                <Insets left="90.0" right="90.0"/>
+            </HBox.margin>
+        </Button>
+        <Label fx:id="lblEmail" alignment="CENTER" layoutX="381.0" layoutY="288.0" prefHeight="26.0" text="E-mail">
+            <padding>
+                <Insets bottom="10.0"/>
+            </padding>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <Label fx:id="lblFullName" alignment="CENTER" layoutX="371.0" layoutY="262.0" prefHeight="26.0" text="FullName"
+               AnchorPane.leftAnchor="371.0">
+            <padding>
+                <Insets bottom="10.0"/>
+            </padding>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <ListView fx:id="listViewRT" layoutX="228.0" layoutY="324.0" prefHeight="180.0" prefWidth="345.0"/>
+        <Button fx:id="btnBack" cancelButton="true" layoutX="22.0" layoutY="21.0" mnemonicParsing="false"
+                onAction="#btnBack_onAction" text="Back" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0"/>
+        <Label fx:id="lblUserName" layoutX="373.0" layoutY="210.0" text="User">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

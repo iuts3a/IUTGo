@@ -7,25 +7,63 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="633.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IUTGo.Controllers.RoadTripController">
-   <children>
-      <ImageView fitHeight="129.0" fitWidth="200.0" layoutX="327.0" layoutY="23.0" onMouseClicked="#homepage">
-         <image>
-            <Image url="@img/iutGo.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="roadtrip_name" layoutX="78.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RoadTripName">
-         <font>
-            <Font name="Arial Bold" size="24.0" />
-         </font>
-      </Text>
-      <Button layoutX="268.0" layoutY="329.0" mnemonicParsing="false" onAction="#valider" prefHeight="20.0" prefWidth="83.0" text="Valider" />
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#retour" prefHeight="31.0" prefWidth="61.0" text="Retour" />
-      <Text layoutX="107.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proposer une étape supplémentaire :" />
-      <TextField fx:id="Lieu" layoutX="108.0" layoutY="329.0" prefHeight="25.0" prefWidth="125.0" promptText="Lieux" />
-      <Text layoutX="441.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix du roadtrip : " />
-      <Label fx:id="prix_roadtrip" layoutX="560.0" layoutY="205.0" text="Label" />
-      <ListView fx:id="table_PI" layoutX="440.0" layoutY="240.0" prefHeight="308.0" prefWidth="315.0" />
-      <CheckBox fx:id="check" layoutX="108.0" layoutY="394.0" mnemonicParsing="false" text="S'inscrire" />
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="IUTGo.Controllers.RoadTripController">
+    <children>
+        <ImageView fitHeight="130.0" fitWidth="230.0" layoutX="285.0" layoutY="70.0"
+                   onMouseClicked="#homePage_onMouseClick">
+            <image>
+                <Image url="@img/iutGo.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="btnSubmit" defaultButton="true" layoutX="133.0" layoutY="400.0" mnemonicParsing="false"
+                onAction="#btnSubmit_onAction" prefHeight="20.0" prefWidth="83.0" text="Sumbit"/>
+        <Button fx:id="btnBack" cancelButton="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"
+                onAction="#btnBack_onAction" prefHeight="26.0" text="Back" AnchorPane.leftAnchor="30.0"
+                AnchorPane.topAnchor="30.0"/>
+        <ListView fx:id="listViewPI" layoutX="360.0" layoutY="280.0" prefHeight="110.0" prefWidth="415.0"
+                  AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="125.0"/>
+        <CheckBox fx:id="chkbxInscription" layoutX="174.0" layoutY="340.0" mnemonicParsing="false" prefHeight="26.0"/>
+        <Label id="PI" fx:id="lblName" alignment="CENTER" layoutX="36.0" layoutY="250.0" prefHeight="30.0"
+               prefWidth="275.0" text="Roadtrip Name" AnchorPane.topAnchor="250.0">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Label>
+        <Label layoutX="20.0" layoutY="310.0" prefHeight="26.0" text="Suggest Point Interest :"
+               AnchorPane.rightAnchor="626.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="103.0" layoutY="340.0" prefHeight="26.0" text="S'incrire :" AnchorPane.rightAnchor="626.0">
+            <padding>
+                <Insets right="15.0"/>
+            </padding>
+        </Label>
+        <ComboBox fx:id="ddlSuggestPI" layoutX="174.0" layoutY="310.0" prefHeight="26.0" prefWidth="150.0"
+                  promptText="select a Point Interest"/>
+        <ListView fx:id="listViewUsers" layoutX="360.0" layoutY="430.0" prefHeight="110.0" prefWidth="415.0"
+                  AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="125.0"/>
+        <Label layoutX="360.0" layoutY="254.0" prefHeight="26.0" text="Points Interests :"
+               AnchorPane.leftAnchor="360.0"/>
+        <Label layoutX="360.0" layoutY="404.0" prefHeight="26.0" text="Participants :" AnchorPane.leftAnchor="360.0"/>
+        <Label layoutX="487.0" layoutY="254.0" prefHeight="26.0" text="Price :" AnchorPane.rightAnchor="275.0"/>
+        <Label fx:id="txtPrice" layoutX="525.0" layoutY="254.0" prefHeight="26.0" AnchorPane.leftAnchor="525.0">
+            <padding>
+                <Insets left="5.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="txtGrade" layoutX="620.0" layoutY="254.0" prefHeight="26.0" prefWidth="0.0"
+               AnchorPane.leftAnchor="620.0">
+            <padding>
+                <Insets left="5.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="576.0" layoutY="254.0" prefHeight="26.0" text="Grade :" AnchorPane.rightAnchor="180.0"/>
+        <Button fx:id="btnShowPI" layoutX="683.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnShowPI_onAction"
+                text="Show Point Int."/>
+        <Button fx:id="btnShowUser" layoutX="683.0" layoutY="514.0" mnemonicParsing="false"
+                onAction="#btnShowUser_onAction" text="Show User"/>
+    </children>
 </AnchorPane>
