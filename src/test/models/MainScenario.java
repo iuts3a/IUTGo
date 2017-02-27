@@ -41,13 +41,7 @@ public class MainScenario
         assertEquals(true, userTest.createRoadTrip("EnglandRT"));
         
         //En tant qu'utilisateur je veux ajouter un Point d'interet au roadTrip
-        assertEquals(true,
-                     userTest.addPointInteretToRoadTrip("EnglandRT",
-                                                        "Buffalo",
-                                                        "Voyage pour faire le tour des coins touristique de l'Angleterre",
-                                                        PointInterestType.RESTAURANT,
-                                                        10,
-                                                        coordTest));
+        assertEquals(true, userTest.addPointInteretToRoadTrip("EnglandRT", "Buffalo"));
         
         // En tant qu'utilisateur je veux commenter un Point d'interet
         assertEquals(true, userTest.commentPointInteret("Buffalo", "Génial", 4));
@@ -63,7 +57,7 @@ public class MainScenario
         assertEquals(15, userTest.getRoadTripPrice("EnglandRT"), 0.0001);
         
         //En tant qu'utilisateur je souhaite  voir les road trip en fonction de leurs scores.
-        assertEquals(3, userTest.getRoadTripByScore(4).size());
+        assertEquals(3, userTest.getRoadTripByGrade(4).size());
         
         //En tant qu'utilisateur je souhaite pouvoir supprimer un point d'interet à mon road trip.
         assertEquals(true, userTest.deletePointInteretFromRoadTrip("EnglandRT", "Buffalo"));

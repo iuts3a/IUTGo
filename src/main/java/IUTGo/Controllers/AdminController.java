@@ -25,7 +25,7 @@ public class AdminController
             listViewPendingAprouval.getItems().clear();
             for (PointInterest pi : PointInterest.read().values())
             {
-                if(pi.isValidated())
+                if(!pi.isValidated())
                 {
                     Service.populateListView(listViewPendingAprouval, pi.getName());
                 }

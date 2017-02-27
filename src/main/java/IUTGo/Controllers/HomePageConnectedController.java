@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 /**
  Created by chloe on 08/02/2017.
  */
+@SuppressWarnings("ConstantConditions")
 public class HomePageConnectedController
 {
     public MenuButton menubtn;
@@ -40,7 +41,7 @@ public class HomePageConnectedController
         });
         //endregion
     
-        if(!(CurrentUser.getInstance().getUser() instanceof Admin))
+        if(CurrentUser.getInstance().getUser() instanceof Admin)
         {
             menubtn.getItems().add(new MenuItem("Admin Section"));
             //region menubtn.get(Admin Section).setOnAction

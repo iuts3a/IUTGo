@@ -19,6 +19,7 @@ import java.util.Set;
 /**
  Created by chloe on 08/02/2017.
  */
+@SuppressWarnings("ConstantConditions")
 public class RoadTripCreationController
 {
     private final User currentUser = CurrentUser.getInstance().getUser();

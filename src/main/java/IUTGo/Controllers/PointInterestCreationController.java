@@ -11,8 +11,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+@SuppressWarnings({"ConstantConditions"})
 public class PointInterestCreationController
 {
     public Label error_name;
@@ -35,26 +37,30 @@ public class PointInterestCreationController
     @FXML
     void initialize ()
     {
-        error_name.setText("");
-        error_price.setText("");
-        error_type.setText("");
-        error_coords.setText("");
-    
+        txtName.setText("");
+        txtDescription.setText("");
+        txtPrice.setText("");
+        txtXpos.setText("");
+        txtYpos.setText("");
+        txtTown.setText("");
+        
         ddlType.getItems().clear();
-    
+        
         for (PointInterestType PIT : PointInterestType.values())
         {
             ddlType.getItems().add(PIT.toString());
         }
-    
     }
     
     public void btnSubmit_onAction (ActionEvent actionEvent)
     {
+        error_coords.setText("");
+        error_coords.setTextFill(Color.web("RED"));
+        
         //region =============== TextField => String ===============
         String name = txtName.getText().trim();
         String description = txtDescription.getText().trim();
-        String type = ddlType.getSelectionModel().getSelectedItem().toString().toUpperCase();
+        String type = ddlType.getSelectionModel().getSelectedItem().toUpperCase();
         String price = txtPrice.getText().trim();
         String xpos = txtXpos.getText().trim();
         String ypos = txtYpos.getText().trim();
@@ -100,22 +106,22 @@ public class PointInterestCreationController
         //endregion
         
         //region =============== Specific Validation ===============
-        //region !price.matches("[a-zA-Z0-9]{1,2}.[a-zA-Z0-9]")
-        if(!price.matches("[a-zA-Z0-9]{1,2}.[a-zA-Z0-9]"))
+        //region !price.matches("[0-9]{1,2}(.[0-9]){0,2}")
+        if(!price.matches("[0-9]{1,2}(.[0-9]){0,2}"))
         {
             error_price.setText("Only digits allowed for Price");
             return;
         }
         //endregion
-        //region !xpos.matches("[a-zA-Z0-9]{1,2}.[a-zA-Z0-9]")
-        if(!xpos.matches("[a-zA-Z0-9]{1,2}.[a-zA-Z0-9]"))
+        //region !xpos.matches("[0-9]{1,2}(.[0-9]){0,2}")
+        if(!xpos.matches("[0-9]{1,2}(.[0-9]){0,2}"))
         {
             error_coords.setText("Only digits allowed for Xpos");
             return;
         }
         //endregion
-        //region !ypos.matches("[a-zA-Z0-9]{1,2}.[a-zA-Z0-9]")
-        if(!ypos.matches("[a-zA-Z0-9]{1,2}.[a-zA-Z0-9]"))
+        //region !ypos.matches("[0-9]{1,2}(.[0-9]){0,2}")
+        if(!ypos.matches("[0-9]{1,2}(.[0-9]){0,2}"))
         {
             error_coords.setText("Only digits allowed for Ypos");
             return;
@@ -139,10 +145,7 @@ public class PointInterestCreationController
         
         if(description.isEmpty())
         {
-            currentUser.suggestPointInteret(name,
-                                            PointInterestType.valueOf(type),
-                                            Float.parseFloat(price),
-                                            coordinates);
+            currentUser.suggestPointInteret(name, PointInterestType.valueOf(type), Float.parseFloat(price), coordinates);
         }
         else
         {
@@ -153,6 +156,8 @@ public class PointInterestCreationController
                                             coordinates);
         }
         
+        error_coords.setText("Point Interest Created.");
+        error_coords.setTextFill(Color.web("Green"));
         initialize();
     }
     

@@ -76,26 +76,26 @@
                 <Insets left="15.0"/>
             </padding>
         </Label>
-        <Label fx:id="error_name" layoutX="480.0" layoutY="230.0" prefHeight="26.0" text="Name already used or invalid"
-               textFill="RED" AnchorPane.leftAnchor="480.0">
-            <padding>
-                <Insets left="15.0"/>
-            </padding>
-        </Label>
-        <Label fx:id="error_type" layoutX="480.0" layoutY="310.0" prefHeight="26.0" text="Invalid Type" textFill="RED"
+        <Label fx:id="error_name" layoutX="480.0" layoutY="230.0" prefHeight="26.0" textFill="RED"
                AnchorPane.leftAnchor="480.0">
             <padding>
                 <Insets left="15.0"/>
             </padding>
         </Label>
-        <Label fx:id="error_price" layoutX="480.0" layoutY="350.0" prefHeight="26.0" text="Invalid Price" textFill="RED"
+        <Label fx:id="error_type" layoutX="480.0" layoutY="310.0" prefHeight="26.0" textFill="RED"
                AnchorPane.leftAnchor="480.0">
             <padding>
                 <Insets left="15.0"/>
             </padding>
         </Label>
-        <Label fx:id="error_coords" layoutX="480.0" layoutY="390.0" prefHeight="26.0" text="Invalid Coordinates"
-               textFill="RED" AnchorPane.leftAnchor="480.0">
+        <Label fx:id="error_price" layoutX="480.0" layoutY="350.0" prefHeight="26.0" textFill="RED"
+               AnchorPane.leftAnchor="480.0">
+            <padding>
+                <Insets left="15.0"/>
+            </padding>
+        </Label>
+        <Label fx:id="error_coords" layoutX="480.0" layoutY="390.0" prefHeight="26.0" textFill="RED"
+               AnchorPane.leftAnchor="480.0">
             <padding>
                 <Insets left="15.0"/>
             </padding>

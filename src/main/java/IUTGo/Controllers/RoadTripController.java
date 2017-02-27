@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+@SuppressWarnings("ConstantConditions")
 public class RoadTripController
 {
     private final User currentUser = CurrentUser.getInstance().getUser();
@@ -128,11 +129,11 @@ public class RoadTripController
         {
             FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource(
                     "PointInterest.fxml"));
-    
+            
             String selectedItem = listViewPI.getSelectionModel().getSelectedItem();
-    
+            
             ((PointInterestController) fxmlLoader.getController()).pipeline(selectedItem, "RoadTrip.fxml");
-    
+            
             Service.goTo("PointInterest.fxml", (Stage) btnBack.getScene().getWindow());
         }
     }
@@ -143,11 +144,11 @@ public class RoadTripController
         {
             FXMLLoader fxmlLoader = new FXMLLoader(RoadTripController.class.getClassLoader().getResource(
                     "OtherUserInfo.fxml"));
-    
+            
             String selectedItem = listViewUsers.getSelectionModel().getSelectedItem();
-    
+            
             ((OtherUserInfoController) fxmlLoader.getController()).pipeline(selectedItem, "RoadTrip.fxml");
-    
+            
             Service.goTo("OtherUserInfo.fxml", (Stage) btnBack.getScene().getWindow());
         }
     }
