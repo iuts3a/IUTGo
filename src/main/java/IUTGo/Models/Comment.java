@@ -2,42 +2,35 @@ package IUTGo.Models;
 
 import java.io.Serializable;
 
-public class Comment implements Serializable
-{
-    private String  message;
+public class Comment implements Serializable {
+    private String message;
     private Integer grade;
-    
-    public Comment (String message, Integer grade)
-    {
+
+    public Comment(String message, Integer grade) {
         setMessage(message);
         setGrade(grade);
     }
-    
+
     //region Getters and Setters
-    public String getMessage ()
-    {
+    public String getMessage() {
         return message;
     }
-    
-    private void setMessage (String message)
-    {
+
+    private void setMessage(String message) {
         this.message = message;
     }
-    
-    public Integer getGrade ()
-    {
+
+    public Integer getGrade() {
         return grade;
     }
-    
-    private void setGrade (Integer grade)
-    {
+
+    private void setGrade(Integer grade) {
         this.grade = grade;
     }
     //endregion
-    
+
     @Override
-    public String toString ()
-    {
+    public String toString() {
         return "Comment{" + "grade='" + getGrade() + '\'' + ", comment=" + getMessage() + '}';
     }
 }

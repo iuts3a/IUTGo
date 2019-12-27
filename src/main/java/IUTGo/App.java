@@ -9,17 +9,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class App extends Application
-{
-    public static void main (String[] args) throws Exception
-    {
-        //region uncomment to reCreate the save files
-        //RoadTrip.createSaveFile();
-        //User.createSaveFile();
-        //PointInterest.createSaveFile();
-        //endregion
-    
-        //region uncomment to show all objects
+import java.io.IOException;
+
+public class App extends Application {
+    public static void main(String[] args) {
+        try {
+            //region uncomment to reCreate the save files
+            //RoadTrip.createSaveFile();
+            //User.createSaveFile();
+            //PointInterest.createSaveFile();
+            //endregion
+
+            //region uncomment to show all objects
         /*
         CurrentUser.Init("");
         
@@ -48,33 +49,30 @@ public class App extends Application
         {
             if(a.getAdmin()) System.out.println(a);
         }*/
-        //endregion
-    
-        //region User alex = new User(...); alex.save();
-        User alex = new User("bolot",
-                             "alexandre",
-                             "Numinex222",
-                             "bolotalex06@gmail.com",
-                             "@lexandr1",
-                             new Coordinates(1, 2, "Ville"));
-        alex.save();
-        //endregion
-        //region User chloe = new User(...); chloe.save();
-        User chloe = new User("coupigny-Warot",
-                              "chloe",
-                              "chloee",
-                              "chloe.coupwarot@orange.fr",
-                              "Chloe01234",
-                              new Coordinates(1, 2, "Ville"));
-        chloe.save();
-        //endregion
-        //region Admin admin = new Admin(...); admin.save();
-        Admin admin = new Admin("Ad", "min", "administrateur", "aa@gmail.com", "a", new Coordinates(1, 2, "Ville"));
-        admin.setAdmin(true);
-        admin.save();
-        //endregion
-    
-        //region uncomment to create a Roadtrip
+            //endregion
+
+            //region User alex = new User(...); alex.save();
+            User alex = new User("bolot", "alexandre", "Numinex222", "bolotalex06@gmail.com", "@lexandr1", new Coordinates(1, 2, "Ville"));
+
+            alex.save();
+
+            //endregion
+            //region User chloe = new User(...); chloe.save();
+            User chloe = new User("coupigny-Warot",
+                    "chloe",
+                    "chloee",
+                    "chloe.coupwarot@orange.fr",
+                    "Chloe01234",
+                    new Coordinates(1, 2, "Ville"));
+            chloe.save();
+            //endregion
+            //region Admin admin = new Admin(...); admin.save();
+            Admin admin = new Admin("Ad", "min", "administrateur", "aa@gmail.com", "a", new Coordinates(1, 2, "Ville"));
+            admin.setAdmin(true);
+            admin.save();
+            //endregion
+
+            //region uncomment to create a Roadtrip
         /*
         RoadTrip roadTrip = new RoadTrip("myRoadTrip", alex);
         
@@ -110,24 +108,25 @@ public class App extends Application
         
         roadTrip.save();
         */
-        //endregion
-        
+            //endregion
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         launch(args);
     }
-    
+
     @Override
-    public void start (Stage primaryStage) throws Exception
-    {
-        try
-        {
+    public void start(Stage primaryStage) {
+        try {
             Parent root = FXMLLoader.load(getClass().getResource("../HomePage.fxml"));
             primaryStage.setTitle("IUTGo");
-            primaryStage.setScene(new Scene(root, 800, 550));
+            Scene scene = new Scene(root, 800, 550);
+            scene.getStylesheets().add(getClass().getResource("../styles/myCss.css").toString());
+            primaryStage.setScene(scene);
             primaryStage.show();
-        }
-        catch (NullPointerException npe)
-        {
-            npe.printStackTrace();
+        } catch (NullPointerException | IOException e) {
+            e.printStackTrace();
         }
     }
 }
